@@ -34,6 +34,11 @@ export default {
       color: var(--neutral-07-color);
     }
 
+    &:focus-visible {
+      outline: none;
+      border: var(--neutral-shade-04-50-color) solid 2px;
+    }
+
     &__img {
       width: 24px;
       height: 24px;

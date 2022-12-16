@@ -39,6 +39,11 @@ export default {
       transition: fill 0.3s;
     }
 
+    &:focus-visible {
+      outline: none;
+      border: var(--neutral-shade-04-50-color) solid 2px;
+    }
+
     &__img {
       width: 25px;
       height: 24px;
