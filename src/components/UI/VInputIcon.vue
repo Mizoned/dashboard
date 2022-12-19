@@ -19,6 +19,7 @@
             class="v-input__input"
             @input="update"
             v-bind="$attrs"
+
         >
         <div v-if="isError" class="v-input__svg">
           <svg class="v-input__svg--error" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 15C12.5523 15 13 14.5523 13 14V9.00001C13 8.44772 12.5523 8.00001 12 8.00001C11.4477 8.00001 11 8.44772 11 9.00001V14C11 14.5523 11.4477 15 12 15Z" fill="#FF6A55"/><path fill-rule="evenodd" clip-rule="evenodd" d="M19.6739 17.5044L12.8689 5.56347C12.4852 4.8903 11.5149 4.89031 11.1312 5.56347L4.32627 17.5044C3.94636 18.1711 4.42779 18.9996 5.1951 18.9996H18.8051C19.5724 18.9996 20.0538 18.1711 19.6739 17.5044ZM14.6065 4.57321C13.4556 2.55372 10.5445 2.55372 9.3936 4.57321L2.58863 16.5142C1.44889 18.5141 2.89318 20.9996 5.1951 20.9996H18.8051C21.107 20.9996 22.5513 18.5141 21.4115 16.5142L14.6065 4.57321Z" fill="#FF6A55"/><path d="M13 17C13 17.5523 12.5523 18 12 18C11.4477 18 11 17.5523 11 17C11 16.4477 11.4477 16 12 16C12.5523 16 13 16.4477 13 17Z" fill="#FF6A55"/></svg>
@@ -114,12 +115,16 @@ export default {
       color: var(--neutral-00-color);
       padding: 10px 0;
       border: none;
+      -webkit-box-shadow: inset 0 0 0 50px var(--neutral-08-color);
+      -webkit-text-fill-color: var(--neutral-00-color);
 
       &::-moz-placeholder {
         color: var(--neutral-shade-dark-04-40-color);
+        -webkit-text-fill-color: var(--neutral-shade-dark-04-40-color);
       }
       &::-webkit-input-placeholder {
         color: var(--neutral-shade-dark-04-40-color);
+        -webkit-text-fill-color: var(--neutral-shade-dark-04-40-color);
       }
       &:focus-visible {
         outline: none;
@@ -129,9 +134,11 @@ export default {
     &--hover {
       .v-input__input::-moz-placeholder {
         color: var(--neutral-04-color);
+        -webkit-text-fill-color: var(--neutral-04-color);
       }
       .v-input__input::-webkit-input-placeholder {
         color: var(--neutral-04-color);
+        -webkit-text-fill-color: var(--neutral-04-color);
       }
       svg path {
         fill: var(--neutral-04-color);
@@ -143,9 +150,11 @@ export default {
 
       .v-input__input::-moz-placeholder {
         color: var(--neutral-00-color);
+        -webkit-text-fill-color: var(--neutral-00-color);
       }
       .v-input__input::-webkit-input-placeholder {
         color: var(--neutral-00-color);
+        -webkit-text-fill-color: var(--neutral-00-color);
       }
       svg path {
         fill: var(--neutral-00-color);
@@ -155,6 +164,7 @@ export default {
     &--filled {
       .v-input__input::-moz-placeholder {
         color: var(--neutral-00-color);
+        -webkit-text-fill-color: var(--neutral-00-color);
       }
       svg path {
         fill: var(--neutral-00-color);
@@ -166,6 +176,7 @@ export default {
 
       .v-input__input {
         color: var(--primary-orange-color);
+        -webkit-text-fill-color: var(--primary-orange-color);
       }
       svg path {
         fill: var(--primary-orange-color);
