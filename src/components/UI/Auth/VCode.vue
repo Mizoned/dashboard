@@ -6,6 +6,7 @@
              @keydown="handleKeyDown($event, 0)"
              v-model="inputVars[0]"
              ref="input_0"
+             v-focus
       >
       <input class="code__input"
              @input="handleChange($event, 1)"
