@@ -10,18 +10,40 @@ const routes = [
   {
     path: '/sign-up',
     name: 'sign-up',
-    component: () => import(/* webpackChunkName: "about" */ '../views/SignUp.vue')
+    component: () => import('../views/SignUp.vue')
   },
   {
     path: '/sign-in',
     name: 'sign-in',
-    component: () => import(/* webpackChunkName: "about" */ '../views/SignIn.vue')
+    component: () => import('../views/SignIn.vue')
   }
 ]
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
-})
+});
+
+router.beforeEach((to, from, next) => {
+  const accessToken = localStorage.getItem('token');
+
+  if (!accessToken) {
+    if (to.name === 'sign-in' || to.name === 'sign-up') {
+      return next();
+    } else {
+      return next({
+        name: 'sign-in'
+      });
+    }
+  }
+
+  if ((to.name === 'sign-in' || to.name === 'sign-up') && accessToken) {
+    return next({
+      name: 'home'
+    });
+  }
+
+  next();
+});
 
 export default router
