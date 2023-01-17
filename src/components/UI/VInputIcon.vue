@@ -28,6 +28,7 @@
           <svg class="v-input__svg--success" width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M21.2071 6.29289C21.5976 6.68342 21.5976 7.31658 21.2071 7.70711L12.6213 16.2929C11.4497 17.4645 9.55026 17.4645 8.37868 16.2929L4.79289 12.7071C4.40237 12.3166 4.40237 11.6834 4.79289 11.2929C5.18342 10.9024 5.81658 10.9024 6.20711 11.2929L9.79289 14.8787C10.1834 15.2692 10.8166 15.2692 11.2071 14.8787L19.7929 6.29289C20.1834 5.90237 20.8166 5.90237 21.2071 6.29289Z" fill="#83BF6E"/></svg>
         </div>
       </div>
+      <div v-if="errorMessage" class="v-input__error">{{ errorMessage }}</div>
     </div>
 </template>
 
@@ -47,6 +48,10 @@ export default {
     },
     isError: {
       type: Boolean
+    },
+    errorMessage: {
+      type: String,
+      default: ''
     }
   },
   methods: {
@@ -203,6 +208,14 @@ export default {
           fill: var(--neutral-01-color) !important;
         }
       }
+    }
+
+    &__error {
+      color: var(--primary-orange-color);
+      font-weight: 500;
+      font-size: 12px;
+      line-height: 12px;
+      padding: 6px 6px 0 6px;
     }
   }
 </style>

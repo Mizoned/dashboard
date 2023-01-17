@@ -19,6 +19,7 @@
                   autocomplete="off"
                   :label-text="'Or continue with email address'"
                   :isError="v$.email.$invalid && v$.email.$error"
+                  :errorMessage="v$.email?.$errors[0]?.$message"
                   @clear="resetVEmail"
                   @update:modelValue="updateEmail"
                   @blur="v$.email.$touch()"
@@ -31,6 +32,7 @@
                   placeholder="Password"
                   v-model="password"
                   :isError="this.v$.password.$invalid && this.v$.password.$error"
+                  :errorMessage="v$.password?.$errors[0]?.$message"
                   @clear="resetVPassword"
                   @update:modelValue="updatePassword"
                   @blur="v$.password.$touch()"
@@ -55,7 +57,8 @@ import VButton from "@/components/UI/VButton";
 import VCaptcha from "@/components/VCaptcha";
 import VLogotype from "@/components/VLogotype";
 import { useVuelidate } from '@vuelidate/core';
-import { required, email, minLength } from '@vuelidate/validators';
+import { required, email, minLength, maxLength, helpers } from '@vuelidate/validators';
+import { mapActions } from "vuex";
 
 export default {
   name: "SignIn",
@@ -68,34 +71,54 @@ export default {
       isAllowSending: false,
       email: '',
       password: '',
+      vuelidateExternalResults: {
+        email: '',
+        password: ''
+      }
     }
   },
   validations() {
     return {
-      email: { required, email },
-      password: { required },
+      email: {
+        required: helpers.withMessage('Поле обязательно для заполнения', required),
+        email: helpers.withMessage('Email введён некорректно', email)
+      },
+      password: {
+        required: helpers.withMessage('Поле обязательно для заполнения', required),
+        minLength: helpers.withMessage('Пароль должен быть больше 8 символов', minLength(9)),
+        maxLength: helpers.withMessage('Пароль должен быть меньше 32 символов', maxLength(32)),
+      },
     }
   },
   methods: {
-    onSubmit() {
-      if (
-          !this.v$.email.$invalid
-          && !this.v$.email.$error
-          || !this.v$.password.$invalid
-          && !this.v$.password.$error
-      ) {
-        alert(0);
-      } else {
-        this.v$.email.$touch();
-        this.v$.password.$touch();
+    ...mapActions({
+      signIn: 'auth/signIn'
+    }),
+    async onSubmit() {
+      if (this.v$.$invalid) {
+        this.v$.$touch();
+        return;
       }
+
+      this.signIn({email: this.email, password: this.password})
+        .then(() => {
+          this.$router.push({ name: 'home' });
+        })
+        .catch(error => {
+          const errors = error.response.data.errors;
+          errors.forEach(error => {
+            this.vuelidateExternalResults[error.param] = error.msg;
+          });
+        });
     },
     updateEmail(value) {
+      this.v$.$clearExternalResults();
       if (!value) {
         this.resetVEmail();
       }
     },
     updatePassword(value) {
+      this.v$.$clearExternalResults();
       if (!value) {
         this.resetVPassword();
       }
