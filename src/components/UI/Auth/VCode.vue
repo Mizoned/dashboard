@@ -7,27 +7,31 @@
              v-model="inputVars[0]"
              ref="input_0"
              v-focus
+             @blur="blur"
       >
       <input class="code__input"
              @input="handleChange($event, 1)"
              @keydown="handleKeyDown($event, 1)"
              v-model="inputVars[1]"
              ref="input_1"
+             @blur="blur"
       >
       <input class="code__input"
              @input="handleChange($event, 2)"
              @keydown="handleKeyDown($event, 2)"
              v-model="inputVars[2]"
              ref="input_2"
+             @blur="blur"
       >
       <input class="code__input"
              @input="handleChange($event, 3)"
              @keydown="handleKeyDown($event, 3)"
              v-model="inputVars[3]"
              ref="input_3"
+             @blur="blur"
       >
     </div>
-    <div v-if="isError" class="code__error">The code you entered is incorrect.</div>
+    <div v-if="errorMessage" class="code__error">{{ errorMessage }}</div>
   </div>
 </template>
 
@@ -41,13 +45,14 @@ export default {
     }
   },
   props: {
-    code: {
-      type: String,
-      required: true
-    },
+    modelValue: [String],
     isError: {
       type: Boolean,
       default: false
+    },
+    errorMessage: {
+      type: String,
+      default: ''
     }
   },
   methods: {
@@ -65,7 +70,6 @@ export default {
           }
         }
         this.updateCode();
-        this.updateStatusError();
       }
     },
     handleChange(event, index) {
@@ -82,15 +86,12 @@ export default {
       }
 
       this.updateCode();
-      this.updateStatusError();
     },
     updateCode() {
-      this.$emit('update:code', this.result);
+      this.$emit('update:modelValue', this.result);
     },
-    updateStatusError() {
-      if (this.isError) {
-        this.$emit('update:isError', !this.isError);
-      }
+    blur() {
+      this.$emit('blur');
     }
   },
   computed: {
@@ -144,7 +145,7 @@ export default {
       line-height: 12px;
       letter-spacing: -0.01em;
       color: var(--primary-orange-color);
-      margin-top: 12px;
+      padding: 6px 6px 0 6px;
     }
 
     &--error {
