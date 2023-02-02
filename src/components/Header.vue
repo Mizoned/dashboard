@@ -24,12 +24,7 @@
       </div>
       <messages/>
       <notifications/>
-      <div class="header__item header-user">
-        <button class="header-user__button">
-          <img src="../assets/images/profile4.jpg" alt="">
-        </button>
-        <div class="header-user__body"></div>
-      </div>
+      <profile/>
     </div>
   </header>
 </template>
@@ -39,10 +34,11 @@ import VSearch from "@/components/UI/VSearch.vue";
 import VButton from "@/components/UI/VButton.vue";
 import Messages from "@/components/UI/Header/Messages.vue";
 import Notifications from "@/components/UI/Header/Notifications.vue";
+import Profile from "@/components/UI/Header/Profile.vue";
 
 export default {
   name: "Header",
-  components: { Notifications, Messages, VButton, VSearch },
+  components: { Profile, Notifications, Messages, VButton, VSearch },
   data() {
     return {
       search: ''
