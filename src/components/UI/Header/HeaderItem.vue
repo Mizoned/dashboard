@@ -93,6 +93,16 @@ export default {
     }
   }
 
+  &:hover {
+    .header-item__head {
+      &:deep(svg) {
+        path {
+          fill: var(--neutral-01-color);
+        }
+      }
+    }
+  }
+
   @media only screen and (max-width: 768px) {
     position: static;
   }
