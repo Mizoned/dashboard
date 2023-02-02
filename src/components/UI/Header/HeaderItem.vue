@@ -86,7 +86,7 @@ export default {
       opacity: 1;
     }
 
-    &:deep(svg) {
+    .header-item__head:deep(svg) {
       path {
         fill: var(--neutral-01-color);
       }

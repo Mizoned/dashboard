@@ -1,7 +1,7 @@
 <template>
   <div :class="[ 'message-item', { 'message-item--new': isNew }]">
     <div class="message-item__avatar">
-      <img src="@/assets/images/profile.jpg" alt="avatar">
+      <img src="@/assets/images/profile3.jpg" alt="avatar">
       <!--TODO Сделать динамическую подгрузку аватара в свойство avatar-->
     </div>
     <div class="message-item__details">

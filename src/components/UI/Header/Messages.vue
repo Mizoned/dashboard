@@ -17,7 +17,7 @@
           </actions-button>
         </div>
         <div class="messages__list">
-          <message-item v-for="n in 5" :is-new="true" name="Valery Scherbinin" message="Hello World! Hello World! Hello World! Hello World!" time="03:20PM"></message-item>
+          <message-item v-for="n in 5" :is-new="true" name="Reuben Ward" message="When do you release the coded template" time="03:20PM"/>
         </div>
         <v-button class="messages__button" label="View in message center" color="primary"/>
       </div>
@@ -34,7 +34,7 @@ import ActionButtonOption from "@/components/UI/ActionButtonOption.vue";
 
 export default {
   name: "Messages",
-  components: {ActionButtonOption, ActionsButton, VButton, HeaderItem, MessageItem }
+  components: { ActionButtonOption, ActionsButton, VButton, HeaderItem, MessageItem }
 }
 </script>
 
