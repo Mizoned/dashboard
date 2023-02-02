@@ -4,7 +4,6 @@
 * {
   box-sizing: border-box;
   font-family: "Inter", "Open Sans", sans-serif;
-
 }
 
 body {
@@ -29,20 +28,24 @@ path {
   transition: all .3s;
 }
 
+button, input, select {
+  font-family: "Inter", "Open Sans", sans-serif;
+}
+
 #app {
   height: 100%;
 }
 
 ::-webkit-scrollbar {
   width: 4px;
-  height: 6px;
 }
 
 ::-webkit-scrollbar-track {
   background: var(--neutral-07-color);
+  border-radius: 30px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--pribary-blue-dark-color);
+  background: var(--primary-blue-dark-color);
   border-radius: 30px;
 }
