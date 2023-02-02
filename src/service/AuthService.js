@@ -12,4 +12,12 @@ export default class AuthService {
     static async logout() {
         return $api.post('/user/logout');
     }
+
+    static async sendRegistrationCode(email) {
+        return $api.post('/user/send-registration-code', email);
+    }
+
+    static async verifyRegistrationCode(email, code) {
+        return $api.post('/user/verify-registration-code', { email, code });
+    }
 }

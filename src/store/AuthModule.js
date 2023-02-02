@@ -29,6 +29,41 @@ export const authModule = {
                     reject(error);
                 });
             });
+        },
+        sendRegistrationCode({ commit }, email) {
+            return new Promise((resolve, reject) => {
+                AuthService.sendRegistrationCode(email)
+                    .then(response => {
+                        resolve(response);
+                    })
+                    .catch(error => {
+                        reject(error);
+                    });
+            });
+        },
+        verifyRegistrationCode({ commit }, { email, code }) {
+            return new Promise((resolve, reject) => {
+                AuthService.verifyRegistrationCode(email, code)
+                    .then(response => {
+                        resolve(response);
+                    })
+                    .catch(error => {
+                        reject(error);
+                    });
+            });
+        },
+        signUp({ commit }, { email, password}) {
+            return new Promise((resolve, reject) => {
+                AuthService.signUp(email, password)
+                    .then(response => {
+                        commit('setToken', response.data.accessToken);
+                        commit('setUser', response.data.user);
+                        resolve(response);
+                    })
+                    .catch(error => {
+                        reject(error);
+                    });
+            });
         }
     }
 }
