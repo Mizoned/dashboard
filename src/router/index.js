@@ -1,11 +1,19 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import HomeView from '../views/HomeView.vue';
+import DashboardLayout from "@/layouts/DashboardLayout.vue";
 
 const routes = [
   {
     path: '/',
-    name: 'home',
-    component: HomeView
+    name: 'dashboard',
+    component: DashboardLayout,
+    children: [
+      {
+        path: '',
+        name: 'home',
+        component: HomeView
+      }
+    ]
   },
   {
     path: '/sign-up',
@@ -24,6 +32,7 @@ const router = createRouter({
   routes
 });
 
+//TODO Вынести названия роутов в массив
 router.beforeEach((to, from, next) => {
   const accessToken = localStorage.getItem('token');
 
