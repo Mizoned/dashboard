@@ -22,9 +22,9 @@
           </svg>
         </button>
       </div>
-      <messages/>
-      <notifications/>
-      <profile/>
+      <messages :is-open="items.messages.state" @update:is-open="clickHandler"/>
+      <notifications :is-open="items.notifications.state" @update:is-open="clickHandler"/>
+      <profile :is-open="items.profile.state" @update:is-open="clickHandler"/>
     </div>
   </header>
 </template>
@@ -41,9 +41,35 @@ export default {
   components: { Profile, Notifications, Messages, VButton, VSearch },
   data() {
     return {
-      search: ''
+      search: '',
+      activeItem: null,
+      items: {
+        messages: {
+          state: false
+        },
+        notifications: {
+          state: false
+        },
+        profile: {
+          state: false
+        }
+      }
     }
   },
+  methods: {
+    clickHandler(event) {
+      if (this.activeItem && this.activeItem === event.name) {
+        this.activeItem = null;
+      } else {
+        if (this.activeItem) {
+          this.items[this.activeItem].state = false;
+        }
+        this.activeItem = event.name;
+      }
+
+      this.items[event.name].state = event.value;
+    }
+  }
 }
 </script>
 

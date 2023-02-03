@@ -1,5 +1,5 @@
 <template>
-  <header-item>
+  <header-item :is-open="isOpen" @update:is-open="clickHandler">
     <template #svg>
       <div class="profile-img"><img src="@/assets/images/profile4.jpg" alt=""></div>
     </template>
@@ -50,7 +50,15 @@ import ProfileItem from "@/components/UI/Header/ProfileItem.vue";
 
 export default {
   name: "Profile",
-  components: {ProfileItem, HeaderItem}
+  components: { ProfileItem, HeaderItem },
+  props: {
+    isOpen: false
+  },
+  methods: {
+    clickHandler(value) {
+      this.$emit('update:isOpen', { name: 'profile', value });
+    }
+  }
 }
 </script>
 

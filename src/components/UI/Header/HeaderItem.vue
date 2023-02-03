@@ -1,6 +1,6 @@
 <template>
   <div :class="[ 'header-item', { 'header-item--open': isOpen } ]">
-    <button :class="[ 'header-item__head', { 'header-item__head--active': isActive } ]" @click="open">
+    <button :class="[ 'header-item__head', { 'header-item__head--active': isActive } ]" @click="clickHandler">
       <slot name="svg"></slot>
     </button>
     <div class="header-item__body">
@@ -16,16 +16,15 @@ export default {
     isActive: {
       type: Boolean,
       default: false
-    }
-  },
-  data() {
-    return {
-      isOpen: false
+    },
+    isOpen: {
+      type: Boolean,
+      default: false
     }
   },
   methods: {
-    open() {
-      this.isOpen = !this.isOpen;
+    clickHandler() {
+      this.$emit('update:isOpen', !this.isOpen);
     }
   }
 }
