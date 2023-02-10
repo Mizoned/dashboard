@@ -54,7 +54,7 @@ export default {
     cursor: pointer;
 
     &:hover {
-      background-color: var(--neutral-07-color);
+      background-color: var(--neutral-dark-gray-background-color);
     }
 
     &__avatar {
@@ -72,8 +72,9 @@ export default {
           width: 12px;
           height: 12px;
           background-color: var(--primary-green-color);
-          border: 4px solid var(--neutral-06-color);
+          border: 4px solid var(--neutral-dark-gray-background-color);
           border-radius: 100%;
+          transition: background-color 0.3s, border-color 0.3s;
         }
       }
 
@@ -103,7 +104,8 @@ export default {
       font-weight: 700;
       font-size: 15px;
       letter-spacing: -0.01em;
-      color: var(--neutral-01-color);
+      color: var(--neutral-champagne-color);
+      transition: color 0.3s;
     }
 
     &__data {
@@ -117,14 +119,16 @@ export default {
       font-size: 13px;
       line-height: 16px;
       letter-spacing: -0.01em;
-      color: var(--neutral-04-75-color);
+      color: var(--primary-ivory-color);
+      transition: color 0.3s;
     }
 
     &__status {
       width: 12px;
       height: 12px;
       border-radius: 100%;
-      background-color: var(--neutral-04-75-color);
+      background-color: var(--primary-ivory-color);
+      transition: background-color 0.3s;
     }
 
     &__message {
@@ -135,13 +139,14 @@ export default {
       font-size: 15px;
       line-height: 24px;
       letter-spacing: -0.015em;
-      color: var(--neutral-04-color);
+      color: var(--primary-dark-white-color);
       padding-right: 24px;
     }
 
     &--new {
       .message-item__status {
         background-color: var(--primary-blue-color);
+        transition: background-color 0.3s;
       }
     }
   }

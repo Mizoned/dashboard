@@ -69,7 +69,6 @@ export default {
     gap: 12px;
     padding: 12px;
     width: 280px;
-    background-color: var(--neutral-08-color);
 
     &-img {
       border-radius: 100%;
@@ -89,20 +88,12 @@ export default {
       align-items: center;
     }
 
-    &__title {
-      font-weight: 600;
-      font-size: 20px;
-      line-height: 32px;
-      letter-spacing: -0.02em;
-      color: var(--neutral-01-color);
-      margin-left: 12px;
-    }
-
     &__list {
       &-box {
-        border-bottom: 1px solid var(--neutral-06-color);
+        border-bottom: 1px solid var(--neutral-dark-gray-background-color);
         margin-bottom: 12px;
         padding-bottom: 12px;
+        transition: border-bottom-color 0.3s;
 
         &:last-child {
           border-bottom: none;

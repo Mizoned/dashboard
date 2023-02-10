@@ -1,11 +1,22 @@
 <template>
-  <img class="v-logotype" src="@/assets/images/logo.png" alt="">
+  <!--TODO: дописать ссылку на главную страницу-->
+  <router-link :to="{ name: 'dashboard' }">
+    <img v-if="isDarkThemeMode" draggable="false" class="v-logotype" src="@/assets/images/light-logo.png" alt="">
+    <img v-else draggable="false" class="v-logotype" src="@/assets/images/dark-logo.png" alt="">
+  </router-link>
 </template>
 
 <script>
-export default {
-  name: "VLogotype"
-}
+  import { mapGetters } from "vuex";
+
+  export default {
+    name: "VLogotype",
+    computed: {
+      ...mapGetters({
+        isDarkThemeMode: 'theme/isDarkThemeMode'
+      })
+    }
+  }
 </script>
 
 <style scoped>

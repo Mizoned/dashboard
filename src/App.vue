@@ -14,3 +14,11 @@ export default {
   }
 }
 </script>
+
+<style scoped lang="scss">
+  .app {
+    height: 100vh;
+    background-color: var(--neutral-dark-black-background-color);
+    transition: background-color 0.3s;
+  }
+</style>

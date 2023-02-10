@@ -6,16 +6,18 @@
     <div class="sidebar__menu">
     </div>
     <div class="sidebar__footer">
+      <theme-switcher></theme-switcher>
     </div>
   </div>
 </template>
 
 <script>
 import VLogotype from "@/components/VLogotype.vue";
+import ThemeSwitcher from "@/components/ThemeSwitcher.vue";
 
 export default {
   name: "Sidebar",
-  components: { VLogotype },
+  components: { ThemeSwitcher, VLogotype },
   data() {
     return {
       menu: [
@@ -108,6 +110,8 @@ export default {
     gap: 48px;
     padding: 24px;
     flex-direction: column;
+    background-color: var(--neutral-light-black-background-color);
+    transition: background-color 0.3s;
 
     &__header {
       &__header-close {

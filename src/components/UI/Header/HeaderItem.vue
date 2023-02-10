@@ -56,7 +56,8 @@ export default {
         height: 10px;
         background-color: var(--primary-orange-color);
         border-radius: 100%;
-        border: 2px solid var(--neutral-07-color);
+        border: 2px solid var(--neutral-light-black-background-color);
+        transition: all 0.3s;
       }
     }
   }
@@ -67,10 +68,13 @@ export default {
     right: 0;
     visibility: hidden;
     opacity: 0;
-    border: 2px solid var(--neutral-06-color);
+    background-color: var(--neutral-light-black-background-color);
+    border: 2px solid var(--neutral-dark-gray-background-color);
     border-radius: 16px;
     overflow: hidden;
-    transition: all 0.3s;
+    box-shadow: 0px 40px 64px -12px rgba(0, 0, 0, 0.08), 0px 0px 14px -4px rgba(0, 0, 0, 0.05), 0px 32px 48px -8px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(16px);
+    transition: background-color 0.3s, border 0.3s;
 
     @media only screen and (max-width: 768px) {
       top: calc(100% + 4px);
@@ -87,7 +91,7 @@ export default {
 
     .header-item__head:deep(svg) {
       path {
-        fill: var(--neutral-01-color);
+        fill: var(--neutral-champagne-background-color);
       }
     }
   }
@@ -96,7 +100,7 @@ export default {
     .header-item__head {
       &:deep(svg) {
         path {
-          fill: var(--neutral-01-color);
+          fill: var(--neutral-champagne-background-color);
         }
       }
     }

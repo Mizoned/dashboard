@@ -39,17 +39,17 @@ export default {
     }
 
     &--white {
-      color: var(--neutral-04-color);
+      color: var(--primary-dark-white-color);
 
       &:hover {
         &:deep(svg) {
           path {
-            fill: var(--neutral-01-color);
+            fill: var(--neutral-champagne-background-color);
           }
         }
 
         .profile-item__label {
-          color: var(--neutral-01-color);
+          color: var(--neutral-champagne-color);
         }
       }
     }

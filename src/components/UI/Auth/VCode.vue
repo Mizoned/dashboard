@@ -112,30 +112,30 @@ export default {
     &__input {
       padding: 12px;
       border-radius: 12px;
-      background: var(--neutral-06-color);
+      background-color: var(--neutral-dark-gray-background-color);
       outline: none;
       width: 25%;
       border: 2px solid transparent;
-      caret-color: var(--primary-blue-color);
+      caret-color: var(--neutral-champagne-color);
       height: 72px;
       font-weight: 600;
       font-size: 48px;
       line-height: 48px;
       text-align: center;
       letter-spacing: -0.03em;
-      color: var(--neutral-01-color);
-      transition: all .3s ease;
+      color: var(--neutral-champagne-color);
+      transition: background-color 0.3s, caret-color 0.3s, color 0.3s;
 
       &::-moz-placeholder {
-        color: var(--neutral-shade-dark-04-40-color);
+        color: var(--primary-dark-white-color);
       }
       &::-webkit-input-placeholder {
-        color: var(--neutral-shade-dark-04-40-color);
+        color: var(--primary-dark-white-color);
       }
       &:focus-visible {
         outline: none;
-        border: var(--neutral-shade-04-50-color) solid 2px;
-        background: var(--neutral-07-color);
+        border: 2px solid var(--primary-ivory-color) ;
+        background-color: var(--neutral-light-black-background-color);
       }
     }
 
@@ -152,6 +152,8 @@ export default {
       .code__input {
         background: var(--primary-orange-15-color);
         color: var(--primary-orange-color);
+        border: transparent;
+        caret-color: var(--primary-orange-color);
       }
     }
   }

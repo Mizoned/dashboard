@@ -56,7 +56,6 @@ export default {
     gap: 12px;
     padding: 12px;
     width: 392px;
-    background-color: var(--neutral-08-color);
 
     &__header {
       display: flex;
@@ -69,8 +68,9 @@ export default {
       font-size: 20px;
       line-height: 32px;
       letter-spacing: -0.02em;
-      color: var(--neutral-01-color);
+      color: var(--neutral-champagne-color);
       margin-left: 12px;
+      transition: color 0.3s;
     }
 
     &__list {

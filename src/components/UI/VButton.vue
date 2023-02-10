@@ -1,6 +1,5 @@
 <template>
   <button
-      class=""
       :class="['v-button', `v-button--${color}`]"
   >
     <slot name="svg-before"></slot>
@@ -52,38 +51,32 @@ export default {
 
     &:disabled {
       pointer-events: none;
-
-      &:deep(svg) {
-        path {
-          fill: var(--neutral-shade-04-75-color);
-        }
-      }
+      opacity: 0.5;
     }
 
     &--primary {
       background-color: var(--primary-blue-color);
-      color: var(--neutral-01-color);
+      color: var(--primary-champagne-color);
 
       &:hover {
-        background-color: var(--primary-blue-dark-color);
-      }
-      &:disabled {
-        background-color: var(--primary-blue-50-color);
+        background-color: var(--primary-dark-blue-color);
       }
     }
 
     &--secondary {
-      background-color: var(--neutral-07-color);
-      border-color: var(--neutral-06-color);
-      color: var(--neutral-00-color);
+      background-color: var(--neutral-light-black-background-color);
+      border-color: var(--neutral-dark-gray-background-color);
+      color: var(--neutral-champagne-color);
+
+      &:deep(svg) {
+        & > path {
+          fill: var(--neutral-champagne-background-color);
+        }
+      }
 
       &:hover {
         background-color: transparent;
-        border-color: var(--neutral-00-color);
-      }
-      &:disabled {
-        background-color: var(--neutral-shade-06-50-color);
-        border: 2px solid var(--neutral-shade-05-50-color);
+        border-color: var(--neutral-champagne-background-color);
       }
     }
   }

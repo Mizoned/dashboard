@@ -228,7 +228,8 @@ export default {
   &__main {
     display: grid;
     grid-template-rows: auto 1fr;
-    background-color: var(--neutral-07-color);
+    background-color: var(--neutral-light-black-background-color);
+    transition: background-color 0.3s;
     height: 100%;
   }
 
@@ -250,7 +251,6 @@ export default {
         display: block;
       }
     }
-
   }
 
   &__main-sign-in {
@@ -260,7 +260,7 @@ export default {
     font-size: 13px;
     line-height: 16px;
     letter-spacing: -0.01em;
-    color: var(--neutral-shade-04-75-color);
+    color: var(--primary-ivory-color);
     padding: 16px;
     text-align: right;
   }
@@ -282,7 +282,7 @@ export default {
     font-size: 48px;
     line-height: 48px;
     letter-spacing: -0.03em;
-    color: var(--neutral-01-color);
+    color: var(--neutral-champagne-color);
     margin: 0;
   }
 
@@ -303,13 +303,13 @@ export default {
       font-size: 14px;
       line-height: 24px;
       letter-spacing: -0.01em;
-      color: var(--neutral-00-color);
+      color: var(--neutral-champagne-color);
     }
   }
 
   &__hr {
     height: 2px;
-    background-color: var(--neutral-06-color);
+    background-color: var(--neutral-dark-gray-background-color);
     border-radius: 2px;
     margin-top: 12px;
   }
@@ -331,7 +331,7 @@ export default {
   font-size: 12px;
   line-height: 16px;
   letter-spacing: -0.01em;
-  color: var(--neutral-01-color);
+  color: var(--neutral-champagne-color);
   text-decoration: none;
 }
 </style>

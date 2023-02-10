@@ -15,6 +15,6 @@ export default {
     font-size: 14px;
     line-height: 24px;
     letter-spacing: -0.01em;
-    color: var(--neutral-shade-04-50-color);
+    color: var(--primary-dark-white-color);
   }
 </style>

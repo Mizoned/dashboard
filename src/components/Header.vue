@@ -86,8 +86,9 @@ export default {
     justify-content: space-between;
     position: relative;
     padding: 24px 40px;
-    background-color: var(--neutral-07-color);
-    box-shadow: inset 1px 0 0 var(--neutral-08-color);
+    background-color: var(--neutral-light-black-background-color);
+    box-shadow: inset 1px 0 0 var(--neutral-dark-black-background-color);
+    transition: background-color 0.3s, box-shadow 0.3s;
 
     &__search {
       width: 360px;
@@ -99,7 +100,7 @@ export default {
         left: 0;
         right: 0;
         padding: 20px;
-        background-color: var(--neutral-08-color);
+        background-color: var(--neutral-dark-black-background-color);
       }
     }
 

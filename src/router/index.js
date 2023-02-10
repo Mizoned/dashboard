@@ -34,23 +34,23 @@ const router = createRouter({
 
 //TODO Вынести названия роутов в массив
 router.beforeEach((to, from, next) => {
-  const accessToken = localStorage.getItem('token');
-
-  if (!accessToken) {
-    if (to.name === 'sign-in' || to.name === 'sign-up') {
-      return next();
-    } else {
-      return next({
-        name: 'sign-in'
-      });
-    }
-  }
-
-  if ((to.name === 'sign-in' || to.name === 'sign-up') && accessToken) {
-    return next({
-      name: 'home'
-    });
-  }
+  // const accessToken = localStorage.getItem('token');
+  //
+  // if (!accessToken) {
+  //   if (to.name === 'sign-in' || to.name === 'sign-up') {
+  //     return next();
+  //   } else {
+  //     return next({
+  //       name: 'sign-in'
+  //     });
+  //   }
+  // }
+  //
+  // if ((to.name === 'sign-in' || to.name === 'sign-up') && accessToken) {
+  //   return next({
+  //     name: 'home'
+  //   });
+  // }
 
   next();
 });

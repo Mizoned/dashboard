@@ -17,8 +17,8 @@ export default {
 
 <style scoped lang="scss">
   .socials {
-    display: flex;
-    align-self: flex-start;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     column-gap: 8px;
   }
 </style>

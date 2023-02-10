@@ -93,16 +93,16 @@ export default {
     &__input {
       padding: 10px 68px 10px 44px;
       border-radius: 12px;
-      background-color: var(--neutral-06-color);
+      background-color: var(--neutral-dark-gray-background-color);
       border: 2px solid transparent;
       font-style: normal;
       font-weight: 600;
       font-size: 15px;
       line-height: 24px;
       width: 100%;
-      color: var(--neutral-00-color);
-      caret-color: var(--primary-blue-color);
-      transition: all .2s;
+      color: var(--neutral-champagne-color);
+      caret-color: var(--neutral-champagne-color);
+      transition: background-color 0.3s, color 0.3s, caret-color 0.3s, border-color 0.3s;
       outline: 2px solid transparent;
 
       &:focus {
@@ -125,11 +125,12 @@ export default {
       font-weight: 600;
       font-size: 16px;
       line-height: 24px;
-      color: var(--neutral-01-color);
-      background-color: var(--neutral-07-color);
+      color: var(--neutral-champagne-color);
+      background-color: var(--neutral-light-black-background-color);
       padding: 4px 12px;
       border-radius: 8px;
       box-shadow: inset 0px -1px 2px rgba(0, 0, 0, 0.05), inset 0px -1px 1px rgba(0, 0, 0, 0.04), inset 0px 1px 0px rgba(255, 255, 255, 0.08);
+      transition: color 0.3s, background-color 0.3s, box-shadow 0.3s;
 
       @media only screen and (max-width: 768px) {
         display: none;

@@ -48,9 +48,10 @@ export default {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 4px;
-      background-color: var(--neutral-08-color);
+      background-color: var(--neutral-dark-black-background-color);
       padding: 4px;
       border-radius: 40px;
+      transition: all 0.3s;
     }
 
     &__moon, &__sun {
@@ -63,40 +64,43 @@ export default {
       font-size: 15px;
       line-height: 24px;
       letter-spacing: -0.01em;
-      color: var(--neutral-04-color);
+      background-color: transparent;
+      color: var(--neutral-dark-white-background-color);
+      box-shadow: unset;
       border-radius: 32px;
-      transition: all 0.3s;
+      transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
 
       &:hover {
-        color: var(--neutral-01-color);
+        color: var(--neutral-champagne-color) !important;
 
         svg {
           path {
-            fill: var(--neutral-01-color);
+            fill: var(--neutral-champagne-background-color) !important;
           }
         }
       }
     }
 
     &__sun {
-      background: var(--neutral-06-color);
+      background-color: var(--neutral-dark-gray-background-color);
       box-shadow: 0px 4px 8px -4px rgba(0, 0, 0, 0.25), inset 0px -1px 1px rgba(0, 0, 0, 0.49), inset 0px 2px 1px rgba(255, 255, 255, 0.06);
-      color: var(--neutral-01-color);
+      color: var(--neutral-champagne-color);
 
       svg {
         path {
-          fill: var(--neutral-01-color);
+          fill: var(--neutral-champagne-background-color);
         }
       }
     }
 
     &__input:checked + &__inner &__moon {
-      background: var(--neutral-06-color);
+      background: var(--neutral-dark-gray-background-color);
       box-shadow: 0px 4px 8px -4px rgba(0, 0, 0, 0.25), inset 0px -1px 1px rgba(0, 0, 0, 0.49), inset 0px 2px 1px rgba(255, 255, 255, 0.06);
-      color: var(--neutral-01-color);
+      color: var(--neutral-champagne-color);
+
       svg {
         path {
-          fill: var(--neutral-01-color);
+          fill: var(--neutral-champagne-background-color);
         }
       }
     }
@@ -104,11 +108,11 @@ export default {
     &__input:checked + &__inner &__sun {
       background: transparent;
       box-shadow: unset;
-      color: var(--neutral-04-color);
+      color: var(--neutral-dark-white-color);
 
       svg {
         path {
-          fill: var(--neutral-04-color);
+          fill: var(--neutral-dark-white-background-color);
         }
       }
     }

@@ -26,7 +26,7 @@ export default {
     }
 
     &__label {
-      color: var(--neutral-04-color);
+      color: var(--primary-dark-white-color);
       font-weight: 600;
       font-size: 15px;
       line-height: 24px;
@@ -36,18 +36,18 @@ export default {
 
     &:deep(svg) {
       path {
-        fill: var(--neutral-04-color);
+        fill: var(--primary-dark-white-color);
       }
     }
 
     &:hover {
       .action-button-option__label {
-        color: var(--neutral-00-color);
+        color: var(--neutral-champagne-color);
       }
 
       &:deep(svg) {
         path {
-          fill: var(--neutral-00-color);
+          fill: var(--neutral-champagne-background-color);
         }
       }
     }

@@ -43,11 +43,18 @@ export default {
       align-items: center;
       width: 32px;
       height: 32px;
-      background-color: var(--neutral-06-color);
+      background-color: var(--neutral-dark-gray-background-color);
       border-radius: 100%;
       border: 2px solid transparent;
       cursor: pointer;
       padding: 4px;
+      transition: all 0.3s;
+
+      svg {
+        path {
+          fill: var(--neutral-champagne-background-color);
+        }
+      }
     }
 
     &__body {
@@ -58,13 +65,15 @@ export default {
       right: 0;
       z-index: 2;
       padding: 12px;
-      background-color: var(--neutral-08-color);
-      border: 1px solid var(--neutral-06-color);
+      border: 2px solid var(--neutral-dark-gray-background-color);
+      background-color: var(--neutral-light-black-background-color);
       width: 256px;
       border-radius: 16px;
       visibility: hidden;
       opacity: 0;
       transition: all 0.3s;
+      box-shadow: 0px 40px 64px -12px rgba(0, 0, 0, 0.08), 0px 0px 14px -4px rgba(0, 0, 0, 0.05), 0px 32px 48px -8px rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(16px);
     }
 
     &--active {

@@ -50,7 +50,8 @@ export default {
       line-height: 40px;
       text-align: center;
       letter-spacing: -0.03em;
-      color: var(--neutral-03-color);
+      color: var(--neutral-white-smoke-color);
+      transition: color 0.3s;
     }
 
     &__item {
@@ -82,7 +83,8 @@ export default {
         font-size: 14px;
         line-height: 24px;
         letter-spacing: -0.01em;
-        color: var(--neutral-04-color);
+        color: var(--primary-dark-white-color);
+        transition: color 0.3s;
       }
     }
   }
