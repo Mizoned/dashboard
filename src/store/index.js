@@ -1,6 +1,7 @@
 import { createStore } from 'vuex';
 import { authModule } from '@/store/AuthModule';
 import { themeModule } from "@/store/ThemeModule";
+import { overlayModule } from "@/store/OverlayModule";
 
 export default createStore({
   state: {
@@ -13,6 +14,7 @@ export default createStore({
   },
   modules: {
     auth: authModule,
-    theme: themeModule
+    theme: themeModule,
+    overlay: overlayModule
   }
 })
