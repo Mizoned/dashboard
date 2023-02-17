@@ -1,28 +1,40 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue';
 import DashboardLayout from "@/layouts/DashboardLayout.vue";
+import ShopView from "@/views/ShopView.vue";
+import PromoteView from "@/views/PromoteView.vue";
 
 const routes = [
   {
-    path: '/',
-    name: 'dashboard',
+    path: '',
+    name: 'Dashboard',
     component: DashboardLayout,
     children: [
       {
         path: '',
-        name: 'home',
+        name: 'Home',
         component: HomeView
+      },
+      {
+        path: '/shop',
+        name: 'Shop',
+        component: ShopView
+      },
+      {
+        path: '/promote',
+        name: 'Promote',
+        component: PromoteView
       }
     ]
   },
   {
     path: '/sign-up',
-    name: 'sign-up',
+    name: 'SignUp',
     component: () => import('../views/SignUp.vue')
   },
   {
     path: '/sign-in',
-    name: 'sign-in',
+    name: 'SignIn',
     component: () => import('../views/SignIn.vue')
   }
 ]
@@ -34,23 +46,23 @@ const router = createRouter({
 
 //TODO Вынести названия роутов в массив
 router.beforeEach((to, from, next) => {
-  // const accessToken = localStorage.getItem('token');
-  //
-  // if (!accessToken) {
-  //   if (to.name === 'sign-in' || to.name === 'sign-up') {
-  //     return next();
-  //   } else {
-  //     return next({
-  //       name: 'sign-in'
-  //     });
-  //   }
-  // }
-  //
-  // if ((to.name === 'sign-in' || to.name === 'sign-up') && accessToken) {
-  //   return next({
-  //     name: 'home'
-  //   });
-  // }
+  const accessToken = localStorage.getItem('token');
+
+  if (!accessToken) {
+    if (to.name === 'SignIn' || to.name === 'SignUp') {
+      return next();
+    } else {
+      return next({
+        name: 'SignIn'
+      });
+    }
+  }
+
+  if ((to.name === 'SignIn' || to.name === 'SignUp') && accessToken) {
+    return next({
+      name: 'Home'
+    });
+  }
 
   next();
 });
