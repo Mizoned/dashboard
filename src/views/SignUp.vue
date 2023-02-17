@@ -186,7 +186,7 @@ export default {
 
       this.signUp({ email: this.email, password: this.password })
         .then((response) => {
-          this.$router.push({ name: 'home' });
+          this.$router.push({ name: 'Home' });
         })
         .catch(error => {
           const errors = error.response.data.errors;
