@@ -7,17 +7,19 @@
         <router-view></router-view>
       </div>
     </div>
+    <v-overlay/>
   </div>
 </template>
 
 <script>
 import VHeader from "@/components/Header.vue";
 import VSidebar from "@/components/Sidebar.vue";
+import VOverlay from "@/components/VOverlay.vue";
 
 export default {
   name: "DashboardLayout",
   components: {
-    VHeader, VSidebar
+    VOverlay, VHeader, VSidebar
   }
 }
 </script>
