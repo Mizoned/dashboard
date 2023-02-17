@@ -1,5 +1,5 @@
 <template>
-  <div class="sidebar" v-click-outside="onClickOutsideHandler">
+  <div :class="['sidebar', { 'active': isAllowed }]" v-click-outside="onClickOutsideHandler">
     <div class="sidebar__header">
       <v-logotype class="sidebar__logotype"/>
     </div>
@@ -27,6 +27,8 @@ export default {
   components: { SidebarElementDropdown, SidebarLinkElement, ThemeSwitcher, VLogotype },
   data() {
     return {
+      width: 0,
+      isOpen: false,
       menuItems: [
         {
           name: 'Home',
@@ -112,14 +114,28 @@ export default {
       ]
     }
   },
+  computed: {
+    isAllowed() {
+      return this.width <= 1250;
+    }
+  },
   methods: {
     ...mapMutations({
       'setIsOverlayActive': 'overlay/setIsOverlayActive'
     }),
+    updateWidth() {
+      this.width = window.innerWidth;
+    },
     onClickOutsideHandler() {
-      this.setIsOverlayActive(false);
+      if (this.isOpen) {
+        this.setIsOverlayActive(false);
+      }
     }
-  }
+  },
+  created() {
+    this.updateWidth();
+    window.addEventListener('resize', this.updateWidth);
+  },
 }
 </script>
 
