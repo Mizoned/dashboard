@@ -1,6 +1,5 @@
 <template>
-  <!--TODO: дописать ссылку на главную страницу-->
-  <router-link :to="{ name: 'dashboard' }">
+  <router-link :to="{ name: 'Dashboard' }">
     <img v-if="isDarkThemeMode" draggable="false" class="v-logotype" src="@/assets/images/light-logo.png" alt="">
     <img v-else draggable="false" class="v-logotype" src="@/assets/images/dark-logo.png" alt="">
   </router-link>
