@@ -156,4 +156,31 @@ export default {
       }
     }
   }
+
+  .sidebar--open {
+    .theme-switcher {
+      &__inner {
+        @media screen and (max-width: 1250px) {
+          width: auto;
+          height: auto;
+        }
+      }
+
+      &__moon, &__sun {
+        @media screen and (max-width: 1250px) {
+          padding: 4px 8px;
+          position: inherit;
+          width: 100%;
+          visibility: visible !important;
+          opacity: 1 !important;
+        }
+      }
+
+      &__label {
+        @media screen and (max-width: 1250px) {
+          display: block;
+        }
+      }
+    }
+  }
 </style>
