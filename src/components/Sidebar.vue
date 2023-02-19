@@ -35,7 +35,6 @@ export default {
   components: { VIconClose, SidebarElementDropdown, SidebarLinkElement, ThemeSwitcher, VLogotype },
   data() {
     return {
-      width: 0,
       menuItems: [
         {
           name: 'Home',
@@ -124,23 +123,15 @@ export default {
   computed: {
     ...mapState({
       isSidebarOpen: state => state.sidebar.isSidebarOpen
-    }),
-    isAllowed() {
-      return this.appScreenWidth <= 1250;
-    }
+    })
   },
   methods: {
     ...mapActions({
       'sidebarOpenHandler' : 'sidebar/sidebarOpenHandler'
     }),
     onClickOutsideHandler() {
-      if (this.isSidebarOpen && this.isAllowed) {
-        this.openSidebarHandler(false);
-      }
-    },
-    openSidebarHandler(value) {
-      if (this.isAllowed) {
-        this.sidebarOpenHandler(value);
+      if (this.isSidebarOpen) {
+        this.sidebarOpenHandler(false);
       }
     }
   }
@@ -201,7 +192,6 @@ export default {
       bottom: 0;
       transform: translateX(-100%);
       width: 100%;
-      transition: width 0.3s, transform 0.3s;
 
       &--open {
         width: 100%;
