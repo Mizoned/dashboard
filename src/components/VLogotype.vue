@@ -1,5 +1,5 @@
 <template>
-  <router-link :to="{ name: 'Dashboard' }">
+  <router-link :to="{ name: 'Home' }">
     <img v-if="isDarkThemeMode" draggable="false" class="v-logotype" src="@/assets/images/light-logo.png" alt="">
     <img v-else draggable="false" class="v-logotype" src="@/assets/images/dark-logo.png" alt="">
   </router-link>
