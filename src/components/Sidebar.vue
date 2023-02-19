@@ -146,7 +146,7 @@ export default {
     padding: 24px;
     flex-direction: column;
     background-color: var(--neutral-light-black-background-color);
-    transition: width 0.3s, background-color 0.3s;
+    transition: width 0.3s, background-color 0.3s, transform 0.3s;
     overflow-y: auto;
     z-index: 6;
 
