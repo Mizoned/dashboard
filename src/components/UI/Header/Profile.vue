@@ -1,5 +1,5 @@
 <template>
-  <header-item :is-open="isOpen" @update:is-open="clickHandler">
+  <header-item :is-open="isOpen" @update:is-open="clickHandler" v-click-outside="clickOutsideHandler">
     <template #svg>
       <div class="profile-img"><img src="@/assets/images/profile4.jpg" alt=""></div>
     </template>
@@ -57,6 +57,10 @@ export default {
   methods: {
     clickHandler(value) {
       this.$emit('update:isOpen', { name: 'profile', value });
+    },
+    clickOutsideHandler() {
+      if (!this.isOpen) return
+      this.$emit('update:isOpen', { name: 'notifications', value: false });
     }
   }
 }

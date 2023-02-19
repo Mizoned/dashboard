@@ -1,5 +1,5 @@
 <template>
-  <header-item :is-active="true" :is-open="isOpen" @update:is-open="clickHandler">
+  <header-item :is-active="true" :is-open="isOpen" @update:is-open="clickHandler" v-click-outside="clickOutsideHandler">
     <template #svg><v-icon-notification :is-active="isOpen"/></template>
     <template #body>
       <div class="notifications">
@@ -44,6 +44,10 @@ export default {
   methods: {
     clickHandler(value) {
       this.$emit('update:isOpen', { name: 'notifications', value });
+    },
+    clickOutsideHandler() {
+      if (!this.isOpen) return
+      this.$emit('update:isOpen', { name: 'notifications', value: false });
     }
   }
 }
