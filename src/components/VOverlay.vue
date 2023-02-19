@@ -11,11 +11,6 @@ export default {
     ...mapState({
       isActive: state => state.overlay.isOverlayActive
     }),
-  },
-  methods: {
-    ...mapMutations({
-      toggleIsOverlayActive: 'overlay/toggleIsOverlayActive'
-    })
   }
 }
 </script>
@@ -30,7 +25,7 @@ export default {
     background-color: var(--neutral-dark-gray-background-color);
     opacity: 0;
     visibility: hidden;
-    //transition: background-color 0.3s, visibility 0.3s, opacity 0.3s;
+    transition: background-color 0.3s, visibility 0.3s, opacity 0.3s;
     z-index: 5;
 
     &.active {

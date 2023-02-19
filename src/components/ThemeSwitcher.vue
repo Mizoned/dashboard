@@ -59,6 +59,12 @@ export default {
         width: 48px;
         height: 48px;
       }
+
+
+      @media screen and (max-width: 768px) {
+        width: auto;
+        height: auto;
+      }
     }
 
     &__moon, &__sun {
@@ -95,6 +101,14 @@ export default {
         visibility: hidden;
         opacity: 0;
       }
+
+      @media screen and (max-width: 768px) {
+        padding: 4px 8px;
+        position: inherit;
+        width: 100%;
+        visibility: visible !important;
+        opacity: 1 !important;
+      }
     }
 
     &__sun {
@@ -118,6 +132,10 @@ export default {
     &__label {
       @media screen and (max-width: 1250px) {
         display: none;
+      }
+
+      @media screen and (max-width: 768px) {
+        display: block;
       }
     }
 

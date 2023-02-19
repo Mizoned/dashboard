@@ -6,9 +6,6 @@ export const overlayModule = {
     mutations: {
         setIsOverlayActive(state, bool) {
             state.isOverlayActive = bool;
-        },
-        toggleIsOverlayActive(state) {
-            state.isOverlayActive = !state.isOverlayActive;
         }
     }
 }

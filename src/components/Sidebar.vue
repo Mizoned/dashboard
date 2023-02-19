@@ -1,11 +1,18 @@
 <template>
-  <div :class="['sidebar', { 'active': isAllowed }]" v-click-outside="onClickOutsideHandler">
+  <div :class="['sidebar', { 'sidebar--open': isSidebarOpen }]" v-click-outside="onClickOutsideHandler">
     <div class="sidebar__header">
+      <v-icon-close class="sidebar__header-close" @click="sidebarOpenHandler(false)"/>
       <v-logotype class="sidebar__logotype"/>
     </div>
     <div class="sidebar__menu">
       <template v-for="item in menuItems">
-        <sidebar-element-dropdown class="sidebar-item" v-if="item?.children?.length" :label="item.name" :children="item.children" :iconComponentName="item.iconComponentName"/>
+        <sidebar-element-dropdown
+            :class="[ 'sidebar-item', { 'wide': isSidebarOpen }]"
+            v-if="item?.children?.length"
+            :label="item.name" :children="item.children"
+            :iconComponentName="item.iconComponentName"
+            @click="sidebarOpenHandler(true)"
+        />
         <sidebar-link-element class="sidebar-item" v-else :label="item.name" :href="item.href" :iconComponentName="item.iconComponentName"/>
       </template>
     </div>
@@ -20,15 +27,15 @@ import VLogotype from "@/components/VLogotype.vue";
 import ThemeSwitcher from "@/components/ThemeSwitcher.vue";
 import SidebarLinkElement from "@/components/UI/Sidebar/SidebarLinkElement.vue";
 import SidebarElementDropdown from "@/components/UI/Sidebar/SidebarElementDropdown.vue";
-import { mapMutations } from "vuex";
+import VIconClose from "@/components/icons/VIconClose.vue";
+import { mapState, mapActions } from "vuex";
 
 export default {
   name: "Sidebar",
-  components: { SidebarElementDropdown, SidebarLinkElement, ThemeSwitcher, VLogotype },
+  components: { VIconClose, SidebarElementDropdown, SidebarLinkElement, ThemeSwitcher, VLogotype },
   data() {
     return {
       width: 0,
-      isOpen: false,
       menuItems: [
         {
           name: 'Home',
@@ -115,27 +122,28 @@ export default {
     }
   },
   computed: {
+    ...mapState({
+      isSidebarOpen: state => state.sidebar.isSidebarOpen
+    }),
     isAllowed() {
-      return this.width <= 1250;
+      return this.appScreenWidth <= 1250;
     }
   },
   methods: {
-    ...mapMutations({
-      'setIsOverlayActive': 'overlay/setIsOverlayActive'
+    ...mapActions({
+      'sidebarOpenHandler' : 'sidebar/sidebarOpenHandler'
     }),
-    updateWidth() {
-      this.width = window.innerWidth;
-    },
     onClickOutsideHandler() {
-      if (this.isOpen) {
-        this.setIsOverlayActive(false);
+      if (this.isSidebarOpen && this.isAllowed) {
+        this.openSidebarHandler(false);
+      }
+    },
+    openSidebarHandler(value) {
+      if (this.isAllowed) {
+        this.sidebarOpenHandler(value);
       }
     }
-  },
-  created() {
-    this.updateWidth();
-    window.addEventListener('resize', this.updateWidth);
-  },
+  }
 }
 </script>
 
@@ -143,19 +151,30 @@ export default {
   .sidebar {
     display: flex;
     gap: 48px;
+    width: 100%;
     padding: 24px;
     flex-direction: column;
     background-color: var(--neutral-light-black-background-color);
-    transition: background-color 0.3s;
+    transition: width 0.3s, background-color 0.3s;
     overflow-y: auto;
+    z-index: 6;
 
     &::-webkit-scrollbar {
       width: 0;
     }
 
     &__header {
-      &__header-close {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+
+      &-close {
         display: none;
+
+        @media screen and (max-width: 768px) {
+          display: block;
+        }
       }
     }
 
@@ -167,6 +186,27 @@ export default {
 
     &__footer {
       margin-top: auto;
+    }
+
+    @media screen and (max-width: 1250px) {
+      &--open {
+        width: 360px;
+      }
+    }
+
+    @media screen and (max-width: 768px) {
+      position: fixed;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      transform: translateX(-100%);
+      width: 100%;
+      transition: width 0.3s, transform 0.3s;
+
+      &--open {
+        width: 100%;
+        transform: translateX(0);
+      }
     }
   }
 </style>

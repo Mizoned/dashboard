@@ -8,7 +8,7 @@
         </v-button>
       </div>
       <div class="header__item header-menu">
-        <button class="header-menu__button">
+        <button class="header-menu__button" @click.stop="sidebarOpenHandler(true)">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd" clip-rule="evenodd" d="M4 16C4 15.4477 4.44772 15 5 15H19C19.5523 15 20 15.4477 20 16C20 16.5523 19.5523 17 19 17H5C4.44772 17 4 16.5523 4 16Z" fill="#6F767E"/>
             <path fill-rule="evenodd" clip-rule="evenodd" d="M4 8C4 7.44772 4.44772 7 5 7H19C19.5523 7 20 7.44772 20 8C20 8.55228 19.5523 9 19 9H5C4.44772 9 4 8.55228 4 8Z" fill="#6F767E"/>
@@ -35,6 +35,7 @@ import VButton from "@/components/UI/VButton.vue";
 import Messages from "@/components/UI/Header/Messages.vue";
 import Notifications from "@/components/UI/Header/Notifications.vue";
 import Profile from "@/components/UI/Header/Profile.vue";
+import { mapActions } from "vuex";
 
 export default {
   name: "Header",
@@ -57,6 +58,9 @@ export default {
     }
   },
   methods: {
+    ...mapActions({
+      'sidebarOpenHandler': 'sidebar/sidebarOpenHandler'
+    }),
     clickHandler(event) {
       if (this.activeItem && this.activeItem === event.name) {
         this.activeItem = null;

@@ -92,7 +92,8 @@ export default {
     }
 
     &__head {
-      display: flex;
+      display: grid;
+      grid-template-columns: 24px 1fr;
       align-items: center;
       gap: 12px;
 
@@ -104,8 +105,16 @@ export default {
     }
 
     &__name {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+
       @media screen and (max-width: 1250px) {
         display: none;
+      }
+
+      @media screen and (max-width: 768px) {
+        display: block;
       }
     }
 
@@ -116,6 +125,10 @@ export default {
 
       @media screen and (max-width: 1250px) {
         display: none;
+      }
+
+      @media screen and (max-width: 768px) {
+        display: flex;
       }
     }
   }

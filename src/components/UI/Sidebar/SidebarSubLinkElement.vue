@@ -54,6 +54,12 @@ export default {
     transition: color 0.3s, background-color 0.3s, box-shadow 0.3s;
     position: relative;
 
+    &__head {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
     &:hover {
       background-color: var(--neutral-dark-gray-background-color);
       color: var(--neutral-champagne-color);

@@ -1,8 +1,8 @@
 <template>
-  <div :class="[ 'sidebar-item-dropdown', { 'open' : isOpen } ]" >
-    <button class="sidebar-item-dropdown__button" @click="openHandler">
+  <div :class="[ 'sidebar-item-dropdown', { 'open' : isOpen }, { 'active': isHaveActiveElement } ]" >
+    <button :class="[ 'sidebar-item-dropdown__button', ]" @click="openHandler">
       <span class="sidebar-item-dropdown__head">
-        <component v-if="iconComponentName" :is="iconComponentName" :isActive="this.$route.name === label"/>
+        <component v-if="iconComponentName" :is="iconComponentName" :isActive="isHaveActiveElement"/>
         <span class="sidebar-item-dropdown__name">{{ label }}</span>
       </span>
       <span class="sidebar-item-dropdown__icons">
@@ -47,7 +47,12 @@ export default {
   },
   data() {
     return {
-      isOpen: false
+      isOpen: false,
+    }
+  },
+  computed: {
+    isHaveActiveElement()  {
+      return !!this.children.find(child => child.href === this.$route.path);
     }
   },
   methods: {
@@ -94,8 +99,25 @@ export default {
      }
    }
 
+   &.active {
+     .sidebar-item-dropdown__button {
+       background-color: var(--neutral-dark-gray-background-color);
+     }
+
+     .sidebar-item-dropdown__head {
+       color: var(--neutral-champagne-color);
+
+       &:deep(svg) {
+         path {
+           fill: var(--neutral-champagne-color);;
+         }
+       }
+     }
+   }
+
    &__head {
-     display: flex;
+     display: grid;
+     grid-template-columns: 24px 1fr;
      align-items: center;
      gap: 12px;
 
@@ -107,8 +129,16 @@ export default {
    }
 
    &__name {
+     white-space: nowrap;
+     overflow: hidden;
+     text-overflow: ellipsis;
+
      @media screen and (max-width: 1250px) {
        display: none;
+     }
+
+     @media screen and (max-width: 768px) {
+       display: block;
      }
    }
 
@@ -120,6 +150,10 @@ export default {
      @media screen and (max-width: 1250px) {
        display: none;
      }
+
+     @media screen and (max-width: 768px) {
+       display: flex;
+     }
    }
 
    &__arrow {
@@ -130,6 +164,7 @@ export default {
 
    &__body {
      display: none;
+     flex-direction: column;
      position: relative;
      padding: 0 0 0 36px;
      background-color: transparent;
@@ -154,7 +189,10 @@ export default {
      .sidebar-item-dropdown {
        &__body {
          display: flex;
-         flex-direction: column;
+
+         @media screen and (max-width: 1250px) {
+           display: none;
+         }
        }
 
        &__arrow {
@@ -166,6 +204,16 @@ export default {
 
  .sidebar--open {
    .sidebar-item-dropdown {
+     &.active {
+       .sidebar-item-dropdown__button {
+         background-color: transparent;
+       }
+     }
+     &.wide.open {
+       .sidebar-item-dropdown__body {
+         display: flex;
+       }
+     }
      &__name {
        @media screen and (max-width: 1250px) {
          display: block;
