@@ -102,7 +102,7 @@ export default {
 
       this.signIn({email: this.email, password: this.password})
         .then(() => {
-          this.$router.push({ name: 'home' });
+          this.$router.push({ name: 'Home' });
         })
         .catch(error => {
           const errors = error.response.data.errors;
