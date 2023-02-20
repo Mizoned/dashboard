@@ -22,13 +22,9 @@
 </template>
 
 <script>
-import VIconArrow from "@/components/icons/VIconArrow.vue";
-import VIconWarning from "@/components/icons/VIconWarning.vue";
-import VIconCheck from "@/components/icons/VIconCheck.vue";
 
 export default {
   name: "VInputIcon",
-  components: { VIconCheck, VIconWarning, VIconArrow },
   props: {
     modelValue: {
       type: String,
