@@ -9,6 +9,9 @@ import VIconPieChart from "@/components/icons/VIconPieChart.vue";
 import VIconMessage from "@/components/icons/VIconMessage.vue";
 import VIconNotification from "@/components/icons/VIconNotification.vue";
 import VIconClose from "@/components/icons/VIconClose.vue";
+import VIconMail from "@/components/icons/VIconMail.vue";
+import VIconPreloader from "@/components/icons/VIconPreloader.vue";
+import VIconLock from "@/components/icons/VIconLock.vue";
 
 export default [
     VIconHome,
@@ -21,5 +24,8 @@ export default [
     VIconPieChart,
     VIconMessage,
     VIconNotification,
-    VIconClose
+    VIconClose,
+    VIconMail,
+    VIconPreloader,
+    VIconLock
 ];
