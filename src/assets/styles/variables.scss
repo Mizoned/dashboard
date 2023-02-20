@@ -79,6 +79,8 @@
   --secondary-blue-color: #B1E5FC; // secondary-03
   --secondary-green-color: #B5E4CA; // secondary-04
   --secondary-yellow-color: #FFD88D; // secondary-05
+
+  --color-scheme: dark;
 }
 
 .light-theme {
@@ -103,4 +105,6 @@
   --neutral-dark-gray-background-color: #EFEFEF; // neutral-06 -> 03
   --neutral-light-black-background-color: #FCFCFC; // neutral-07 - 01
   --neutral-dark-black-background-color: #F4F4F4; // neutral-08 -> -02
+
+  --color-scheme: light;
 }

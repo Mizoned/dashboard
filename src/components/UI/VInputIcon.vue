@@ -11,6 +11,7 @@
           class="v-input__input"
           @input="update"
           v-bind="$attrs"
+          autocomplete="off"
       />
       <div class="v-input__right-svg">
         <v-icon-warning v-if="isError" class="v-input__svg--error"/>
@@ -85,6 +86,7 @@ export default {
       color: var(--neutral-champagne-color);
       transition: color 0.3s, background-color 0.3s, border-color 0.3s;
       outline: none;
+      color-scheme: var(--color-scheme);
 
       &:focus {
         border-color: var(--primary-blue-color);
