@@ -4,6 +4,7 @@ import router from './router';
 import store from './store';
 import directives from "@/directives";
 import icons from '@/components/icons'
+import uiComponents from "@/components/UI";
 import components from "@/components";
 
 import '@/assets/styles/main.scss';
@@ -20,6 +21,10 @@ icons.forEach(icon => {
 });
 
 components.forEach(component => {
+    app.component(component.name, component);
+});
+
+uiComponents.forEach(component => {
     app.component(component.name, component);
 });
 
