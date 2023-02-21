@@ -2,9 +2,9 @@
   <button
       :class="['v-button', `v-button--${color}`]"
   >
-    <slot name="svg-before"></slot>
+    <component v-if="beforeSvgComponentName" :is="beforeSvgComponentName"/>
     <span>{{ label }}</span>
-    <slot name="svg-after"></slot>
+    <component v-if="afterSvgComponentName" :is="afterSvgComponentName"/>
   </button>
 </template>
 
@@ -27,8 +27,15 @@ export default {
     color: {
       type: String,
       default: 'primary'
+    },
+    beforeSvgComponentName: {
+      type: String,
+      required: false
+    },
+    afterSvgComponentName: {
+      type: String,
+      required: false
     }
-
   }
 }
 </script>
@@ -57,6 +64,12 @@ export default {
     &--primary {
       background-color: var(--primary-blue-color);
       color: var(--primary-champagne-color);
+
+      &:deep(svg) {
+        path {
+          fill: var(--primary-champagne-color);
+        }
+      }
 
       &:hover {
         background-color: var(--primary-dark-blue-color);
