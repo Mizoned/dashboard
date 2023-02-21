@@ -15,6 +15,7 @@ import VIconLock from "@/components/icons/VIconLock.vue";
 import VIconCheck from "@/components/icons/VIconCheck.vue";
 import VIconArrow from "@/components/icons/VIconArrow.vue";
 import VIconWarning from "@/components/icons/VIconWarning.vue";
+import VIconAdd from "@/components/icons/VIconAdd.vue";
 
 export default [
     VIconHome,
@@ -33,5 +34,6 @@ export default [
     VIconLock,
     VIconCheck,
     VIconArrow,
-    VIconWarning
+    VIconWarning,
+    VIconAdd
 ];
