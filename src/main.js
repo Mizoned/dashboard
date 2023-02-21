@@ -4,6 +4,7 @@ import router from './router';
 import store from './store';
 import directives from "@/directives";
 import icons from '@/components/icons'
+import components from "@/components";
 
 import '@/assets/styles/main.scss';
 import 'normalize.css';
@@ -16,6 +17,10 @@ directives.forEach(directive => {
 
 icons.forEach(icon => {
     app.component(icon.name, icon);
+});
+
+components.forEach(component => {
+    app.component(component.name, component);
 });
 
 app
