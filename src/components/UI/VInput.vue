@@ -64,6 +64,7 @@ export default {
       line-height: 24px;
       letter-spacing: -0.01em;
       color: var(--neutral-white-smoke-background-color);
+      transition: color 0.3s;
     }
 
     &__icon {
