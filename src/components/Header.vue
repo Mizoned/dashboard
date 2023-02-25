@@ -89,7 +89,7 @@ export default {
     position: relative;
     padding: 24px 40px;
     background-color: var(--neutral-light-black-background-color);
-    box-shadow: inset 1px 0 0 var(--neutral-dark-black-background-color);
+    box-shadow: inset 1px 0 0 var(--neutral-dark-black-background-color), inset 0 -1px 0px var(--neutral-dark-black-background-color);
     transition: background-color 0.3s, box-shadow 0.3s;
 
     &__search {
