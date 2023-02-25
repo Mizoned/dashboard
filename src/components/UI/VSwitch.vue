@@ -1,13 +1,24 @@
 <template>
   <label class="v-switch">
-    <input class="v-switch__input" type="checkbox">
+    <input class="v-switch__input" v-bind="$attrs" type="checkbox" :checked="checked" @change="changeHandler">
     <span class="v-switch__box"></span>
   </label>
 </template>
 
 <script>
 export default {
-  name: "VSwitch"
+  name: "VSwitch",
+  props: {
+    checked: {
+      type: Boolean,
+      default: false
+    }
+  },
+  methods: {
+    changeHandler(event) {
+      this.$emit('update:checked', event.target.checked);
+    }
+  }
 }
 </script>
 
