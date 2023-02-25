@@ -74,7 +74,7 @@ export default {
     overflow: hidden;
     box-shadow: 0px 40px 64px -12px rgba(0, 0, 0, 0.08), 0px 0px 14px -4px rgba(0, 0, 0, 0.05), 0px 32px 48px -8px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(16px);
-    transition: background-color 0.3s, border 0.3s;
+    transition: background-color 0.3s, border 0.3s, visibility 0.3s, opacity 0.3s;
 
     @media only screen and (max-width: 768px) {
       top: calc(100% + 4px);
