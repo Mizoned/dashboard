@@ -83,7 +83,6 @@ export default {
       gap: 8px;
 
       @media only screen and (max-width: 768px) {
-        height: 160px;
         overflow-y: auto;
         margin: 0 -8px;
         padding: 0 4px 0 8px;
@@ -93,10 +92,15 @@ export default {
     &__button {
       margin-top: 12px;
       width: 100%;
+
+      @media only screen and (max-width: 768px) {
+        margin-top: auto;
+      }
     }
 
     @media only screen and (max-width: 768px) {
       width: 100%;
+      height: 100%;
     }
   }
 </style>

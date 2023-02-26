@@ -77,9 +77,12 @@ export default {
     transition: background-color 0.3s, border 0.3s, visibility 0.3s, opacity 0.3s;
 
     @media only screen and (max-width: 768px) {
-      top: calc(100% + 4px);
-      right: 16px;
-      left: 16px;
+      top: 100%;
+      right: 0;
+      left: 0;
+      height: calc(100vh - 80px);
+      border: none;
+      border-radius: unset;
     }
   }
 
