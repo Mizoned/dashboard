@@ -4,6 +4,7 @@
     <v-sidebar class="main__sidebar"/>
     <div class="main__view">
       <div class="main__container">
+        <h1 class="main__title h3">{{ $route.name }}</h1>
         <router-view></router-view>
       </div>
     </div>
@@ -55,17 +56,19 @@ export default {
       overflow-x: auto;
       padding: 40px;
 
-      &::-webkit-scrollbar {
-        width: 0;
-        height: 0;
-      }
-
       @media only screen and (max-width: 768px) {
         padding: 24px 16px;
       }
     }
 
+    &__title {
+      margin-bottom: 16px;
+    }
+
     &__container {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
       width: 100%;
       max-width: 1200px;
       margin: 0 auto;
