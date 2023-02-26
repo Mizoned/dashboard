@@ -18,6 +18,18 @@ import VIconWarning from "@/components/icons/VIconWarning.vue";
 import VIconAdd from "@/components/icons/VIconAdd.vue";
 import VIconApple from "@/components/icons/VIconApple.vue";
 import VIconGoogle from "@/components/icons/VIconGoogle.vue";
+import VIconHelp from "@/components/icons/VIconHelp.vue";
+import VIconBarChart from "@/components/icons/VIconBarChart.vue";
+import VIconEdit from "@/components/icons/VIconEdit.vue";
+import VIconHeart from "@/components/icons/VIconHeart.vue";
+import VIconLeaderboard from "@/components/icons/VIconLeaderboard.vue";
+import VIconLogout from "@/components/icons/VIconLogout.vue";
+import VIconMenu from "@/components/icons/VIconMenu.vue";
+import VIconPerson from "@/components/icons/VIconPerson.vue";
+import VIconSettings from "@/components/icons/VIconSettings.vue";
+import VIconStar from "@/components/icons/VIconStar.vue";
+import VIconTicket from "@/components/icons/VIconTicket.vue";
+import VIconTrash from "@/components/icons/VIconTrash.vue";
 
 export default [
     VIconHome,
@@ -39,5 +51,17 @@ export default [
     VIconWarning,
     VIconAdd,
     VIconApple,
-    VIconGoogle
+    VIconGoogle,
+    VIconHelp,
+    VIconBarChart,
+    VIconEdit,
+    VIconHeart,
+    VIconLeaderboard,
+    VIconLogout,
+    VIconMenu,
+    VIconPerson,
+    VIconSettings,
+    VIconStar,
+    VIconTicket,
+    VIconTrash
 ];
