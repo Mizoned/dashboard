@@ -87,6 +87,7 @@ export default {
     align-items: center;
     justify-content: space-between;
     position: relative;
+    z-index: 5;
     padding: 24px 40px;
     background-color: var(--neutral-light-black-background-color);
     box-shadow: inset 1px 0 0 var(--neutral-dark-black-background-color), inset 0 -1px 0px var(--neutral-dark-black-background-color);

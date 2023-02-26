@@ -17,6 +17,8 @@
       </template>
     </div>
     <div class="sidebar__footer">
+      <v-divider :height="2"/>
+      <sidebar-link-element class="sidebar-item" label="Help & getting started" href="/help" iconComponentName="VIconHelp" :counter="8" counter-color="purple"/>
       <theme-switcher></theme-switcher>
     </div>
   </div>
@@ -29,10 +31,11 @@ import SidebarLinkElement from "@/components/UI/Sidebar/SidebarLinkElement.vue";
 import SidebarElementDropdown from "@/components/UI/Sidebar/SidebarElementDropdown.vue";
 import VIconClose from "@/components/icons/VIconClose.vue";
 import { mapState, mapActions } from "vuex";
+import VDivider from "@/components/VDivider.vue";
 
 export default {
   name: "Sidebar",
-  components: { VIconClose, SidebarElementDropdown, SidebarLinkElement, ThemeSwitcher, VLogotype },
+  components: {VDivider, VIconClose, SidebarElementDropdown, SidebarLinkElement, ThemeSwitcher, VLogotype },
   data() {
     return {
       menuItems: [
@@ -176,7 +179,11 @@ export default {
     }
 
     &__footer {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
       margin-top: auto;
+      transition: border-color 0.3s;
     }
 
     @media screen and (max-width: 1250px) {
