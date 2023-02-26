@@ -3,6 +3,7 @@ import HomeView from '../views/HomeView.vue';
 import DashboardLayout from "@/layouts/DashboardLayout.vue";
 import ShopView from "@/views/ShopView.vue";
 import PromoteView from "@/views/PromoteView.vue";
+import SettingsView from "@/views/SettingsView.vue";
 
 const routes = [
   {
@@ -24,6 +25,11 @@ const routes = [
         path: '/promote',
         name: 'Promote',
         component: PromoteView
+      },
+      {
+        path: '/account-settings',
+        name: 'Account settings',
+        component: SettingsView
       }
     ]
   },
