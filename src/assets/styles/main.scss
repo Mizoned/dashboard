@@ -38,10 +38,14 @@ input::-webkit-input-placeholder {
 
 svg {
   transition: all .3s;
-}
 
-path {
-  transition: all .3s;
+  path {
+    transition: all .3s;
+  }
+
+  circle {
+    transition: all .3s;
+  }
 }
 
 button, input, select {

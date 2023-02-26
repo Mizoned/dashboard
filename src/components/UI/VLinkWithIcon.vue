@@ -1,5 +1,5 @@
 <template>
-  <router-link :to="href" exact class="v-link-with-icon" exact-active-class="active">
+  <router-link :to="href" exact :class="[ 'v-link-with-icon', `v-link-with-icon--${color}`]" exact-active-class="active">
     <div class="v-link-with-icon__head">
       <component v-if="iconComponentName" :is="iconComponentName" :isActive="this.$route.name === label"/>
       <span class="v-link-with-icon__name">{{ label }}</span>
@@ -41,6 +41,10 @@
       iconComponentName: {
         type: String,
         required: false
+      },
+      color: {
+        type: String,
+        default: 'white'
       }
     }
   }
@@ -64,17 +68,6 @@
     letter-spacing: -0.01em;
     transition: color 0.3s, background-color 0.3s, box-shadow 0.3s;
 
-    &:hover {
-      background-color: var(--neutral-dark-gray-background-color);
-      color: var(--neutral-champagne-color);
-
-      &:deep(svg) {
-        path {
-          fill: var(--neutral-champagne-background-color);
-        }
-      }
-    }
-
     &.active {
       color: var(--neutral-champagne-color);
       background-color: var(--neutral-dark-gray-background-color);
@@ -82,6 +75,9 @@
 
       .v-link-with-icon__head:deep(svg) {
         path {
+          fill: var(--neutral-champagne-background-color);
+        }
+        circle {
           fill: var(--neutral-champagne-background-color);
         }
       }
@@ -110,6 +106,55 @@
       display: flex;
       align-items: center;
       gap: 12px;
+    }
+
+    &--white {
+      color: var(--primary-dark-white-color);
+
+      &:hover {
+        background-color: var(--neutral-dark-gray-background-color);
+        color: var(--neutral-champagne-color);
+
+        &:deep(svg) {
+          path {
+            fill: var(--neutral-champagne-background-color);
+          }
+        }
+      }
+    }
+
+    &--purple {
+      color: var(--primary-purple-color);
+
+      &:deep(svg) {
+        path {
+          fill: var(--primary-purple-color);
+        }
+      }
+
+      &:hover {
+        color: var(--primary-purple-color);
+        background-color: var(--neutral-dark-gray-background-color);
+
+        &:deep(svg) {
+          path {
+            fill: var(--primary-purple-color);
+          }
+        }
+      }
+
+      &.active {
+        color: var(--primary-purple-color);
+
+        .v-link-with-icon__head:deep(svg) {
+          path {
+            fill: var(--primary-purple-color);
+          }
+          circle {
+            fill: var(--primary-purple-color);
+          }
+        }
+      }
     }
   }
 </style>

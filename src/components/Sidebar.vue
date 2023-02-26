@@ -13,12 +13,12 @@
             :iconComponentName="item.iconComponentName"
             @click="sidebarOpenHandler(true)"
         />
-        <sidebar-link-element class="sidebar-item" v-else :label="item.name" :href="item.href" :iconComponentName="item.iconComponentName"/>
+        <v-link-with-icon class="sidebar-item" v-else :label="item.name" :href="item.href" :iconComponentName="item.iconComponentName"/>
       </template>
     </div>
     <div class="sidebar__footer">
       <v-divider :height="2"/>
-      <sidebar-link-element class="sidebar-item" label="Help & getting started" href="/help" iconComponentName="VIconHelp" :counter="8" counter-color="purple"/>
+      <v-link-with-icon class="sidebar-item" label="Help & getting started" href="/help" iconComponentName="VIconHelp" :counter="8" counter-color="purple"/>
       <theme-switcher></theme-switcher>
     </div>
   </div>
@@ -27,15 +27,12 @@
 <script>
 import VLogotype from "@/components/VLogotype.vue";
 import ThemeSwitcher from "@/components/ThemeSwitcher.vue";
-import SidebarLinkElement from "@/components/UI/Sidebar/SidebarLinkElement.vue";
 import SidebarElementDropdown from "@/components/UI/Sidebar/SidebarElementDropdown.vue";
-import VIconClose from "@/components/icons/VIconClose.vue";
 import { mapState, mapActions } from "vuex";
-import VDivider from "@/components/VDivider.vue";
 
 export default {
   name: "Sidebar",
-  components: {VDivider, VIconClose, SidebarElementDropdown, SidebarLinkElement, ThemeSwitcher, VLogotype },
+  components: { SidebarElementDropdown, ThemeSwitcher, VLogotype },
   data() {
     return {
       menuItems: [
@@ -187,8 +184,11 @@ export default {
     }
 
     @media screen and (max-width: 1250px) {
-      &--open {
-        width: 360px;
+      &:deep(.v-link-with-icon__name) {
+        display: none;
+      }
+      &:deep(.v-link-with-icon__icons) {
+        display: none;
       }
     }
 
@@ -200,7 +200,35 @@ export default {
       transform: translateX(-100%);
       width: 100%;
 
-      &--open {
+      &:deep(.v-link-with-icon__name) {
+        display: block;
+      }
+
+      &:deep(.v-link-with-icon__icons) {
+        display: flex;
+      }
+    }
+
+    &--open {
+      &:deep(.v-link-with-icon) {
+        .v-link-with-icon__name {
+          @media screen and (max-width: 1250px) {
+            display: block;
+          }
+        }
+
+        .v-link-with-icon__icons {
+          @media screen and (max-width: 1250px) {
+            display: flex;
+          }
+        }
+      }
+
+      @media screen and (max-width: 1250px) {
+        width: 360px;
+      }
+
+      @media screen and (max-width: 768px) {
         width: 100%;
         transform: translateX(0);
       }
