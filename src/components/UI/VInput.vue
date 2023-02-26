@@ -72,10 +72,10 @@ export default {
       cursor: pointer;
     }
 
-    &__icon:hover ~ &__tooltipster {
-      visibility: visible;
-      opacity: 1;
-    }
+    //&__icon:hover ~ &__tooltipster {
+    //  visibility: visible;
+    //  opacity: 1;
+    //}
 
     &__tooltipster {
       visibility: hidden;
