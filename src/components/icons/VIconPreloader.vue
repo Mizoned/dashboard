@@ -1,5 +1,5 @@
 <template>
-  <svg class="button-preloader" width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <svg class="button-preloader" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path fill-rule="evenodd" clip-rule="evenodd" d="M12.5 2C13.0523 2 13.5 2.44772 13.5 3V5C13.5 5.55228 13.0523 6 12.5 6C11.9477 6 11.5 5.55228 11.5 5V3C11.5 2.44772 11.9477 2 12.5 2Z" fill="white"/>
     <path fill-rule="evenodd" clip-rule="evenodd" d="M12.5 18C13.0523 18 13.5 18.4477 13.5 19V21C13.5 21.5523 13.0523 22 12.5 22C11.9477 22 11.5 21.5523 11.5 21V19C11.5 18.4477 11.9477 18 12.5 18Z" fill="white"/>
     <path fill-rule="evenodd" clip-rule="evenodd" d="M5.42879 4.92961C5.81931 4.53909 6.45248 4.53909 6.843 4.92961L8.25721 6.34383C8.64774 6.73435 8.64774 7.36751 8.25721 7.75804C7.86669 8.14856 7.23352 8.14856 6.843 7.75804L5.42879 6.34383C5.03826 5.9533 5.03826 5.32014 5.42879 4.92961Z" fill="white"/>

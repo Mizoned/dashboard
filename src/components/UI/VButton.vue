@@ -2,7 +2,8 @@
   <button
       :class="['v-button', `v-button--${color}`]"
   >
-    <component v-if="beforeSvgComponentName" :is="beforeSvgComponentName"/>
+    <component v-if="isLoading" is="VIconPreloader"/>
+    <component v-else-if="beforeSvgComponentName" :is="beforeSvgComponentName"/>
     <span>{{ label }}</span>
     <component v-if="afterSvgComponentName" :is="afterSvgComponentName"/>
   </button>
@@ -35,6 +36,10 @@ export default {
     afterSvgComponentName: {
       type: String,
       required: false
+    },
+    isLoading: {
+      type: Boolean,
+      default: false
     }
   }
 }

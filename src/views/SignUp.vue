@@ -34,7 +34,13 @@
                   @update:modelValue="updateProperty($event, 'email')"
                   @blur="v$.email.$touch()"
               />
-              <v-button :disabled="v$.email.$invalid && v$.email.$error" @click="registrationCodeSendHandler" label="Continue" color="primary"></v-button>
+              <v-button
+                  :disabled="v$.email.$invalid && v$.email.$error"
+                  @click="registrationCodeSendHandler"
+                  label="Continue"
+                  color="primary"
+                  :is-loading="isLoading"
+              />
               <v-captcha class="sign-up__captcha"/>
             </div>
           </div>
@@ -50,7 +56,13 @@
                   @update:modelValue="updateProperty($event, 'code')"
                   @blur="v$.code.$touch()"
               />
-              <v-button :disabled="v$.code.$invalid && v$.code.$error" @click="registrationCodeVerifyHandler" label="Continue" color="primary"></v-button>
+              <v-button
+                  :disabled="v$.code.$invalid && v$.code.$error"
+                  @click="registrationCodeVerifyHandler"
+                  label="Continue"
+                  color="primary"
+                  :is-loading="isLoading"
+              />
               <v-captcha class="sign-up__captcha"/>
             </div>
           </div>
@@ -73,7 +85,13 @@
                   @blur="v$.password.$touch()"
                   svg-name-component="VIconLock"
               />
-              <v-button :disabled="v$.code.$invalid && v$.code.$error" @click="signUpHandler" label="Continue" color="primary"></v-button>
+              <v-button
+                  :disabled="v$.code.$invalid && v$.code.$error"
+                  @click="signUpHandler"
+                  label="Continue"
+                  color="primary"
+                  :is-loading="isLoading"
+              />
               <v-captcha class="sign-up__captcha"/>
             </div>
           </div>
@@ -109,6 +127,7 @@ export default {
       step: 1,
       code: '',
       password: '',
+      isLoading: false,
       vuelidateExternalResults: {
         email: '',
         code: '',
@@ -146,6 +165,8 @@ export default {
         return;
       }
 
+      this.isLoading = true;
+
       this.sendRegistrationCode({ email: this.email })
         .then((response) => {
           this.step++;
@@ -155,6 +176,9 @@ export default {
           errors.forEach(error => {
             this.vuelidateExternalResults[error.param] = error.msg;
           });
+        })
+        .finally(() => {
+          this.isLoading = false;
         });
     },
     async registrationCodeVerifyHandler() {
@@ -162,6 +186,8 @@ export default {
         this.v$.code.$touch();
         return;
       }
+
+      this.isLoading = true;
 
       this.verifyRegistrationCode({ email: this.email, code: this.code })
         .then((response) => {
@@ -173,6 +199,9 @@ export default {
           errors.forEach(error => {
             this.vuelidateExternalResults.code = error.msg;
           });
+        })
+        .finally(() => {
+          this.isLoading = false;
         });
     },
     async signUpHandler() {
@@ -180,6 +209,8 @@ export default {
         this.v$.password.$touch();
         return;
       }
+
+      this.isLoading = true;
 
       this.signUp({ email: this.email, password: this.password })
         .then((response) => {
@@ -190,6 +221,9 @@ export default {
           errors.forEach(error => {
             this.vuelidateExternalResults.password = error.msg;
           });
+        })
+        .finally(() => {
+          this.isLoading = false;
         });
     },
     updateProperty(value, propertyName) {
