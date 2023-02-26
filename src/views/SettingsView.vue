@@ -53,18 +53,35 @@
           </v-box>
         </div>
         <div class="settings__item">
-          <v-box class="settings__basics">
+          <v-box class="settings__notifications">
             <template #head><v-widget-title title="Notifications" color="orange"/></template>
             <template #body>
-
+              <div class="settings__fieldset">
+                <v-toggle label="Product updates and community announcements" :useDivider="true">
+                  <v-switch v-model:checked="checkedTest"/>
+                </v-toggle>
+                <v-toggle label="Market newsletter" :useDivider="true">
+                  <v-switch v-model:checked="checkedTest"/>
+                </v-toggle>
+                <v-toggle label="Comments" :useDivider="true">
+                  <v-switch v-model:checked="checkedTest"/>
+                </v-toggle>
+                <v-toggle label="Purchases" :useDivider="true">
+                  <v-switch v-model:checked="checkedTest"/>
+                </v-toggle>
+              </div>
             </template>
           </v-box>
         </div>
         <div class="settings__item">
-          <v-box class="settings__basics">
+          <v-box class="settings__payment">
             <template #head><v-widget-title title="Payment" color="green"/></template>
             <template #body>
-              <v-switch v-model:checked="checkedTest"/>
+              <div class="settings__fieldset">
+                <v-toggle label="Paypal" :useDivider="true">
+                  <v-button label="Update" color="secondary"/>
+                </v-toggle>
+              </div>
             </template>
           </v-box>
         </div>
@@ -76,8 +93,12 @@
 
 <script>
 
+import VToggle from "@/components/UI/VToggle.vue";
+import VButton from "@/components/UI/VButton.vue";
+
 export default {
   name: "SettingsView",
+  components: {VButton, VToggle},
   data() {
     return {
       mes: '',
@@ -156,7 +177,7 @@ export default {
       border-bottom: 1px solid var(--neutral-dark-gray-background-color);
       transition: border-color 0.3s;
 
-      &:last-child {
+      &:last-child, &:nth-child(3) {
         padding-bottom: unset;
         border-bottom: none;
       }
