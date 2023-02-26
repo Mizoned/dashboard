@@ -1,6 +1,10 @@
 @import './fonts.scss';
 @import './variables.scss';
 
+html {
+  scroll-behavior: smooth;
+}
+
 * {
   box-sizing: border-box;
   font-family: "Inter", "Open Sans", sans-serif;
@@ -18,6 +22,18 @@ input::-moz-placeholder {
 
 input::-webkit-input-placeholder {
   transition: all .3s;
+}
+
+.h3 {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 40px;
+  line-height: 48px;
+  letter-spacing: -0.02em;
+  color: var(--neutral-white-smoke-color);
+  margin: 0;
+  padding: 0;
+  transition: color 0.3s;
 }
 
 svg {
@@ -38,14 +54,15 @@ button, input, select {
 
 ::-webkit-scrollbar {
   width: 4px;
+  border-radius: 30px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--neutral-07-color);
+  background: var(--neutral-dark-gray-background-color);
   border-radius: 30px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--primary-blue-dark-color);
+  background: var(--primary-blue-color);
   border-radius: 30px;
 }
