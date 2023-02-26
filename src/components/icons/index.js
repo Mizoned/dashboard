@@ -30,6 +30,7 @@ import VIconSettings from "@/components/icons/VIconSettings.vue";
 import VIconStar from "@/components/icons/VIconStar.vue";
 import VIconTicket from "@/components/icons/VIconTicket.vue";
 import VIconTrash from "@/components/icons/VIconTrash.vue";
+import VIconGrid from "@/components/icons/VIconGrid.vue";
 
 export default [
     VIconHome,
@@ -63,5 +64,6 @@ export default [
     VIconSettings,
     VIconStar,
     VIconTicket,
-    VIconTrash
+    VIconTrash,
+    VIconGrid
 ];
