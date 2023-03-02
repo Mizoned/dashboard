@@ -55,6 +55,7 @@ export default {
       height: 100%;
       overflow-x: auto;
       padding: 40px;
+      scroll-behavior: smooth;
 
       @media only screen and (max-width: 768px) {
         padding: 24px 16px;

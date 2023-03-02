@@ -1,17 +1,20 @@
 <template>
   <div class="settings">
     <div class="settings__menu">
-      <a href="#" class="settings__link active">Basics</a>
-      <a href="#" class="settings__link">Account</a>
-      <a href="#" class="settings__link">Notifications</a>
-      <a href="#" class="settings__link">Payment</a>
+      <div v-for="(link, key) in settingsLinks"
+           :class="['settings__link', { 'active' : link.state }]"
+           v-scroll-to="{ parentSelector: '.main__view', targetSelector: link.targetSelector }"
+           @click="changeActiveLink(key)"
+      >
+        {{ link.label }}
+      </div>
     </div>
 
     <div class="settings__inner">
       <div class="settings__list">
         <div class="settings__item">
           <v-box class="settings__basics">
-            <template #head><v-widget-title title="Profile information" color="green"/></template>
+            <template #head><v-widget-title title="Profile information" color="green" id="profile-information"/></template>
             <template #body>
               <div class="settings__profile">
                 <div class="settings__profile-information">
@@ -37,7 +40,7 @@
         </div>
         <div class="settings__item">
           <v-box class="settings__account">
-            <template #head><v-widget-title title="Login" color="purple"/></template>
+            <template #head><v-widget-title title="Login" color="purple" id="login"/></template>
             <template #body>
               <div class="settings__login">
                 <div class="settings__fieldset">
@@ -54,7 +57,7 @@
         </div>
         <div class="settings__item">
           <v-box class="settings__notifications">
-            <template #head><v-widget-title title="Notifications" color="orange"/></template>
+            <template #head><v-widget-title title="Notifications" color="orange" id="notification"/></template>
             <template #body>
               <div class="settings__fieldset">
                 <v-toggle label="Product updates and community announcements" :useDivider="true">
@@ -75,7 +78,7 @@
         </div>
         <div class="settings__item">
           <v-box class="settings__payment">
-            <template #head><v-widget-title title="Payment" color="green"/></template>
+            <template #head><v-widget-title title="Payment" color="green" id="payment"/></template>
             <template #body>
               <div class="settings__fieldset">
                 <v-toggle label="Paypal" :useDivider="true">
@@ -102,7 +105,39 @@ export default {
   data() {
     return {
       mes: '',
+      activeLinkKey: 0,
+      settingsLinks: [
+        {
+          state: true,
+          targetSelector: '#profile-information',
+          label: 'Base'
+        },
+        {
+          state: false,
+          targetSelector: '#login',
+          label: 'Account'
+        },
+        {
+          state: false,
+          targetSelector: '#notification',
+          label: 'Notification'
+        },
+        {
+          state: false,
+          targetSelector: '#payment',
+          label: 'Payment'
+        }
+      ],
+
+
       checkedTest: false
+    }
+  },
+  methods: {
+    changeActiveLink(key) {
+      this.settingsLinks[this.activeLinkKey].state = false;
+      this.settingsLinks[key].state = true;
+      this.activeLinkKey = key;
     }
   }
 }
@@ -144,6 +179,7 @@ export default {
       background-color: transparent;
       transition: background-color 0.3s, color 0.3s;
       border-radius: 8px;
+      cursor: pointer;
 
       &.active {
         color: var(--neutral-champagne-color);
