@@ -30,9 +30,9 @@
                   </div>
                 </div>
                 <div class="settings__fieldset">
-                  <v-input label-text="Display name"/>
-                  <v-input label-text="Email"/>
-                  <v-input label-text="Location"/>
+                  <v-input v-model="dataSettingsForm.displayName.value" @update:modelValue="updateDisplayName" label-text="Display name"/>
+                  <v-input v-model="dataSettingsForm.email.value" @update:modelValue="updateEmail" label-text="Email"/>
+                  <v-input v-model="dataSettingsForm.location.value" @update:modelValue="updateLocation" label-text="Location"/>
                 </div>
               </div>
             </template>
@@ -60,17 +60,8 @@
             <template #head><v-widget-title title="Notifications" color="orange" id="notification"/></template>
             <template #body>
               <div class="settings__fieldset">
-                <v-toggle label="Product updates and community announcements" :useDivider="true">
-                  <v-switch v-model:checked="checkedTest"/>
-                </v-toggle>
-                <v-toggle label="Market newsletter" :useDivider="true">
-                  <v-switch v-model:checked="checkedTest"/>
-                </v-toggle>
-                <v-toggle label="Comments" :useDivider="true">
-                  <v-switch v-model:checked="checkedTest"/>
-                </v-toggle>
-                <v-toggle label="Purchases" :useDivider="true">
-                  <v-switch v-model:checked="checkedTest"/>
+                <v-toggle v-for="setting in dataSettingsForm.notificationSettings" :label="setting.label" :useDivider="setting.useDivider">
+                  <v-switch v-model:checked="setting.checked"/>
                 </v-toggle>
               </div>
             </template>
@@ -97,11 +88,10 @@
 <script>
 
 import VToggle from "@/components/UI/VToggle.vue";
-import VButton from "@/components/UI/VButton.vue";
 
 export default {
   name: "SettingsView",
-  components: {VButton, VToggle},
+  components: { VToggle },
   data() {
     return {
       mes: '',
@@ -128,9 +118,17 @@ export default {
           label: 'Payment'
         }
       ],
-
-
-      checkedTest: false
+      dataSettingsForm: {
+        displayName: { value: this.$store.state?.auth?.user?.displayName ?? '' },
+        email: { value: this.$store.state?.auth?.user?.email ?? '' },
+        location: { value: this.$store.state.auth.user?.location ?? '' },
+        notificationSettings: [
+          { name: 'productUpdates', checked: false, useDivider: true, label: 'Product updates and community announcements' },
+          { name: 'marketNewsletter', checked: false, useDivider: true, label: 'Market newsletter' },
+          { name: 'comments', checked: false, useDivider: true, label: 'Comments' },
+          { name: 'purchases', checked: false, useDivider: true, label: 'Purchases' },
+        ]
+      }
     }
   },
   methods: {
@@ -138,6 +136,15 @@ export default {
       this.settingsLinks[this.activeLinkKey].state = false;
       this.settingsLinks[key].state = true;
       this.activeLinkKey = key;
+    },
+    updateDisplayName(value) {
+      this.dataSettingsForm.displayName.value = value;
+    },
+    updateEmail(value) {
+      this.dataSettingsForm.email.value = value;
+    },
+    updateLocation(value) {
+      this.dataSettingsForm.location.value = value;
     }
   }
 }
