@@ -13,7 +13,7 @@
       <div v-if="isError" class="v-input__error">{{ errorMessage }}</div>
     </div>
     <div class="v-input__inner">
-      <input class="v-input__input" v-bind="$attrs">
+      <input class="v-input__input" v-bind="$attrs" :value="modelValue" @input="update">
     </div>
   </div>
 </template>
@@ -22,6 +22,7 @@
 export default {
   name: "VInput",
   props: {
+    modelValue: [ String ],
     labelText: {
       type: String,
       default: ''
@@ -38,6 +39,11 @@ export default {
       type: String,
       default: ''
     }
+  },
+  methods: {
+    update(event) {
+      this.$emit('update:modelValue', event.target.value);
+    },
   }
 }
 </script>
