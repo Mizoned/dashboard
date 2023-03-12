@@ -1,6 +1,6 @@
 <template>
   <div :class="[ 'profile-item', `profile-item--${ color }` ]">
-    <slot name="svg"></slot>
+    <component v-if="iconComponentName" :is="iconComponentName" :isActive="this.$route.name === label"/>
     <span class="profile-item__label">{{ label }}</span>
   </div>
 </template>
@@ -16,7 +16,11 @@ export default {
     color: {
       type: String,
       default: 'white'
-    }
+    },
+    iconComponentName: {
+      type: String,
+      required: false
+    },
   }
 }
 </script>
@@ -28,6 +32,7 @@ export default {
     padding: 12px;
     gap: 12px;
     cursor: pointer;
+    border-radius: 12px;
 
     &__label {
       font-weight: 600;
@@ -42,14 +47,13 @@ export default {
       color: var(--primary-dark-white-color);
 
       &:hover {
+        background-color: var(--neutral-dark-gray-background-color);
+        color: var(--neutral-champagne-color);
+
         &:deep(svg) {
           path {
             fill: var(--neutral-champagne-background-color);
           }
-        }
-
-        .profile-item__label {
-          color: var(--neutral-champagne-color);
         }
       }
     }

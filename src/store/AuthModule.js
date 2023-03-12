@@ -14,6 +14,14 @@ export const authModule = {
         setToken(state, string) {
             localStorage.setItem('token', string);
             state.token = string;
+        },
+        deleteUser(state) {
+            localStorage.removeItem('user');
+            state.user = {};
+        },
+        deleteToken(state) {
+            localStorage.removeItem('token');
+            state.token = null;
         }
     },
     actions: {
@@ -64,6 +72,17 @@ export const authModule = {
                         reject(error);
                     });
             });
+        },
+        logout({ commit }) {
+            return new Promise((resolve, reject) => {
+                AuthService.logout().then(response => {
+                    commit('deleteToken');
+                    commit('deleteUser');
+                    resolve(response);
+                }).catch(error => {
+                    reject(error);
+                })
+            })
         }
     }
 }

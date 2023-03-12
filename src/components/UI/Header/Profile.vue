@@ -19,7 +19,7 @@
           </div>
           <div class="profile__list-box">
             <v-link-with-icon label="Account settings" href="/account-settings" icon-component-name="VIconSettings"/>
-            <v-link-with-icon label="Log out" href="/logout" icon-component-name="VIconLogout"/>
+            <profile-button label="Log out" icon-component-name="VIconLogout" @click="logoutHandler"/>
           </div>
         </div>
       </div>
@@ -29,20 +29,32 @@
 
 <script>
 import HeaderItem from "@/components/UI/Header/HeaderItem.vue";
+import ProfileButton from "@/components/UI/Header/ProfileButton.vue";
+import { mapActions } from "vuex";
 
 export default {
   name: "Profile",
-  components: { HeaderItem },
+  components: { ProfileButton, HeaderItem },
   props: {
     isOpen: false
   },
   methods: {
+    ...mapActions({
+      logout: 'auth/logout'
+    }),
     clickHandler(value) {
       this.$emit('update:isOpen', { name: 'profile', value });
     },
     clickOutsideHandler() {
       if (!this.isOpen) return
       this.$emit('update:isOpen', { name: 'notifications', value: false });
+    },
+    logoutHandler() {
+      this.logout().then(() => {
+        this.$router.push('/sign-in');
+      }).catch(error => {
+        console.error(error.message);
+      })
     }
   }
 }

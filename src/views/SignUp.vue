@@ -35,7 +35,7 @@
                   @blur="v$.email.$touch()"
               />
               <v-button
-                  :disabled="v$.email.$invalid && v$.email.$error"
+                  :disabled="v$.email.$invalid && v$.email.$error || this.isLoading"
                   @click="registrationCodeSendHandler"
                   label="Continue"
                   color="primary"
@@ -57,7 +57,7 @@
                   @blur="v$.code.$touch()"
               />
               <v-button
-                  :disabled="v$.code.$invalid && v$.code.$error"
+                  :disabled="v$.code.$invalid && v$.code.$error || this.isLoading"
                   @click="registrationCodeVerifyHandler"
                   label="Continue"
                   color="primary"
@@ -86,7 +86,7 @@
                   svg-name-component="VIconLock"
               />
               <v-button
-                  :disabled="v$.code.$invalid && v$.code.$error"
+                  :disabled="v$.code.$invalid && v$.code.$error || this.isLoading"
                   @click="signUpHandler"
                   label="Continue"
                   color="primary"

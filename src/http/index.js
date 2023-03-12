@@ -1,4 +1,6 @@
 import axios from "axios";
+import store from "@/store";
+import router from "@/router";
 export const API_URL = `http://localhost:5000/api`
 
 const $api = axios.create({
@@ -19,10 +21,11 @@ $api.interceptors.response.use((config) => {
         originalRequest._isRetry = true;
         try {
             const response = await axios.get(`${API_URL}/user/refresh`, { withCredentials: true });
-            localStorage.setItem('token', response.data.accessToken);
+            store.commit('auth/setToken', response.data.accessToken);
             return $api.request(originalRequest);
         } catch (e) {
-            console.log('НЕ АВТОРИЗОВАН')
+            await store.dispatch('auth/logout');
+            await router.push('/sign-in');
         }
     }
     throw error;

@@ -103,6 +103,7 @@
                 label="Save"
                 @click="updateDataChangeHandler"
                 :is-loading="isProfileChangeLoading"
+                v-scroll-to="{ parentSelector: '.main__view', targetSelector: '#profile-information' }"
       />
     </div>
   </div>
@@ -213,9 +214,8 @@ export default {
           .then(() => {
           })
           .catch(error => {
-            console.log(error)
-            const errors = error.response.data.errors;
-            errors.forEach(error => {
+            const errors = error?.response?.data?.errors;
+            errors?.forEach(error => {
               this.vuelidateExternalResults[error.param] = error.msg;
             });
           })
@@ -415,12 +415,6 @@ export default {
         display: none;
       }
     }
-
-
-
-
-
-
 
     &__save-btn, &__login-btn {
       align-self: flex-start;
