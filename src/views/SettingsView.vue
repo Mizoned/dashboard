@@ -30,9 +30,27 @@
                   </div>
                 </div>
                 <div class="settings__fieldset">
-                  <v-input v-model="dataSettingsForm.displayName.value" @update:modelValue="updateDisplayName" label-text="Display name"/>
-                  <v-input v-model="dataSettingsForm.email.value" @update:modelValue="updateEmail" label-text="Email"/>
-                  <v-input v-model="dataSettingsForm.location.value" @update:modelValue="updateLocation" label-text="Location"/>
+                  <v-input v-model="displayName"
+                           @update:modelValue="updateProperty($event, 'displayName')"
+                           :isError="this.v$.displayName.$invalid && this.v$.displayName.$error"
+                           :errorMessage="v$.displayName?.$errors[0]?.$message"
+                           label-text="Display name"
+                           @blur="v$.displayName.$touch()"
+                  />
+                  <v-input v-model="email"
+                           @update:modelValue="updateProperty($event, 'email')"
+                           :isError="this.v$.email.$invalid && this.v$.email.$error"
+                           :errorMessage="v$.email?.$errors[0]?.$message"
+                           label-text="Email"
+                           @blur="v$.email.$touch()"
+                  />
+                  <v-input v-model="location"
+                           @update:modelValue="updateProperty($event, 'location')"
+                           :isError="this.v$.location.$invalid && this.v$.location.$error"
+                           :errorMessage="v$.location?.$errors[0]?.$message"
+                           label-text="Location"
+                           @blur="v$.location.$touch()"
+                  />
                 </div>
               </div>
             </template>
@@ -60,7 +78,7 @@
             <template #head><v-widget-title title="Notifications" color="orange" id="notification"/></template>
             <template #body>
               <div class="settings__fieldset">
-                <v-toggle v-for="setting in dataSettingsForm.notificationSettings" :label="setting.label" :useDivider="setting.useDivider">
+                <v-toggle v-for="setting in notificationSettings" :label="setting.label" :useDivider="setting.useDivider">
                   <v-switch v-model:checked="setting.checked"/>
                 </v-toggle>
               </div>
@@ -80,7 +98,12 @@
           </v-box>
         </div>
       </div>
-      <v-button class="settings__save-btn" label="Save"/>
+      <v-button :disabled="v$.displayName.$invalid && v$.displayName.$error || v$.email.$invalid && v$.email.$error || v$.location.$invalid && v$.location.$error || isProfileChangeLoading"
+                class="settings__save-btn"
+                label="Save"
+                @click="updateDataChangeHandler"
+                :is-loading="isProfileChangeLoading"
+      />
     </div>
   </div>
 </template>
@@ -88,13 +111,22 @@
 <script>
 
 import VToggle from "@/components/UI/VToggle.vue";
+import { useVuelidate } from '@vuelidate/core';
+import { required, email, helpers, minLength, maxLength} from '@vuelidate/validators';
+import { mapActions } from "vuex";
 
 export default {
   name: "SettingsView",
   components: { VToggle },
   data() {
     return {
-      mes: '',
+      v$: useVuelidate(),
+      vuelidateExternalResults: {
+        displayName: '',
+        email: '',
+        location: '',
+      },
+      isProfileChangeLoading: false,
       activeLinkKey: 0,
       settingsLinks: [
         {
@@ -118,33 +150,91 @@ export default {
           label: 'Payment'
         }
       ],
-      dataSettingsForm: {
-        displayName: { value: this.$store.state?.auth?.user?.displayName ?? '' },
-        email: { value: this.$store.state?.auth?.user?.email ?? '' },
-        location: { value: this.$store.state.auth.user?.location ?? '' },
-        notificationSettings: [
-          { name: 'productUpdates', checked: false, useDivider: true, label: 'Product updates and community announcements' },
-          { name: 'marketNewsletter', checked: false, useDivider: true, label: 'Market newsletter' },
-          { name: 'comments', checked: false, useDivider: true, label: 'Comments' },
-          { name: 'purchases', checked: false, useDivider: true, label: 'Purchases' },
-        ]
-      }
+      displayName: this.$store.state?.auth?.user?.displayName ?? '',
+      email: this.$store.state?.auth?.user?.email ?? '',
+      location: this.$store.state.auth.user?.location ?? '',
+      notificationSettings: [
+        { name: 'notifyAboutProductUpdates', checked: this.$store.state?.auth?.user?.notifyAboutProductUpdates ?? '', useDivider: true, label: 'Product updates and community announcements' },
+        { name: 'notifyAboutMarketNewsletter', checked: this.$store.state?.auth?.user?.notifyAboutMarketNewsletter ?? '', useDivider: true, label: 'Market newsletter' },
+        { name: 'notifyAboutComments', checked: this.$store.state?.auth?.user?.notifyAboutComments ?? '', useDivider: true, label: 'Comments' },
+        { name: 'notifyAboutPurchases', checked: this.$store.state?.auth?.user?.notifyAboutPurchases ?? '', useDivider: true, label: 'Purchases' },
+      ]
+    }
+  },
+  validations () {
+    return {
+      email: {
+        required: helpers.withMessage('Поле обязательно для заполнения', required),
+        email: helpers.withMessage('Email введён некорректно', email)
+      },
+      displayName: {
+        required: helpers.withMessage('Поле обязательно для заполнения', required),
+        minLength: helpers.withMessage('Отображаемое имя должно быть больше 3 символов', minLength(4)),
+        maxLength: helpers.withMessage('Отображаемое имя должно быть меньше 24 символов', maxLength(24)),
+      },
+      location: {
+        minLength: helpers.withMessage('Местоположение должно быть больше 3 символов', minLength(4)),
+        maxLength: helpers.withMessage('Местоположение должно быть меньше 32 символов', maxLength(32)),
+      },
     }
   },
   methods: {
+    ...mapActions({
+      updateProfileData: 'user/updateProfileData'
+    }),
     changeActiveLink(key) {
       this.settingsLinks[this.activeLinkKey].state = false;
       this.settingsLinks[key].state = true;
       this.activeLinkKey = key;
     },
-    updateDisplayName(value) {
-      this.dataSettingsForm.displayName.value = value;
+    updateProperty(value, propertyName) {
+      this.v$.$clearExternalResults();
+      if (!value) {
+        this.resetVuelidateProperty(propertyName);
+      }
     },
-    updateEmail(value) {
-      this.dataSettingsForm.email.value = value;
+    resetVuelidateProperty(propertyName) {
+      this[propertyName] = '';
+      this.v$[propertyName].$reset();
     },
-    updateLocation(value) {
-      this.dataSettingsForm.location.value = value;
+    async updateDataChangeHandler() {
+      if (this.v$.email.$invalid || this.v$.displayName.$invalid || this.v$.location.$invalid) {
+        this.v$.email.$touch();
+        this.v$.displayName.$touch();
+        this.v$.location.$touch();
+        return;
+      }
+
+      this.isProfileChangeLoading = true;
+
+      let data = this.getPreparedDataFromForm();
+
+      this.updateProfileData(data)
+          .then(() => {
+          })
+          .catch(error => {
+            console.log(error)
+            const errors = error.response.data.errors;
+            errors.forEach(error => {
+              this.vuelidateExternalResults[error.param] = error.msg;
+            });
+          })
+          .finally(() => {
+            this.isProfileChangeLoading = false;
+          });
+    },
+    getPreparedDataFromForm() {
+      let data = {
+        displayName: this.displayName,
+        email: this.email,
+        location: this.location
+      };
+
+      this.notificationSettings.forEach((setting) => {
+        data[setting.name] = setting.checked;
+      });
+
+      return data;
     }
   }
 }
