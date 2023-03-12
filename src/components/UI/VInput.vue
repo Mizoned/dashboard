@@ -10,11 +10,11 @@
         </div>
         <div class="v-input__tooltipster">{{ tooltipMessage }}</div>
       </div>
-      <div v-if="isError" class="v-input__error">{{ errorMessage }}</div>
     </div>
     <div class="v-input__inner">
       <input class="v-input__input" v-bind="$attrs" :value="modelValue" @input="update">
     </div>
+    <div v-if="isError" class="v-input__error">{{ errorMessage }}</div>
   </div>
 </template>
 
@@ -110,7 +110,7 @@ export default {
       font-weight: 500;
       font-size: 12px;
       line-height: 12px;
-      text-align: right;
+      padding: 12px 12px 0 12px;
       letter-spacing: -0.01em;
       color: var(--primary-orange-color);
     }

@@ -35,6 +35,7 @@
                            :isError="this.v$.displayName.$invalid && this.v$.displayName.$error"
                            :errorMessage="v$.displayName?.$errors[0]?.$message"
                            label-text="Display name"
+                           type="text"
                            @blur="v$.displayName.$touch()"
                   />
                   <v-input v-model="email"
@@ -42,6 +43,7 @@
                            :isError="this.v$.email.$invalid && this.v$.email.$error"
                            :errorMessage="v$.email?.$errors[0]?.$message"
                            label-text="Email"
+                           type="email"
                            @blur="v$.email.$touch()"
                   />
                   <v-input v-model="location"
@@ -49,6 +51,7 @@
                            :isError="this.v$.location.$invalid && this.v$.location.$error"
                            :errorMessage="v$.location?.$errors[0]?.$message"
                            label-text="Location"
+                           type="text"
                            @blur="v$.location.$touch()"
                   />
                 </div>
@@ -62,12 +65,43 @@
             <template #body>
               <div class="settings__login">
                 <div class="settings__fieldset">
-                  <v-input label-text="Old password"/>
+                  <v-input v-model="oldPassword"
+                           label-text="Old password"
+                           @update:modelValue="updateProperty($event, 'oldPassword')"
+                           :isError="v$.oldPassword.$invalid && v$.oldPassword.$error"
+                           :errorMessage="v$.oldPassword?.$errors[0]?.$message"
+                           type="password"
+                           @blur="v$.oldPassword.$touch()"
+                           name="oldPassword"
+                  />
                   <div class="settings__fieldset-box">
-                    <v-input label-text="New password"/>
-                    <v-input label-text="Confirm new password"/>
+                    <v-input v-model="newPassword"
+                             label-text="New password"
+                             @update:modelValue="updateProperty($event, 'newPassword')"
+                             :isError="v$.newPassword.$invalid && v$.newPassword.$error"
+                             :errorMessage="v$.newPassword?.$errors[0]?.$message"
+                             type="password"
+                             @blur="v$.newPassword.$touch()"
+                             name="newPassword"
+                    />
+                    <v-input v-model="confirmNewPassword"
+                             label-text="Confirm new password"
+                             @update:modelValue="updateProperty($event, 'confirmNewPassword')"
+                             :isError="v$.confirmNewPassword.$invalid && v$.confirmNewPassword.$error"
+                             :errorMessage="v$.confirmNewPassword?.$errors[0]?.$message"
+                             type="password"
+                             @blur="v$.confirmNewPassword.$touch()"
+                             name="confirmNewPassword"
+                    />
                   </div>
-                  <v-button class="settings__login-btn" label="Update password" color="secondary"/>
+                  <v-button
+                      :disabled="isReadyUpdatePassword"
+                      class="settings__login-btn"
+                      label="Update password"
+                      color="secondary"
+                      :is-loading="isProfileUpdatePasswordLoading"
+                      @click="updateProfilePasswordHandler"
+                  />
                 </div>
               </div>
             </template>
@@ -98,7 +132,7 @@
           </v-box>
         </div>
       </div>
-      <v-button :disabled="v$.displayName.$invalid && v$.displayName.$error || v$.email.$invalid && v$.email.$error || v$.location.$invalid && v$.location.$error || isProfileChangeLoading"
+      <v-button :disabled="isReadyUpdateProfileData"
                 class="settings__save-btn"
                 label="Save"
                 @click="updateDataChangeHandler"
@@ -113,7 +147,7 @@
 
 import VToggle from "@/components/UI/VToggle.vue";
 import { useVuelidate } from '@vuelidate/core';
-import { required, email, helpers, minLength, maxLength} from '@vuelidate/validators';
+import {required, email, helpers, minLength, maxLength, sameAs} from '@vuelidate/validators';
 import { mapActions } from "vuex";
 
 export default {
@@ -122,12 +156,8 @@ export default {
   data() {
     return {
       v$: useVuelidate(),
-      vuelidateExternalResults: {
-        displayName: '',
-        email: '',
-        location: '',
-      },
       isProfileChangeLoading: false,
+      isProfileUpdatePasswordLoading: false,
       activeLinkKey: 0,
       settingsLinks: [
         {
@@ -159,7 +189,18 @@ export default {
         { name: 'notifyAboutMarketNewsletter', checked: this.$store.state?.auth?.user?.notifyAboutMarketNewsletter ?? '', useDivider: true, label: 'Market newsletter' },
         { name: 'notifyAboutComments', checked: this.$store.state?.auth?.user?.notifyAboutComments ?? '', useDivider: true, label: 'Comments' },
         { name: 'notifyAboutPurchases', checked: this.$store.state?.auth?.user?.notifyAboutPurchases ?? '', useDivider: true, label: 'Purchases' },
-      ]
+      ],
+      oldPassword: '',
+      newPassword: '',
+      confirmNewPassword: '',
+      vuelidateExternalResults: {
+        displayName: '',
+        email: '',
+        location: '',
+        oldPassword: '',
+        newPassword: '',
+        confirmNewPassword: ''
+      }
     }
   },
   validations () {
@@ -177,11 +218,42 @@ export default {
         minLength: helpers.withMessage('Местоположение должно быть больше 3 символов', minLength(4)),
         maxLength: helpers.withMessage('Местоположение должно быть меньше 32 символов', maxLength(32)),
       },
+      oldPassword: {
+        required: helpers.withMessage('Поле обязательно для заполнения', required),
+        minLength: helpers.withMessage('Пароль должен быть больше 8 символов', minLength(9)),
+        maxLength: helpers.withMessage('Пароль должен быть меньше 32 символов', maxLength(32)),
+      },
+      newPassword: {
+        required: helpers.withMessage('Поле обязательно для заполнения', required),
+        minLength: helpers.withMessage('Пароль должен быть больше 8 символов', minLength(9)),
+        maxLength: helpers.withMessage('Пароль должен быть меньше 32 символов', maxLength(32)),
+      },
+      confirmNewPassword: {
+        required: helpers.withMessage('Поле обязательно для заполнения', required),
+        minLength: helpers.withMessage('Пароль должен быть больше 8 символов', minLength(9)),
+        maxLength: helpers.withMessage('Пароль должен быть меньше 32 символов', maxLength(32)),
+        sameAsNewPassword: helpers.withMessage('Пароли не совпадают', sameAs(this.newPassword)),
+      }
+    }
+  },
+  computed: {
+    isReadyUpdateProfileData() {
+      return this.v$.displayName.$invalid && this.v$.displayName.$error
+          || this.v$.email.$invalid && this.v$.email.$error
+          || this.v$.location.$invalid && this.v$.location.$error
+          || this.isProfileChangeLoading
+    },
+    isReadyUpdatePassword() {
+      return this.v$.oldPassword.$invalid && this.v$.oldPassword.$error
+          || this.v$.newPassword.$invalid && this.v$.newPassword.$error
+          || this.v$.confirmNewPassword.$invalid && this.v$.confirmNewPassword.$error
+          || this.isProfileUpdatePasswordLoading
     }
   },
   methods: {
     ...mapActions({
-      updateProfileData: 'user/updateProfileData'
+      updateProfileData: 'user/updateProfileData',
+      updateProfilePassword: 'user/updateProfilePassword'
     }),
     changeActiveLink(key) {
       this.settingsLinks[this.activeLinkKey].state = false;
@@ -235,6 +307,37 @@ export default {
       });
 
       return data;
+    },
+    async updateProfilePasswordHandler() {
+      let data = this.getPreparedDataPasswords();
+
+      if (this.v$.oldPassword.$invalid || this.v$.newPassword.$invalid || this.v$.confirmNewPassword.$invalid) {
+        this.v$.oldPassword.$touch();
+        this.v$.newPassword.$touch();
+        this.v$.confirmNewPassword.$touch();
+        return;
+      }
+
+      this.isProfileUpdatePasswordLoading = true;
+
+      this.updateProfilePassword(data)
+          .then()
+          .catch(error => {
+            const errors = error?.response?.data?.errors;
+            errors?.forEach(error => {
+              this.vuelidateExternalResults[error.param] = error.msg;
+            });
+          })
+          .finally(() => {
+            this.isProfileUpdatePasswordLoading = false;
+          });
+    },
+    getPreparedDataPasswords() {
+      return {
+        oldPassword: this.oldPassword,
+        newPassword: this.newPassword,
+        confirmNewPassword: this.confirmNewPassword
+      }
     }
   }
 }
