@@ -5,7 +5,7 @@ export const userModule = {
     actions: {
         updateProfileData({ commit }, { displayName, email, location, notifyAboutProductUpdates, notifyAboutMarketNewsletter, notifyAboutComments, notifyAboutPurchases }) {
             return new Promise((resolve, reject) => {
-                UserService.updateProfileData(displayName, email, location, notifyAboutProductUpdates, notifyAboutMarketNewsletter, notifyAboutComments, notifyAboutPurchases)
+                UserService.updateProfileData(email, displayName, location, notifyAboutProductUpdates, notifyAboutMarketNewsletter, notifyAboutComments, notifyAboutPurchases)
                     .then(response => {
                         commit('auth/setUser', response.data.user, { root: true });
                         resolve(response);
