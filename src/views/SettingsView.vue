@@ -19,14 +19,17 @@
               <div class="settings__profile">
                 <div class="settings__profile-information">
                   <div class="settings__avatar">
-                    <img src="@/assets/images/profile4.jpg" alt="">
+                    <img ref="profileImage" :src="imagePath" alt="">
                     <button class="settings__m-remove">
                       <v-icon-close/>
                     </button>
                   </div>
                   <div class="settings__profile-controls">
-                    <v-button before-svg-component-name="VIconAdd" label="Upload new picture"></v-button>
-                    <v-button class="settings__d-remove" label="Remove" color="secondary"></v-button>
+                    <label class="settings__profile-controls-file">
+                      <input ref="profilePictureUpload" type="file" @change="pictureLoadingHandler" accept="image/*">
+                      <v-button before-svg-component-name="VIconAdd" label="Upload new picture" @click="this.$refs.profilePictureUpload.click()"></v-button>
+                    </label>
+                    <v-button class="settings__d-remove" label="Remove" color="secondary" @click="pictureRemovingHandler"></v-button>
                   </div>
                 </div>
                 <div class="settings__fieldset">
@@ -36,6 +39,8 @@
                            :errorMessage="v$.displayName?.$errors[0]?.$message"
                            label-text="Display name"
                            type="text"
+                           name="name"
+                           autocomplete="name"
                            @blur="v$.displayName.$touch()"
                   />
                   <v-input v-model="email"
@@ -44,6 +49,8 @@
                            :errorMessage="v$.email?.$errors[0]?.$message"
                            label-text="Email"
                            type="email"
+                           name="email"
+                           autocomplete="email"
                            @blur="v$.email.$touch()"
                   />
                   <v-input v-model="location"
@@ -52,6 +59,8 @@
                            :errorMessage="v$.location?.$errors[0]?.$message"
                            label-text="Location"
                            type="text"
+                           name="location"
+                           autocomplete="location"
                            @blur="v$.location.$touch()"
                   />
                 </div>
@@ -71,8 +80,9 @@
                            :isError="v$.oldPassword.$invalid && v$.oldPassword.$error"
                            :errorMessage="v$.oldPassword?.$errors[0]?.$message"
                            type="password"
-                           @blur="v$.oldPassword.$touch()"
                            name="oldPassword"
+                           autocomplete="oldPassword"
+                           @blur="v$.oldPassword.$touch()"
                   />
                   <div class="settings__fieldset-box">
                     <v-input v-model="newPassword"
@@ -83,6 +93,7 @@
                              type="password"
                              @blur="v$.newPassword.$touch()"
                              name="newPassword"
+                             autocomplete="newPassword"
                     />
                     <v-input v-model="confirmNewPassword"
                              label-text="Confirm new password"
@@ -92,6 +103,7 @@
                              type="password"
                              @blur="v$.confirmNewPassword.$touch()"
                              name="confirmNewPassword"
+                             autocomplete="confirmNewPassword"
                     />
                   </div>
                   <v-button
@@ -144,11 +156,23 @@
 </template>
 
 <script>
-
 import VToggle from "@/components/UI/VToggle.vue";
 import { useVuelidate } from '@vuelidate/core';
-import {required, email, helpers, minLength, maxLength, sameAs} from '@vuelidate/validators';
-import { mapActions } from "vuex";
+import { required, email, helpers, minLength, maxLength, sameAs } from '@vuelidate/validators';
+import { useToast } from "vue-toastification";
+import { mapState, mapActions } from "vuex";
+import checkFileSize from "@/utils/validators/checkFileSize";
+import isImageFile from "@/utils/validators/isImageFile";
+
+const validateImageFileType = helpers.withParams(
+    { type: 'imageFileType' },
+    isImageFile
+);
+
+const validateImageFileSize = helpers.withParams(
+    { type: 'imageFileSize' },
+    (value) => checkFileSize(value, 5)
+);
 
 export default {
   name: "SettingsView",
@@ -159,6 +183,7 @@ export default {
       isProfileChangeLoading: false,
       isProfileUpdatePasswordLoading: false,
       activeLinkKey: 0,
+      toast: useToast(),
       settingsLinks: [
         {
           state: true,
@@ -193,13 +218,15 @@ export default {
       oldPassword: '',
       newPassword: '',
       confirmNewPassword: '',
+      profilePictureUpload: null,
       vuelidateExternalResults: {
         displayName: '',
         email: '',
         location: '',
         oldPassword: '',
         newPassword: '',
-        confirmNewPassword: ''
+        confirmNewPassword: '',
+        profilePictureUpload: null
       }
     }
   },
@@ -215,7 +242,6 @@ export default {
         maxLength: helpers.withMessage('Отображаемое имя должно быть меньше 24 символов', maxLength(24)),
       },
       location: {
-        minLength: helpers.withMessage('Местоположение должно быть больше 3 символов', minLength(4)),
         maxLength: helpers.withMessage('Местоположение должно быть меньше 32 символов', maxLength(32)),
       },
       oldPassword: {
@@ -233,10 +259,17 @@ export default {
         minLength: helpers.withMessage('Пароль должен быть больше 8 символов', minLength(9)),
         maxLength: helpers.withMessage('Пароль должен быть меньше 32 символов', maxLength(32)),
         sameAsNewPassword: helpers.withMessage('Пароли не совпадают', sameAs(this.newPassword)),
+      },
+      profilePictureUpload: {
+        validateImageFileType: helpers.withMessage('Файл должен быть изображением. Вы выбрали файл другого типа', validateImageFileType),
+        validateImageFileSize: helpers.withMessage('Размер файла не должен превышать 5 мегабайт', validateImageFileSize)
       }
     }
   },
   computed: {
+    ...mapState({
+      imagePath: state => state.auth.user.imagePath
+    }),
     isReadyUpdateProfileData() {
       return this.v$.displayName.$invalid && this.v$.displayName.$error
           || this.v$.email.$invalid && this.v$.email.$error
@@ -253,7 +286,9 @@ export default {
   methods: {
     ...mapActions({
       updateProfileData: 'user/updateProfileData',
-      updateProfilePassword: 'user/updateProfilePassword'
+      updateProfilePassword: 'user/updateProfilePassword',
+      updateProfilePicture: 'user/updateProfilePicture',
+      removeProfilePicture: 'user/removeProfilePicture'
     }),
     changeActiveLink(key) {
       this.settingsLinks[this.activeLinkKey].state = false;
@@ -284,12 +319,14 @@ export default {
 
       this.updateProfileData(data)
           .then(() => {
+            this.showSuccessNotification('Данные профиля успешно изменены!');
           })
           .catch(error => {
             const errors = error?.response?.data?.errors;
             errors?.forEach(error => {
               this.vuelidateExternalResults[error.param] = error.msg;
             });
+            this.showErrorNotification('Не все поля заполнены верно!');
           })
           .finally(() => {
             this.isProfileChangeLoading = false;
@@ -321,12 +358,15 @@ export default {
       this.isProfileUpdatePasswordLoading = true;
 
       this.updateProfilePassword(data)
-          .then()
+          .then(() => {
+            this.showSuccessNotification('Пароль успешно изменен!');
+          })
           .catch(error => {
             const errors = error?.response?.data?.errors;
             errors?.forEach(error => {
               this.vuelidateExternalResults[error.param] = error.msg;
             });
+            this.showErrorNotification('Не все поля заполнены верно!');
           })
           .finally(() => {
             this.isProfileUpdatePasswordLoading = false;
@@ -338,7 +378,49 @@ export default {
         newPassword: this.newPassword,
         confirmNewPassword: this.confirmNewPassword
       }
-    }
+    },
+    pictureLoadingHandler(event) {
+      this.profilePictureUpload = event.target.files[0];
+      this.v$.profilePictureUpload.$touch();
+
+      if (this.v$.profilePictureUpload.$invalid) {
+        this.showErrorNotification(this.v$.profilePictureUpload?.$errors[0]?.$message);
+      } else {
+        let data = new FormData();
+        data.append('picture', this.profilePictureUpload);
+
+        this.updateProfilePicture(data)
+            .then(() => {
+              this.showSuccessNotification('Картинка профиля успешно изменена!');
+            })
+            .catch((error) => {
+              if (error?.response?.data?.errors[0].msg) {
+                this.showErrorNotification(error?.response?.data?.errors[0].msg);
+              } else {
+                this.showErrorNotification(error?.message);
+              }
+            });
+      }
+    },
+    pictureRemovingHandler() {
+      this.removeProfilePicture()
+          .then(() => {
+            this.showSuccessNotification('Картинка профиля успешно удалена!');
+          })
+          .catch((error) => {
+            if (error?.response?.data?.errors[0].msg) {
+              this.showErrorNotification(error?.response?.data?.errors[0].msg);
+            } else {
+              this.showErrorNotification(error?.message);
+            }
+          });
+    },
+    showErrorNotification(message) {
+      this.toast.error(message);
+    },
+    showSuccessNotification(message) {
+      this.toast.success(message);
+    },
   }
 }
 </script>
@@ -462,6 +544,23 @@ export default {
       display: flex;
       align-items: center;
       gap: 12px;
+
+      &-file {
+        position: relative;
+
+        input[type="file"] {
+          position: absolute;
+          -webkit-appearance: none;
+          -moz-appearance: none;
+          appearance: none;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          z-index: -1;
+          opacity: 0;
+        }
+      }
     }
 
     &__fieldset {
