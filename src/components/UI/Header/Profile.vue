@@ -1,7 +1,7 @@
 <template>
   <header-item :is-open="isOpen" @update:is-open="clickHandler" v-click-outside="clickOutsideHandler">
     <template #svg>
-      <div class="profile-img"><img src="@/assets/images/profile4.jpg" alt=""></div>
+      <div class="profile-img"><img :src="imagePath" alt=""></div>
     </template>
     <template #body>
       <div class="profile">
@@ -30,13 +30,18 @@
 <script>
 import HeaderItem from "@/components/UI/Header/HeaderItem.vue";
 import ProfileButton from "@/components/UI/Header/ProfileButton.vue";
-import { mapActions } from "vuex";
+import { mapActions, mapState } from "vuex";
 
 export default {
   name: "Profile",
   components: { ProfileButton, HeaderItem },
   props: {
     isOpen: false
+  },
+  computed: {
+    ...mapState({
+      imagePath: state => state.auth.user.imagePath
+    }),
   },
   methods: {
     ...mapActions({
@@ -69,10 +74,13 @@ export default {
     width: 280px;
 
     &-img {
+      width: 48px;
+      height: 48px;
       border-radius: 100%;
       overflow: hidden;
 
       img {
+        object-fit: cover;
         width: 100%;
         height: 100%;
         max-width: 100%;
