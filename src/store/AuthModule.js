@@ -11,6 +11,10 @@ export const authModule = {
             localStorage.setItem('user', JSON.stringify(obj));
             state.user = obj;
         },
+        setUserProperty(state, { property, value }) {
+            state.user[property] = value;
+            localStorage.setItem('user', JSON.stringify(state.user));
+        },
         setToken(state, string) {
             localStorage.setItem('token', string);
             state.token = string;
