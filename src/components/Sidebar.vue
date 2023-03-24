@@ -68,6 +68,10 @@ export default {
               href: '/products-scheduled',
               counter: 8,
               counterColor: 'green'
+            },
+            {
+              name: 'New product',
+              href: '/product-add'
             }
           ]
         },

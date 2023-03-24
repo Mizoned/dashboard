@@ -3,7 +3,7 @@
     <v-search v-model="search" class="header__search"/>
     <div class="header__control">
       <div class="header__item">
-        <v-button class="header__button" color="primary" label="Create" before-svg-component-name="VIconAdd"/>
+        <v-button-link href="/product-add" class="header__button" color="primary" label="Create" before-svg-component-name="VIconAdd"/>
       </div>
       <div class="header__item header-menu">
         <button class="header-menu__button" @click.stop="sidebarOpenHandler(true)">
