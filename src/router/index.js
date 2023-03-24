@@ -4,6 +4,7 @@ import DashboardLayout from "@/layouts/DashboardLayout.vue";
 import ShopView from "@/views/ShopView.vue";
 import PromoteView from "@/views/PromoteView.vue";
 import SettingsView from "@/views/SettingsView.vue";
+import ProductAdd from "@/views/ProductAdd.vue";
 
 const routes = [
   {
@@ -30,6 +31,11 @@ const routes = [
         path: '/account-settings',
         name: 'Account settings',
         component: SettingsView
+      },
+      {
+        path: '/product-add',
+        name: 'New product',
+        component: ProductAdd
       }
     ]
   },
