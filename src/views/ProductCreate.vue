@@ -1,5 +1,7 @@
 <template>
-  
+  <div class="product-create">
+    
+  </div>
 </template>
 
 <script>

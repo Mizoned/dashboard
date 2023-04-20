@@ -104,22 +104,18 @@
 <script>
 import VInputIcon from "@/components/UI/VInputIcon.vue";
 import VSocialList from "@/components/UI/Auth/VSocialList";
-import VLabel from "@/components/UI/Auth/VLabel";
 import VButton from "@/components/UI/VButton";
 import VCaptcha from "@/components/VCaptcha";
 import VLogotype from "@/components/VLogotype";
 import VPlanIncludes from "@/components/UI/Auth/VPlanIncludes";
-import { useVuelidate } from '@vuelidate/core';
-import {required, email, helpers, minLength, maxLength} from '@vuelidate/validators';
 import VCode from "@/components/UI/Auth/VCode.vue";
-import {mapActions} from "vuex";
+import { useVuelidate } from '@vuelidate/core';
+import { required, email, helpers, minLength, maxLength } from '@vuelidate/validators';
+import { mapActions } from "vuex";
 
 export default {
   name: "SignUp",
-  components: {
-    VCode,
-    VInputIcon, VSocialList, VLabel, VButton, VCaptcha, VLogotype, VPlanIncludes
-  },
+  components: { VCode, VInputIcon, VSocialList, VButton, VCaptcha, VLogotype, VPlanIncludes },
   data() {
     return {
       v$: useVuelidate(),
