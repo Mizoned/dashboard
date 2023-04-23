@@ -47,12 +47,14 @@ export default {
     }
 
     &__view {
+      display: flex;
+      flex-direction: column;
       grid-column-start: 2;
       grid-column-end: 3;
       grid-row-start: 2;
       grid-row-end: 3;
       width: 100%;
-      height: 100%;
+      min-height: calc(100vh - 96px);
       overflow-x: auto;
       padding: 40px;
       scroll-behavior: smooth;
