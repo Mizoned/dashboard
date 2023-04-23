@@ -21,19 +21,20 @@
               <div class="sign-up__hr"></div>
             </div>
             <div class="sign-up__form form-component">
-              <v-input-icon
-                  type="text"
-                  placeholder="Your email"
-                  v-model="email"
-                  autocomplete="off"
-                  :label-text="'Or continue with email address'"
-                  :isError="v$.email.$invalid && v$.email.$error"
-                  :errorMessage="v$.email?.$errors[0]?.$message"
-                  @clear="resetVuelidateProperty('email')"
-                  svg-name-component="VIconMail"
-                  @update:modelValue="updateProperty($event, 'email')"
-                  @blur="v$.email.$touch()"
-              />
+              <v-label-box label="Or continue with email address">
+                <v-input-icon
+                    type="text"
+                    placeholder="Your email"
+                    v-model="email"
+                    autocomplete="off"
+                    :isError="v$.email.$invalid && v$.email.$error"
+                    :errorMessage="v$.email?.$errors[0]?.$message"
+                    @clear="resetVuelidateProperty('email')"
+                    svg-name-component="VIconMail"
+                    @update:modelValue="updateProperty($event, 'email')"
+                    @blur="v$.email.$touch()"
+                />
+              </v-label-box>
               <v-button
                   :disabled="v$.email.$invalid && v$.email.$error || this.isLoading"
                   @click="registrationCodeSendHandler"
@@ -72,19 +73,20 @@
               <v-social-list class="sign-up__list"/>
             </div>
             <div class="sign-up__form form-component">
-              <v-input-icon
-                  type="password"
-                  autocomplete="off"
-                  placeholder="Password"
-                  :label-text="'Enter the password for your future account'"
-                  v-model="password"
-                  :isError="this.v$.password.$invalid && this.v$.password.$error"
-                  :errorMessage="v$.password?.$errors[0]?.$message"
-                  @clear="resetVuelidateProperty('password')"
-                  @update:modelValue="updateProperty($event, 'password')"
-                  @blur="v$.password.$touch()"
-                  svg-name-component="VIconLock"
-              />
+              <v-label-box label="Enter the password for your future account">
+                <v-input-icon
+                    type="password"
+                    autocomplete="off"
+                    placeholder="Password"
+                    v-model="password"
+                    :isError="this.v$.password.$invalid && this.v$.password.$error"
+                    :errorMessage="v$.password?.$errors[0]?.$message"
+                    @clear="resetVuelidateProperty('password')"
+                    @update:modelValue="updateProperty($event, 'password')"
+                    @blur="v$.password.$touch()"
+                    svg-name-component="VIconLock"
+                />
+              </v-label-box>
               <v-button
                   :disabled="v$.code.$invalid && v$.code.$error || this.isLoading"
                   @click="signUpHandler"
@@ -112,10 +114,11 @@ import VCode from "@/components/UI/Auth/VCode.vue";
 import { useVuelidate } from '@vuelidate/core';
 import { required, email, helpers, minLength, maxLength } from '@vuelidate/validators';
 import { mapActions } from "vuex";
+import VLabelBox from "@/components/UI/VLabelBox.vue";
 
 export default {
   name: "SignUp",
-  components: { VCode, VInputIcon, VSocialList, VButton, VCaptcha, VLogotype, VPlanIncludes },
+  components: {VLabelBox, VCode, VInputIcon, VSocialList, VButton, VCaptcha, VLogotype, VPlanIncludes },
   data() {
     return {
       v$: useVuelidate(),

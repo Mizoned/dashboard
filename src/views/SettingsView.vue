@@ -33,36 +33,54 @@
                   </div>
                 </div>
                 <div class="settings__fieldset">
-                  <v-input v-model="displayName"
-                           @update:modelValue="updateProperty($event, 'displayName')"
-                           :isError="this.v$.displayName.$invalid && this.v$.displayName.$error"
-                           :errorMessage="v$.displayName?.$errors[0]?.$message"
-                           label-text="Display name"
-                           type="text"
-                           name="name"
-                           autocomplete="name"
-                           @blur="v$.displayName.$touch()"
-                  />
-                  <v-input v-model="email"
-                           @update:modelValue="updateProperty($event, 'email')"
-                           :isError="this.v$.email.$invalid && this.v$.email.$error"
-                           :errorMessage="v$.email?.$errors[0]?.$message"
-                           label-text="Email"
-                           type="email"
-                           name="email"
-                           autocomplete="email"
-                           @blur="v$.email.$touch()"
-                  />
-                  <v-input v-model="location"
-                           @update:modelValue="updateProperty($event, 'location')"
-                           :isError="this.v$.location.$invalid && this.v$.location.$error"
-                           :errorMessage="v$.location?.$errors[0]?.$message"
-                           label-text="Location"
-                           type="text"
-                           name="location"
-                           autocomplete="location"
-                           @blur="v$.location.$touch()"
-                  />
+                  <v-label-box
+                      label="Display name"
+                      :is-error="this.v$.displayName.$invalid && this.v$.displayName.$error"
+                      tooltip-message="Maximum 100 characters. No HTML or emoji allowed"
+                  >
+                    <v-input
+                        v-model="displayName"
+                        @update:modelValue="updateProperty($event, 'displayName')"
+                        :isError="this.v$.displayName.$invalid && this.v$.displayName.$error"
+                        :errorMessage="v$.displayName?.$errors[0]?.$message"
+                        type="text"
+                        name="name"
+                        autocomplete="name"
+                        @blur="v$.displayName.$touch()"
+                    />
+                  </v-label-box>
+                  <v-label-box
+                      label="Email"
+                      :is-error="this.v$.email.$invalid && this.v$.email.$error"
+                      tooltip-message="Maximum 100 characters. No HTML or emoji allowed"
+                  >
+                    <v-input
+                        v-model="email"
+                        @update:modelValue="updateProperty($event, 'email')"
+                        :isError="this.v$.email.$invalid && this.v$.email.$error"
+                        :errorMessage="v$.email?.$errors[0]?.$message"
+                        type="email"
+                        name="email"
+                        autocomplete="email"
+                        @blur="v$.email.$touch()"
+                    />
+                  </v-label-box>
+                  <v-label-box
+                      label="Location"
+                      :is-error="this.v$.location.$invalid && this.v$.location.$error"
+                      tooltip-message="Maximum 100 characters. No HTML or emoji allowed"
+                  >
+                    <v-input
+                        v-model="location"
+                        @update:modelValue="updateProperty($event, 'location')"
+                        :isError="this.v$.location.$invalid && this.v$.location.$error"
+                        :errorMessage="v$.location?.$errors[0]?.$message"
+                        type="text"
+                        name="location"
+                        autocomplete="location"
+                        @blur="v$.location.$touch()"
+                    />
+                  </v-label-box>
                 </div>
               </div>
             </template>
@@ -74,37 +92,51 @@
             <template #body>
               <div class="settings__login">
                 <div class="settings__fieldset">
-                  <v-input v-model="oldPassword"
-                           label-text="Old password"
-                           @update:modelValue="updateProperty($event, 'oldPassword')"
-                           :isError="v$.oldPassword.$invalid && v$.oldPassword.$error"
-                           :errorMessage="v$.oldPassword?.$errors[0]?.$message"
-                           type="password"
-                           name="oldPassword"
-                           autocomplete="oldPassword"
-                           @blur="v$.oldPassword.$touch()"
-                  />
+                  <v-label-box label="Old password" :is-error="v$.oldPassword.$invalid && v$.oldPassword.$error" tooltip-message="Maximum 100 characters. No HTML or emoji allowed">
+                    <v-input
+                        v-model="oldPassword"
+                        @update:modelValue="updateProperty($event, 'oldPassword')"
+                        :isError="v$.oldPassword.$invalid && v$.oldPassword.$error"
+                        :errorMessage="v$.oldPassword?.$errors[0]?.$message"
+                        type="password"
+                        name="oldPassword"
+                        autocomplete="oldPassword"
+                        @blur="v$.oldPassword.$touch()"
+                    />
+                  </v-label-box>
                   <div class="settings__fieldset-box">
-                    <v-input v-model="newPassword"
-                             label-text="New password"
-                             @update:modelValue="updateProperty($event, 'newPassword')"
-                             :isError="v$.newPassword.$invalid && v$.newPassword.$error"
-                             :errorMessage="v$.newPassword?.$errors[0]?.$message"
-                             type="password"
-                             @blur="v$.newPassword.$touch()"
-                             name="newPassword"
-                             autocomplete="newPassword"
-                    />
-                    <v-input v-model="confirmNewPassword"
-                             label-text="Confirm new password"
-                             @update:modelValue="updateProperty($event, 'confirmNewPassword')"
-                             :isError="v$.confirmNewPassword.$invalid && v$.confirmNewPassword.$error"
-                             :errorMessage="v$.confirmNewPassword?.$errors[0]?.$message"
-                             type="password"
-                             @blur="v$.confirmNewPassword.$touch()"
-                             name="confirmNewPassword"
-                             autocomplete="confirmNewPassword"
-                    />
+                    <v-label-box
+                        label="New password"
+                        :is-error="v$.newPassword.$invalid && v$.newPassword.$error"
+                        tooltip-message="Maximum 100 characters. No HTML or emoji allowed"
+                    >
+                      <v-input
+                          v-model="newPassword"
+                          @update:modelValue="updateProperty($event, 'newPassword')"
+                          :isError="v$.newPassword.$invalid && v$.newPassword.$error"
+                          :errorMessage="v$.newPassword?.$errors[0]?.$message"
+                          type="password"
+                          @blur="v$.newPassword.$touch()"
+                          name="newPassword"
+                          autocomplete="newPassword"
+                      />
+                    </v-label-box>
+                    <v-label-box
+                        label="Confirm new password"
+                        :is-error="v$.confirmNewPassword.$invalid && v$.confirmNewPassword.$error"
+                        tooltip-message="Maximum 100 characters. No HTML or emoji allowed"
+                    >
+                      <v-input
+                          v-model="confirmNewPassword"
+                          @update:modelValue="updateProperty($event, 'confirmNewPassword')"
+                          :isError="v$.confirmNewPassword.$invalid && v$.confirmNewPassword.$error"
+                          :errorMessage="v$.confirmNewPassword?.$errors[0]?.$message"
+                          type="password"
+                          @blur="v$.confirmNewPassword.$touch()"
+                          name="confirmNewPassword"
+                          autocomplete="confirmNewPassword"
+                      />
+                    </v-label-box>
                   </div>
                   <v-button
                       :disabled="isReadyUpdatePassword"
@@ -124,7 +156,7 @@
             <template #head><v-widget-title title="Notifications" color="orange" id="notification"/></template>
             <template #body>
               <div class="settings__fieldset">
-                <v-toggle v-for="setting in notificationSettings" :label="setting.label" :useDivider="setting.useDivider">
+                <v-toggle v-for="setting in notificationSettings" :label="setting.label" :useDivider="setting.useDivider" :tooltip-message="setting.tooltipMessage">
                   <v-switch v-model:checked="setting.checked"/>
                 </v-toggle>
               </div>
@@ -144,12 +176,13 @@
           </v-box>
         </div>
       </div>
-      <v-button :disabled="isReadyUpdateProfileData"
-                class="settings__save-btn"
-                label="Save"
-                @click="updateDataChangeHandler"
-                :is-loading="isProfileChangeLoading"
-                v-scroll-to="{ parentSelector: '.main__view', targetSelector: '#profile-information' }"
+      <v-button
+          :disabled="isReadyUpdateProfileData"
+          class="settings__save-btn"
+          label="Save"
+          @click="updateDataChangeHandler"
+          :is-loading="isProfileChangeLoading"
+          v-scroll-to="{ parentSelector: '.main__view', targetSelector: '#profile-information' }"
       />
     </div>
   </div>
@@ -163,6 +196,7 @@ import { useToast } from "vue-toastification";
 import { mapState, mapActions } from "vuex";
 import checkFileSize from "@/utils/validators/checkFileSize";
 import isImageFile from "@/utils/validators/isImageFile";
+import VLabelBox from "@/components/UI/VLabelBox.vue";
 
 const validateImageFileType = helpers.withParams(
     { type: 'imageFileType' },
@@ -176,7 +210,7 @@ const validateImageFileSize = helpers.withParams(
 
 export default {
   name: "SettingsView",
-  components: { VToggle },
+  components: {VLabelBox, VToggle },
   data() {
     return {
       v$: useVuelidate(),
@@ -210,10 +244,10 @@ export default {
       email: this.$store.state?.auth?.user?.email ?? '',
       location: this.$store.state.auth.user?.location ?? '',
       notificationSettings: [
-        { name: 'notifyAboutProductUpdates', checked: this.$store.state?.auth?.user?.notifyAboutProductUpdates ?? '', useDivider: true, label: 'Product updates and community announcements' },
-        { name: 'notifyAboutMarketNewsletter', checked: this.$store.state?.auth?.user?.notifyAboutMarketNewsletter ?? '', useDivider: true, label: 'Market newsletter' },
-        { name: 'notifyAboutComments', checked: this.$store.state?.auth?.user?.notifyAboutComments ?? '', useDivider: true, label: 'Comments' },
-        { name: 'notifyAboutPurchases', checked: this.$store.state?.auth?.user?.notifyAboutPurchases ?? '', useDivider: true, label: 'Purchases' },
+        { name: 'notifyAboutProductUpdates', checked: this.$store.state?.auth?.user?.notifyAboutProductUpdates ?? '', useDivider: true, label: 'Product updates and community announcements', tooltipMessage: 'Maximum 100 characters. No HTML or emoji allowed' },
+        { name: 'notifyAboutMarketNewsletter', checked: this.$store.state?.auth?.user?.notifyAboutMarketNewsletter ?? '', useDivider: true, label: 'Market newsletter', tooltipMessage: 'Maximum 100 characters. No HTML or emoji allowed' },
+        { name: 'notifyAboutComments', checked: this.$store.state?.auth?.user?.notifyAboutComments ?? '', useDivider: true, label: 'Comments', tooltipMessage: 'Maximum 100 characters. No HTML or emoji allowed' },
+        { name: 'notifyAboutPurchases', checked: this.$store.state?.auth?.user?.notifyAboutPurchases ?? '', useDivider: true, label: 'Purchases', tooltipMessage: 'Maximum 100 characters. No HTML or emoji allowed' },
       ],
       oldPassword: '',
       newPassword: '',
