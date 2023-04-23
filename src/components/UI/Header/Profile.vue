@@ -18,7 +18,7 @@
             <v-link-with-icon label="Upgrade to Pro" href="/upgrade-to-pro" icon-component-name="VIconLeaderboard" color="purple"/>
           </div>
           <div class="profile__list-box">
-            <v-link-with-icon label="Account settings" href="/account-settings" icon-component-name="VIconSettings"/>
+            <v-link-with-icon label="Account settings" @click="clickHandler(false)" href="/account-settings" icon-component-name="VIconSettings"/>
             <profile-button label="Log out" icon-component-name="VIconLogout" @click="logoutHandler"/>
           </div>
         </div>
@@ -52,7 +52,7 @@ export default {
     },
     clickOutsideHandler() {
       if (!this.isOpen) return
-      this.$emit('update:isOpen', { name: 'notifications', value: false });
+      this.$emit('update:isOpen', { name: 'profile', value: false });
     },
     logoutHandler() {
       this.logout().then(() => {
