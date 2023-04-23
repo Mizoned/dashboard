@@ -4,7 +4,7 @@ import DashboardLayout from "@/layouts/DashboardLayout.vue";
 import ShopView from "@/views/ShopView.vue";
 import PromoteView from "@/views/PromoteView.vue";
 import SettingsView from "@/views/SettingsView.vue";
-import ProductAdd from "@/views/ProductAdd.vue";
+import ProductCreate from "@/views/ProductCreate.vue";
 
 const routes = [
   {
@@ -35,7 +35,7 @@ const routes = [
       {
         path: '/product-add',
         name: 'New product',
-        component: ProductAdd
+        component: ProductCreate
       }
     ]
   },
