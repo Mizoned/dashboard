@@ -31,10 +31,6 @@ export default {
       type: String,
       default: ''
     },
-    labelText: {
-      type: String,
-      default: ''
-    },
     isError: {
       type: Boolean,
       default: false
