@@ -9,12 +9,8 @@
 </template>
 
 <script>
-
-import VLabel from "@/components/UI/VLabel.vue";
-
 export default {
   name: "VToggle",
-  components: {VLabel},
   props: {
     label: {
       type: String,
@@ -39,21 +35,6 @@ export default {
       justify-content: space-between;
       align-items: center;
       gap: 24px;
-    }
-
-    &__label {
-      font-weight: 600;
-      font-size: 14px;
-      line-height: 24px;
-      letter-spacing: -0.01em;
-      color: var(--neutral-white-smoke-background-color);
-      transition: color 0.3s;
-    }
-
-    &__tooltip {
-      display: inline-block;
-      vertical-align: text-top;
-      margin-left: 4px;
     }
 
     &__divider {
