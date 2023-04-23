@@ -1,10 +1,10 @@
 <template>
   <button
-      :class="['v-button', `v-button--${color}`]"
+      :class="['v-button', `v-button--${color}`, `v-button--${size}`]"
   >
     <component v-if="isLoading" is="VIconPreloader"/>
     <component v-else-if="beforeSvgComponentName" :is="beforeSvgComponentName"/>
-    <span>{{ label }}</span>
+    <span v-if="label">{{ label }}</span>
     <component v-if="afterSvgComponentName" :is="afterSvgComponentName"/>
   </button>
 </template>
@@ -12,22 +12,18 @@
 <script>
 export default {
   name: "VButton",
-  data() {
-    return {
-      topicTypes: {
-        primary: 'primary',
-        secondary: 'secondary'
-      }
-    }
-  },
   props: {
     label: {
       type: String,
-      default: 'Button'
+      default: ''
     },
     color: {
       type: String,
       default: 'primary'
+    },
+    size: {
+      type: String,
+      default: 'lg'
     },
     beforeSvgComponentName: {
       type: String,
@@ -66,6 +62,14 @@ export default {
       opacity: 0.5;
     }
 
+    &--sm {
+      padding: 8px 16px;
+    }
+
+    &--square {
+      padding: 8px;
+    }
+
     &--primary {
       background-color: var(--primary-blue-color);
       color: var(--primary-champagne-color);
@@ -96,6 +100,10 @@ export default {
         background-color: transparent;
         border-color: var(--neutral-champagne-background-color);
       }
+    }
+
+    &--transparent {
+      background: transparent;
     }
   }
 </style>
