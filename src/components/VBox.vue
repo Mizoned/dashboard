@@ -16,9 +16,14 @@ export default {
     display: flex;
     flex-direction: column;
     gap: 32px;
-    &__head {
 
+    &__head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
     }
+
     &__body {
 
     }
