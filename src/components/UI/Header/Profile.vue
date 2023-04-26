@@ -1,7 +1,7 @@
 <template>
   <header-item :is-open="isOpen" @update:is-open="clickHandler" v-click-outside="clickOutsideHandler">
     <template #svg>
-      <div class="profile-img"><img :src="imagePath" alt=""></div>
+      <v-avatar :src="imagePath" size="md"/>
     </template>
     <template #body>
       <div class="profile">
@@ -31,10 +31,11 @@
 import HeaderItem from "@/components/UI/Header/HeaderItem.vue";
 import ProfileButton from "@/components/UI/Header/ProfileButton.vue";
 import { mapActions, mapState } from "vuex";
+import VAvatar from "@/components/UI/VAvatar.vue";
 
 export default {
   name: "Profile",
-  components: { ProfileButton, HeaderItem },
+  components: {VAvatar, ProfileButton, HeaderItem },
   props: {
     isOpen: false
   },

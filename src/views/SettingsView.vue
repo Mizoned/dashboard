@@ -19,7 +19,7 @@
               <div class="settings__profile">
                 <div class="settings__profile-information">
                   <div class="settings__avatar">
-                    <img ref="profileImage" :src="imagePath" alt="">
+                    <v-avatar :src="imagePath"/>
                     <button class="settings__m-remove">
                       <v-icon-close/>
                     </button>
@@ -189,14 +189,12 @@
 </template>
 
 <script>
-import VToggle from "@/components/UI/VToggle.vue";
 import { useVuelidate } from '@vuelidate/core';
 import { required, email, helpers, minLength, maxLength, sameAs } from '@vuelidate/validators';
 import { useToast } from "vue-toastification";
 import { mapState, mapActions } from "vuex";
 import checkFileSize from "@/utils/validators/checkFileSize";
 import isImageFile from "@/utils/validators/isImageFile";
-import VLabelBox from "@/components/UI/VLabelBox.vue";
 
 const validateImageFileType = helpers.withParams(
     { type: 'imageFileType' },
@@ -210,7 +208,6 @@ const validateImageFileSize = helpers.withParams(
 
 export default {
   name: "SettingsView",
-  components: {VLabelBox, VToggle },
   data() {
     return {
       v$: useVuelidate(),

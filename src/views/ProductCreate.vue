@@ -112,6 +112,21 @@
             <v-button before-svg-component-name="VIconExpand" color="transparent" size="square"></v-button>
           </template>
           <template #body>
+            <div class="product-create__widget">
+              <div class="product-create__widget-img">
+                <img src="@/assets/images/no-photo.png" alt="">
+              </div>
+              <div class="product-create__widget-body">
+                <div class="product-create__widget-content">
+                  <div class="product-create__widget-name">Fleet - Travel shopping UI design kit</div>
+                  <div class="product-create__widget-by">
+                    <v-avatar :src="imagePath" size="sm"/>
+                    <div class="product-create__widget-by-name">by <span>Mizoned</span></div>
+                  </div>
+                </div>
+                <div class="product-create__widget-price">$98</div>
+              </div>
+            </div>
           </template>
         </v-box>
       </div>
@@ -132,20 +147,15 @@
 </template>
 
 <script>
-import VInputIcon from "@/components/UI/VInputIcon.vue";
-import VTextarea from "@/components/UI/VTextarea.vue";
-import VCheckbox from "@/components/UI/VCheckbox.vue";
-import VLabel from "@/components/UI/VLabel.vue";
-import VInput from "@/components/UI/VInput.vue";
-import VLabelBox from "@/components/UI/VLabelBox.vue";
-import VBox from "@/components/VBox.vue";
-import VUploadInput from "@/components/UI/VUploadInput.vue";
-import VButton from "@/components/UI/VButton.vue";
-import VIconCheck from "@/components/icons/VIconCheck.vue";
+import { mapState } from "vuex";
 
 export default {
   name: "ProductCreate",
-  components: { VIconCheck, VButton, VUploadInput, VBox, VLabelBox, VInput, VLabel, VCheckbox, VTextarea, VInputIcon }
+  computed: {
+    ...mapState({
+      imagePath: state => state.auth.user.imagePath
+    })
+  }
 }
 </script>
 
@@ -269,6 +279,81 @@ export default {
     &__preview {
       position: sticky;
       top: -16px;
+    }
+
+    &__widget {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+
+      &-img {
+        height: 200px;
+        width: 100%;
+        border-radius: 12px;
+        overflow: hidden;
+
+        img {
+          display: block;
+          height: auto;
+          width: 100%;
+          object-fit: cover;
+        }
+      }
+
+      &-body {
+        display: flex;
+        gap: 8px;
+      }
+
+      &-content {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      &-name {
+        font-style: normal;
+        font-weight: 600;
+        font-size: 20px;
+        line-height: 32px;
+        letter-spacing: -0.02em;
+        color: var(--neutral-champagne-color);
+      }
+
+      &-by {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+
+        &-name {
+          font-style: normal;
+          font-weight: 500;
+          font-size: 15px;
+          line-height: 24px;
+          letter-spacing: -0.015em;
+          color: var(--primary-dark-white-color);
+
+          span {
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            color: var(--neutral-champagne-background-color);
+          }
+        }
+      }
+
+      &-price {
+        align-self: flex-start;
+        font-style: normal;
+        font-weight: 700;
+        font-size: 15px;
+        line-height: 24px;
+        text-align: center;
+        letter-spacing: -0.01em;
+        color: var(--neutral-light-black-background-color);
+        padding: 4px 8px;
+        background-color: var(--secondary-green-color);
+        border-radius: 6px;
+      }
     }
   }
 

@@ -7,9 +7,15 @@ import VTextarea from "@/components/UI/VTextarea.vue";
 import VToggle from "@/components/UI/VToggle.vue";
 import VLabel from "@/components/UI/VLabel.vue";
 import VLabelBox from "@/components/UI/VLabelBox.vue";
+import VAvatar from "@/components/UI/VAvatar.vue";
+import VInputIcon from "@/components/UI/VInputIcon.vue";
+import VCheckbox from "@/components/UI/VCheckbox.vue";
+import VBox from "@/components/VBox.vue";
+import VUploadInput from "@/components/UI/VUploadInput.vue";
 
 export default [
     VInput,
+    VInputIcon,
     VButton,
     VSwitch,
     VLinkWithIcon,
@@ -17,5 +23,9 @@ export default [
     VTextarea,
     VToggle,
     VLabel,
-    VLabelBox
+    VLabelBox,
+    VAvatar,
+    VCheckbox,
+    VBox,
+    VUploadInput
 ]
