@@ -14,6 +14,7 @@
                     type="text"
                     name="name"
                     autocomplete="name"
+                    v-model="form.title"
                 />
               </v-label-box>
               <v-label-box label="Description" tooltip-message="Maximum 100 characters. No HTML or emoji allowed">
@@ -43,7 +44,7 @@
           <template #body>
             <div class="product-create__fieldset">
               <v-label-box label="Amount" tooltip-message="Maximum 100 characters. No HTML or emoji allowed">
-                <v-input-icon svg-name-component="VIconDollar"></v-input-icon>
+                <v-input-icon svg-name-component="VIconDollar" v-model="form.price"></v-input-icon>
               </v-label-box>
 <!--              <div>-->
 <!--                <v-toggle label="Allow customers to pay they want" :useDivider="true" tooltip-message="Maximum 100 characters. No HTML or emoji allowed">-->
@@ -118,13 +119,13 @@
               </div>
               <div class="product-create__widget-body">
                 <div class="product-create__widget-content">
-                  <div class="product-create__widget-name">Fleet - Travel shopping UI design kit</div>
+                  <div class="product-create__widget-name">{{ form.title }}</div>
                   <div class="product-create__widget-by">
-                    <v-avatar :src="imagePath" size="sm"/>
-                    <div class="product-create__widget-by-name">by <span>Mizoned</span></div>
+                    <v-avatar class="product-create__widget-by-avatar" :src="imagePath" size="sm"/>
+                    <div class="product-create__widget-by-name">by <span>{{ displayName }}</span></div>
                   </div>
                 </div>
-                <div class="product-create__widget-price">$98</div>
+                <div class="product-create__widget-price">${{ form.price }}</div>
               </div>
             </div>
           </template>
@@ -151,9 +152,19 @@ import { mapState } from "vuex";
 
 export default {
   name: "ProductCreate",
+  data() {
+    return {
+      form: {
+        title: '',
+        description: '',
+        price: ''
+      }
+    }
+  },
   computed: {
     ...mapState({
-      imagePath: state => state.auth.user.imagePath
+      imagePath: state => state.auth.user.imagePath,
+      displayName: state => state.auth.user.displayName
     })
   }
 }
@@ -291,6 +302,7 @@ export default {
         width: 100%;
         border-radius: 12px;
         overflow: hidden;
+        background-color: var(--secondary-purple-color);
 
         img {
           display: block;
@@ -318,6 +330,9 @@ export default {
         line-height: 32px;
         letter-spacing: -0.02em;
         color: var(--neutral-champagne-color);
+        min-height: 64px;
+        word-wrap: break-word;
+        max-width: 230px;
       }
 
       &-by {
@@ -349,10 +364,17 @@ export default {
         line-height: 24px;
         text-align: center;
         letter-spacing: -0.01em;
+        min-width: 46px;
+        min-height: 32px;
         color: var(--neutral-light-black-background-color);
+        margin-left: auto;
         padding: 4px 8px;
         background-color: var(--secondary-green-color);
         border-radius: 6px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 100px;
       }
     }
   }
