@@ -1,4 +1,4 @@
-# dashboard
+# Dashboard
 
 ## Project setup
 ```
@@ -15,5 +15,10 @@ npm run serve
 npm run build
 ```
 
+### Running a built project through Node.js
+```
+npm install -g serve
+serve -s dist
+```
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
