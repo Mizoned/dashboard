@@ -4,6 +4,6 @@
  * @returns boolean - true, если тип MIME является типом изображения, иначе false.
  */
 export default function isImageFile(image) {
-    if (!image) return true;
-    return image.type.startsWith('image/');
-};
+	if (!image) return true;
+	return image.type.startsWith('image/');
+}

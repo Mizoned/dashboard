@@ -1,64 +1,74 @@
 <template>
-  <svg :class="['v-icon-arrow', `v-icon-arrow--${direction}`, `v-icon-arrow--${color}`]" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M10.7071 17.7929C11.0976 18.1834 11.0976 18.8166 10.7071 19.2071C10.3166 19.5976 9.68339 19.5976 9.29286 19.2071L3.49997 13.4142C2.71892 12.6332 2.71892 11.3668 3.49997 10.5858L9.29286 4.79289C9.68339 4.40237 10.3166 4.40237 10.7071 4.79289C11.0976 5.18342 11.0976 5.81658 10.7071 6.20711L5.91419 11H20C20.5523 11 21 11.4477 21 12C21 12.5523 20.5523 13 20 13H5.91418L10.7071 17.7929Z" fill="#6F767E"/>
-  </svg>
+	<svg
+		:class="['v-icon-arrow', `v-icon-arrow--${direction}`, `v-icon-arrow--${color}`]"
+		width="24"
+		height="24"
+		viewBox="0 0 24 24"
+		fill="none"
+		xmlns="http://www.w3.org/2000/svg"
+	>
+		<path
+			d="M10.7071 17.7929C11.0976 18.1834 11.0976 18.8166 10.7071 19.2071C10.3166 19.5976 9.68339 19.5976 9.29286 19.2071L3.49997 13.4142C2.71892 12.6332 2.71892 11.3668 3.49997 10.5858L9.29286 4.79289C9.68339 4.40237 10.3166 4.40237 10.7071 4.79289C11.0976 5.18342 11.0976 5.81658 10.7071 6.20711L5.91419 11H20C20.5523 11 21 11.4477 21 12C21 12.5523 20.5523 13 20 13H5.91418L10.7071 17.7929Z"
+			fill="#6F767E"
+		/>
+	</svg>
 </template>
 
 <script>
 export default {
-  name: "VIconArrow",
-  props: {
-    direction: {
-      type: String,
-      default: 'left'
-    },
-    color: {
-      type: String,
-      default: 'champagne'
-    }
-  },
-}
+	name: 'VIconArrow',
+	props: {
+		direction: {
+			type: String,
+			default: 'left'
+		},
+		color: {
+			type: String,
+			default: 'champagne'
+		}
+	}
+};
 </script>
 
 <style scoped lang="scss">
-  .v-icon-arrow {
-    &--left {
-      transform: rotate(0);
-    }
-    &--right {
-      transform: rotate(180deg);
-    }
-    &--up {
-      transform: rotate(90deg);
-    }
-    &--down {
-      transform: rotate(-90deg);
-    }
+.v-icon-arrow {
+	&--left {
+		transform: rotate(0);
+	}
+	&--right {
+		transform: rotate(180deg);
+	}
+	&--up {
+		transform: rotate(90deg);
+	}
+	&--down {
+		transform: rotate(-90deg);
+	}
 
-    &--blue {
-      path {
-        fill: var(--primary-blue-color);
-      }
-    }
-    &--orange {
-      path {
-        fill: var(--primary-orange-color);
-      }
-    }
-    &--green {
-      path {
-        fill: var(--primary-green-color);
-      }
-    }
-    &--purple {
-      path {
-        fill: var(--primary-purple-color);
-      }
-    }
-    &--champagne {
-      path {
-        fill: var(--neutral-champagne-color);
-      }
-    }
-  }
+	&--blue {
+		path {
+			fill: var(--primary-blue-color);
+		}
+	}
+	&--orange {
+		path {
+			fill: var(--primary-orange-color);
+		}
+	}
+	&--green {
+		path {
+			fill: var(--primary-green-color);
+		}
+	}
+	&--purple {
+		path {
+			fill: var(--primary-purple-color);
+		}
+	}
+	&--champagne {
+		path {
+			fill: var(--neutral-champagne-color);
+		}
+	}
+}
 </style>
