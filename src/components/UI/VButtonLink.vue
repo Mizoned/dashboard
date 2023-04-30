@@ -1,6 +1,6 @@
 <template>
 	<router-link :to="href" :class="['v-button-link', `v-button-link--${color}`]">
-		<component is="VIconPreloader" v-if="isLoading" />
+		<component :is="iconLoaderName" v-if="isLoading" />
 		<component :is="beforeSvgComponentName" v-else-if="beforeSvgComponentName" />
 		<span>{{ label }}</span>
 		<component :is="afterSvgComponentName" v-if="afterSvgComponentName" />
@@ -21,15 +21,19 @@ export default {
 		},
 		beforeSvgComponentName: {
 			type: String,
-			required: false
+			default: ''
 		},
 		afterSvgComponentName: {
 			type: String,
-			required: false
+			default: ''
 		},
 		isLoading: {
 			type: Boolean,
 			default: false
+		},
+		iconLoaderName: {
+			type: String,
+			default: 'VIconPreloader'
 		},
 		href: {
 			type: String,
@@ -37,12 +41,7 @@ export default {
 		}
 	},
 	data() {
-		return {
-			topicTypes: {
-				primary: 'primary',
-				secondary: 'secondary'
-			}
-		};
+		return {};
 	}
 };
 </script>

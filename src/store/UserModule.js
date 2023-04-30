@@ -15,7 +15,7 @@ export const userModule = {
 					});
 			});
 		},
-		updateProfilePassword({ commit }, { oldPassword, newPassword, confirmNewPassword }) {
+		updateProfilePassword(options, { oldPassword, newPassword, confirmNewPassword }) {
 			return new Promise((resolve, reject) => {
 				UserService.updateProfilePassword(oldPassword, newPassword, confirmNewPassword)
 					.then((response) => {

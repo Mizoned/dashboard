@@ -43,6 +43,7 @@ export default {
 			default: ''
 		}
 	},
+	emits: ['update:modelValue', 'clear'],
 	computed: {
 		isFilled() {
 			return !!this.modelValue;

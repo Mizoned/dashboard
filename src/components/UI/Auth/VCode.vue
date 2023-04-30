@@ -43,7 +43,10 @@
 export default {
 	name: 'VCode',
 	props: {
-		modelValue: [String],
+		modelValue: {
+			type: String,
+			default: ''
+		},
 		isError: {
 			type: Boolean,
 			default: false
@@ -53,6 +56,7 @@ export default {
 			default: ''
 		}
 	},
+	emits: ['update:modelValue', 'blur'],
 	data() {
 		return {
 			maxLength: 1,

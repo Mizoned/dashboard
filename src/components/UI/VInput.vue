@@ -9,7 +9,10 @@
 export default {
 	name: 'VInput',
 	props: {
-		modelValue: [String],
+		modelValue: {
+			type: String,
+			default: ''
+		},
 		labelText: {
 			type: String,
 			default: ''
@@ -27,6 +30,7 @@ export default {
 			default: ''
 		}
 	},
+	emits: ['update:modelValue'],
 	methods: {
 		update(event) {
 			this.$emit('update:modelValue', event.target.value);

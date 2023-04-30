@@ -1,6 +1,6 @@
 <template>
 	<button :class="['v-button', `v-button--${color}`, `v-button--${size}`]">
-		<component is="VIconPreloader" v-if="isLoading" />
+		<component :is="iconLoaderName" v-if="isLoading" />
 		<component :is="beforeSvgComponentName" v-else-if="beforeSvgComponentName" />
 		<span v-if="label">{{ label }}</span>
 		<component :is="afterSvgComponentName" v-if="afterSvgComponentName" />
@@ -25,15 +25,19 @@ export default {
 		},
 		beforeSvgComponentName: {
 			type: String,
-			required: false
+			default: ''
 		},
 		afterSvgComponentName: {
 			type: String,
-			required: false
+			default: ''
 		},
 		isLoading: {
 			type: Boolean,
 			default: false
+		},
+		iconLoaderName: {
+			type: String,
+			default: 'VIconPreloader'
 		}
 	}
 };

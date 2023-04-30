@@ -5,7 +5,7 @@
 		</div>
 		<div class="v-plan-includes__title">Plan includes</div>
 		<div class="v-plan-includes__list">
-			<div v-for="item in items" class="v-plan-includes__item">
+			<div v-for="item in items" :key="item" class="v-plan-includes__item">
 				<div class="v-plan-includes__item-icon">
 					<svg
 						width="24"

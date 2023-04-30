@@ -25,6 +25,7 @@ export default {
 			default: false
 		}
 	},
+	emits: ['update:isOpen'],
 	methods: {
 		clickHandler() {
 			this.$emit('update:isOpen', !this.isOpen);

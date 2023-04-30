@@ -89,7 +89,7 @@
 						message="Smiles – 3D icons"
 						time="8h"
 						type="rate"
-						rate="5"
+						:rate="5"
 					></notification-item>
 				</div>
 				<v-button class="notifications__button" label="See all notifications" color="primary" />
@@ -106,11 +106,15 @@ import ActionButtonOption from '@/components/UI/ActionButtonOption.vue';
 import VButton from '@/components/UI/VButton.vue';
 
 export default {
-	name: 'Notifications',
+	name: 'VNotifications',
 	components: { VButton, ActionButtonOption, ActionsButton, NotificationItem, HeaderItem },
 	props: {
-		isOpen: false
+		isOpen: {
+			type: Boolean,
+			default: false
+		}
 	},
+	emits: ['update:isOpen'],
 	methods: {
 		clickHandler(value) {
 			this.$emit('update:isOpen', { name: 'notifications', value });

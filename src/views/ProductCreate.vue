@@ -177,8 +177,6 @@
 <script>
 import { mapState } from 'vuex';
 
-const test =  { test: 123 };
-
 export default {
 	name: 'ProductCreate',
 	data() {

@@ -3,6 +3,7 @@
 		<div class="settings__menu">
 			<div
 				v-for="(link, key) in settingsLinks"
+				:key="key"
 				v-scroll-to="{ parentSelector: '.main__view', targetSelector: link.targetSelector }"
 				:class="['settings__link', { active: link.state }]"
 				@click="changeActiveLink(key)"
@@ -15,9 +16,9 @@
 			<div class="settings__list">
 				<div class="settings__item">
 					<v-box class="settings__basics">
-						<template #head
-							><v-widget-title id="profile-information" title="Profile information" color="green"
-						/></template>
+						<template #head>
+							<v-widget-title id="profile-information" title="Profile information" color="green" />
+						</template>
 						<template #body>
 							<div class="settings__profile">
 								<div class="settings__profile-information">
@@ -62,7 +63,7 @@
 											type="text"
 											name="name"
 											autocomplete="name"
-											@update:modelValue="updateProperty($event, 'displayName')"
+											@update:model-value="updateProperty($event, 'displayName')"
 											@blur="v$.displayName.$touch()"
 										/>
 									</v-label-box>
@@ -78,7 +79,7 @@
 											type="email"
 											name="email"
 											autocomplete="email"
-											@update:modelValue="updateProperty($event, 'email')"
+											@update:model-value="updateProperty($event, 'email')"
 											@blur="v$.email.$touch()"
 										/>
 									</v-label-box>
@@ -94,7 +95,7 @@
 											type="text"
 											name="location"
 											autocomplete="location"
-											@update:modelValue="updateProperty($event, 'location')"
+											@update:model-value="updateProperty($event, 'location')"
 											@blur="v$.location.$touch()"
 										/>
 									</v-label-box>
@@ -105,7 +106,9 @@
 				</div>
 				<div class="settings__item">
 					<v-box class="settings__account">
-						<template #head><v-widget-title id="login" title="Login" color="purple" /></template>
+						<template #head>
+							<v-widget-title id="login" title="Login" color="purple" />
+						</template>
 						<template #body>
 							<div class="settings__login">
 								<div class="settings__fieldset">
@@ -121,7 +124,7 @@
 											type="password"
 											name="oldPassword"
 											autocomplete="oldPassword"
-											@update:modelValue="updateProperty($event, 'oldPassword')"
+											@update:model-value="updateProperty($event, 'oldPassword')"
 											@blur="v$.oldPassword.$touch()"
 										/>
 									</v-label-box>
@@ -138,7 +141,7 @@
 												type="password"
 												name="newPassword"
 												autocomplete="newPassword"
-												@update:modelValue="updateProperty($event, 'newPassword')"
+												@update:model-value="updateProperty($event, 'newPassword')"
 												@blur="v$.newPassword.$touch()"
 											/>
 										</v-label-box>
@@ -154,7 +157,7 @@
 												type="password"
 												name="confirmNewPassword"
 												autocomplete="confirmNewPassword"
-												@update:modelValue="updateProperty($event, 'confirmNewPassword')"
+												@update:model-value="updateProperty($event, 'confirmNewPassword')"
 												@blur="v$.confirmNewPassword.$touch()"
 											/>
 										</v-label-box>
@@ -174,13 +177,14 @@
 				</div>
 				<div class="settings__item">
 					<v-box class="settings__notifications">
-						<template #head
-							><v-widget-title id="notification" title="Notifications" color="orange"
-						/></template>
+						<template #head>
+							<v-widget-title id="notification" title="Notifications" color="orange" />
+						</template>
 						<template #body>
 							<div class="settings__fieldset">
 								<v-toggle
-									v-for="setting in notificationSettings"
+									v-for="(setting, key) in notificationSettings"
+									:key="key"
 									:label="setting.label"
 									:use-divider="setting.useDivider"
 									:tooltip-message="setting.tooltipMessage"
@@ -193,7 +197,9 @@
 				</div>
 				<div class="settings__item">
 					<v-box class="settings__payment">
-						<template #head><v-widget-title id="payment" title="Payment" color="green" /></template>
+						<template #head>
+							<v-widget-title id="payment" title="Payment" color="green" />
+						</template>
 						<template #body>
 							<div class="settings__fieldset">
 								<v-toggle label="Paypal" :use-divider="true">

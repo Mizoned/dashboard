@@ -29,7 +29,7 @@
 									:error-message="v$.email?.$errors[0]?.$message"
 									svg-name-component="VIconMail"
 									@clear="resetVEmail"
-									@update:modelValue="updateEmail"
+									@update:model-value="updateEmail"
 									@blur="v$.email.$touch()"
 								>
 									<svg
@@ -57,7 +57,7 @@
 								:error-message="v$.password?.$errors[0]?.$message"
 								svg-name-component="VIconLock"
 								@clear="resetVPassword"
-								@update:modelValue="updatePassword"
+								@update:model-value="updatePassword"
 								@blur="v$.password.$touch()"
 							>
 								<svg

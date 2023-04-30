@@ -25,6 +25,7 @@ export default {
 			default: ''
 		}
 	},
+	emits: ['update:modelValue'],
 	methods: {
 		update(event) {
 			this.$emit('update:modelValue', event.target.checked);

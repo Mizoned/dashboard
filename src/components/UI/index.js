@@ -10,7 +10,6 @@ import VLabelBox from '@/components/UI/VLabelBox.vue';
 import VAvatar from '@/components/UI/VAvatar.vue';
 import VInputIcon from '@/components/UI/VInputIcon.vue';
 import VCheckbox from '@/components/UI/VCheckbox.vue';
-import VBox from '@/components/VBox.vue';
 import VUploadInput from '@/components/UI/VUploadInput.vue';
 
 export default [
@@ -26,6 +25,5 @@ export default [
 	VLabelBox,
 	VAvatar,
 	VCheckbox,
-	VBox,
 	VUploadInput
 ];

@@ -40,7 +40,7 @@ export default {
 		},
 		counter: {
 			type: Number,
-			required: false
+			default: 0
 		},
 		counterColor: {
 			type: String,
@@ -49,7 +49,7 @@ export default {
 		},
 		iconComponentName: {
 			type: String,
-			required: false
+			default: ''
 		},
 		color: {
 			type: String,

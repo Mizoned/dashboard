@@ -64,6 +64,7 @@
 				<div class="messages__list">
 					<message-item
 						v-for="n in 5"
+						:key="n"
 						:is-new="true"
 						name="Reuben Ward"
 						message="When do you release the coded template"
@@ -84,11 +85,15 @@ import ActionsButton from '@/components/UI/ActionsButton.vue';
 import ActionButtonOption from '@/components/UI/ActionButtonOption.vue';
 
 export default {
-	name: 'Messages',
+	name: 'VMessages',
 	components: { ActionButtonOption, ActionsButton, VButton, HeaderItem, MessageItem },
 	props: {
-		isOpen: false
+		isOpen: {
+			type: Boolean,
+			default: false
+		}
 	},
+	emits: ['update:isOpen'],
 	methods: {
 		clickHandler(value) {
 			this.$emit('update:isOpen', { name: 'messages', value });

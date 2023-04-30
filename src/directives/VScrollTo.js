@@ -17,7 +17,7 @@ export default {
 			);
 		}
 
-		el?.addEventListener('click', (e) => {
+		el?.addEventListener('click', () => {
 			if (target) {
 				let scrollTop = target.getBoundingClientRect().top - headerHeight;
 				parent.scrollTop = scrollTop + parent.scrollTop;

@@ -62,15 +62,14 @@
 
 <script>
 import VSearch from '@/components/UI/VSearch.vue';
-import VButton from '@/components/UI/VButton.vue';
 import Messages from '@/components/UI/Header/Messages.vue';
 import Notifications from '@/components/UI/Header/Notifications.vue';
 import Profile from '@/components/UI/Header/Profile.vue';
 import { mapActions } from 'vuex';
 
 export default {
-	name: 'Header',
-	components: { Profile, Notifications, Messages, VButton, VSearch },
+	name: 'VHeader',
+	components: { Profile, Notifications, Messages, VSearch },
 	data() {
 		return {
 			search: '',

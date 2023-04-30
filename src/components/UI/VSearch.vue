@@ -68,6 +68,7 @@ export default {
 			default: ''
 		}
 	},
+	emits: ['update:modelValue'],
 	computed: {
 		isFilled() {
 			return !!this.modelValue;

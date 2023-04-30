@@ -8,7 +8,7 @@
 			<v-logotype class="sidebar__logotype" />
 		</div>
 		<div class="sidebar__menu">
-			<template v-for="item in menuItems">
+			<template v-for="item in menuItems" :key="item.name">
 				<sidebar-element-dropdown
 					v-if="item?.children?.length"
 					:class="['sidebar-item', { wide: isSidebarOpen }]"
@@ -48,7 +48,7 @@ import SidebarElementDropdown from '@/components/UI/Sidebar/SidebarElementDropdo
 import { mapState, mapActions } from 'vuex';
 
 export default {
-	name: 'Sidebar',
+	name: 'VSidebar',
 	components: { SidebarElementDropdown, ThemeSwitcher, VLogotype },
 	data() {
 		return {

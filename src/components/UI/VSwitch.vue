@@ -20,6 +20,7 @@ export default {
 			default: false
 		}
 	},
+	emits: ['update:checked'],
 	methods: {
 		changeHandler(event) {
 			this.$emit('update:checked', event.target.checked);

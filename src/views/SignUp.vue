@@ -37,7 +37,7 @@
 									:error-message="v$.email?.$errors[0]?.$message"
 									svg-name-component="VIconMail"
 									@clear="resetVuelidateProperty('email')"
-									@update:modelValue="updateProperty($event, 'email')"
+									@update:model-value="updateProperty($event, 'email')"
 									@blur="v$.email.$touch()"
 								/>
 							</v-label-box>
@@ -62,7 +62,7 @@
 								v-model="code"
 								:is-error="v$.code.$invalid && v$.code.$error"
 								:error-message="v$.code?.$errors[0]?.$message"
-								@update:modelValue="updateProperty($event, 'code')"
+								@update:model-value="updateProperty($event, 'code')"
 								@blur="v$.code.$touch()"
 							/>
 							<v-button
@@ -91,7 +91,7 @@
 									:error-message="v$.password?.$errors[0]?.$message"
 									svg-name-component="VIconLock"
 									@clear="resetVuelidateProperty('password')"
-									@update:modelValue="updateProperty($event, 'password')"
+									@update:model-value="updateProperty($event, 'password')"
 									@blur="v$.password.$touch()"
 								/>
 							</v-label-box>
@@ -174,7 +174,7 @@ export default {
 			this.isLoading = true;
 
 			this.sendRegistrationCode({ email: this.email })
-				.then((response) => {
+				.then(() => {
 					this.step++;
 				})
 				.catch((error) => {
@@ -196,7 +196,7 @@ export default {
 			this.isLoading = true;
 
 			this.verifyRegistrationCode({ email: this.email, code: this.code })
-				.then((response) => {
+				.then(() => {
 					this.step++;
 				})
 				.catch((error) => {
@@ -219,7 +219,7 @@ export default {
 			this.isLoading = true;
 
 			this.signUp({ email: this.email, password: this.password })
-				.then((response) => {
+				.then(() => {
 					this.$router.push({ name: 'Home' });
 				})
 				.catch((error) => {

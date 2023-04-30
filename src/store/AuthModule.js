@@ -42,7 +42,7 @@ export const authModule = {
 					});
 			});
 		},
-		sendRegistrationCode({ commit }, email) {
+		sendRegistrationCode(options, email) {
 			return new Promise((resolve, reject) => {
 				AuthService.sendRegistrationCode(email)
 					.then((response) => {
@@ -53,7 +53,7 @@ export const authModule = {
 					});
 			});
 		},
-		verifyRegistrationCode({ commit }, { email, code }) {
+		verifyRegistrationCode(options, { email, code }) {
 			return new Promise((resolve, reject) => {
 				AuthService.verifyRegistrationCode(email, code)
 					.then((response) => {

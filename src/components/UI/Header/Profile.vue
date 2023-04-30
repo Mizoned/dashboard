@@ -64,11 +64,15 @@ import { mapActions, mapState } from 'vuex';
 import VAvatar from '@/components/UI/VAvatar.vue';
 
 export default {
-	name: 'Profile',
+	name: 'VProfile',
 	components: { VAvatar, ProfileButton, HeaderItem },
 	props: {
-		isOpen: false
+		isOpen: {
+			type: Boolean,
+			default: false
+		}
 	},
+	emits: ['update:isOpen'],
 	computed: {
 		...mapState({
 			imagePath: (state) => state.auth.user.imagePath

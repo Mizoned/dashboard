@@ -24,14 +24,14 @@ import { mapGetters, mapActions } from 'vuex';
 
 export default {
 	name: 'ThemeSwitcher',
-	methods: {
-		...mapActions({
-			toggleThemeMode: 'theme/toggleThemeMode'
-		})
-	},
 	computed: {
 		...mapGetters({
 			isDarkThemeMode: 'theme/isDarkThemeMode'
+		})
+	},
+	methods: {
+		...mapActions({
+			toggleThemeMode: 'theme/toggleThemeMode'
 		})
 	}
 };

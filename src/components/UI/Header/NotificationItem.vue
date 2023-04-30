@@ -138,8 +138,8 @@ export default {
 			required: true
 		},
 		rate: {
-			type: [Number, String],
-			required: false
+			type: Number,
+			default: 0
 		}
 	},
 	data() {

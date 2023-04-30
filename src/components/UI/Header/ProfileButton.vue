@@ -23,7 +23,7 @@ export default {
 		},
 		iconComponentName: {
 			type: String,
-			required: false
+			default: ''
 		}
 	}
 };

@@ -29,11 +29,11 @@ export default {
 		},
 		counter: {
 			type: Number,
-			required: false
+			default: 0
 		},
 		counterColor: {
 			type: String,
-			required: false
+			default: ''
 		}
 	}
 };

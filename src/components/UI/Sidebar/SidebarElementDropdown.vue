@@ -36,10 +36,11 @@
 		<div class="sidebar-item-dropdown__body">
 			<sidebar-sub-link-element
 				v-for="child in children"
+				:key="child.name"
 				:href="child.href"
 				:label="child.name"
 				:counter="child.counter"
-				:counter-color.?="child.counterColor"
+				:counter-color="child.counterColor"
 			></sidebar-sub-link-element>
 		</div>
 	</div>
@@ -59,11 +60,11 @@ export default {
 		},
 		counter: {
 			type: Number,
-			required: false
+			default: 0
 		},
 		counterColor: {
 			type: String,
-			required: false
+			default: ''
 		},
 		children: {
 			type: Array,
@@ -71,7 +72,7 @@ export default {
 		},
 		iconComponentName: {
 			type: String,
-			required: false
+			default: ''
 		}
 	},
 	data() {

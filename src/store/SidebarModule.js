@@ -9,7 +9,7 @@ export const sidebarModule = {
 		}
 	},
 	actions: {
-		sidebarOpenHandler({ dispatch, commit, rootActions }, bool) {
+		sidebarOpenHandler({ commit }, bool) {
 			if (window.innerWidth > 1250) return;
 			commit('setIsSidebarOpen', bool);
 			commit('overlay/setIsOverlayActive', bool, { root: true });
