@@ -62,9 +62,9 @@
 
 <script>
 import VSearch from '@/components/UI/VSearch.vue';
-import Messages from '@/components/UI/Header/Messages.vue';
-import Notifications from '@/components/UI/Header/Notifications.vue';
-import Profile from '@/components/UI/Header/Profile.vue';
+import Messages from '@/components/UI/Header/VMessages.vue';
+import Notifications from '@/components/UI/Header/VNotifications.vue';
+import Profile from '@/components/UI/Header/VProfile.vue';
 import { mapActions } from 'vuex';
 
 export default {

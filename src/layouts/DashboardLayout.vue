@@ -13,8 +13,8 @@
 </template>
 
 <script>
-import VHeader from '@/components/Header.vue';
-import VSidebar from '@/components/Sidebar.vue';
+import VHeader from '@/components/VHeader.vue';
+import VSidebar from '@/components/VSidebar.vue';
 import VOverlay from '@/components/VOverlay.vue';
 
 export default {

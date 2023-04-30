@@ -11,7 +11,7 @@
 
 <script>
 export default {
-	name: 'ProfileItem',
+	name: 'VProfileItem',
 	props: {
 		label: {
 			type: String,

@@ -58,8 +58,8 @@
 </template>
 
 <script>
-import HeaderItem from '@/components/UI/Header/HeaderItem.vue';
-import ProfileButton from '@/components/UI/Header/ProfileButton.vue';
+import HeaderItem from '@/components/UI/Header/VHeaderItem.vue';
+import ProfileButton from '@/components/UI/Header/VProfileItem.vue';
 import { mapActions, mapState } from 'vuex';
 import VAvatar from '@/components/UI/VAvatar.vue';
 

@@ -14,7 +14,7 @@
 
 <script>
 export default {
-	name: 'HeaderItem',
+	name: 'VHeaderItem',
 	props: {
 		isActive: {
 			type: Boolean,

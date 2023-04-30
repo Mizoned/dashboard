@@ -115,7 +115,7 @@
 
 <script>
 export default {
-	name: 'NotificationItem',
+	name: 'VNotificationItem',
 	props: {
 		isNew: {
 			type: Boolean,

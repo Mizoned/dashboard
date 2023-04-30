@@ -5,11 +5,11 @@
 		:is-open="isOpen"
 		@update:is-open="clickHandler"
 	>
-		<template #svg><v-icon-notification :is-active="isOpen" /></template>
+		<template #svg><v-icon-message :is-active="isOpen" /></template>
 		<template #body>
-			<div class="notifications">
-				<div class="notifications__header">
-					<div class="notifications__title">Notification</div>
+			<div class="messages">
+				<div class="messages__header">
+					<div class="messages__title">Message</div>
 					<actions-button>
 						<action-button-option>
 							<template #svg
@@ -57,57 +57,36 @@
 										fill="#6F767E"
 									/></svg
 							></template>
-							<template #label>Delete notification</template>
+							<template #label>Delete message</template>
 						</action-button-option>
 					</actions-button>
 				</div>
-				<div class="notifications__list">
-					<notification-item
+				<div class="messages__list">
+					<message-item
+						v-for="n in 5"
+						:key="n"
 						:is-new="true"
-						name="Anastasia Ward"
-						message="Smiles – 3D icons"
-						time="1h"
-						type="comment"
-					></notification-item>
-					<notification-item
-						:is-new="true"
-						name="Anna Casper"
-						message="Smiles – 3D icons"
-						time="2h"
-						type="like"
-					></notification-item>
-					<notification-item
-						:is-new="true"
-						name="Evalyn Jenkins"
-						message="Smiles – 3D icons"
-						time="3h"
-						type="purchase"
-					></notification-item>
-					<notification-item
-						:is-new="true"
-						name="Agata Waelchi"
-						message="Smiles – 3D icons"
-						time="8h"
-						type="rate"
-						:rate="5"
-					></notification-item>
+						name="Reuben Ward"
+						message="When do you release the coded template"
+						time="03:20PM"
+					/>
 				</div>
-				<v-button class="notifications__button" label="See all notifications" color="primary" />
+				<v-button class="messages__button" label="View in message center" color="primary" />
 			</div>
 		</template>
 	</header-item>
 </template>
 
 <script>
-import HeaderItem from '@/components/UI/Header/HeaderItem.vue';
-import NotificationItem from '@/components/UI/Header/NotificationItem.vue';
+import MessageItem from '@/components/UI/Header/VMessageItem.vue';
+import HeaderItem from '@/components/UI/Header/VHeaderItem.vue';
+import VButton from '@/components/UI/VButton.vue';
 import ActionsButton from '@/components/UI/ActionsButton.vue';
 import ActionButtonOption from '@/components/UI/ActionButtonOption.vue';
-import VButton from '@/components/UI/VButton.vue';
 
 export default {
-	name: 'VNotifications',
-	components: { VButton, ActionButtonOption, ActionsButton, NotificationItem, HeaderItem },
+	name: 'VMessages',
+	components: { ActionButtonOption, ActionsButton, VButton, HeaderItem, MessageItem },
 	props: {
 		isOpen: {
 			type: Boolean,
@@ -117,18 +96,18 @@ export default {
 	emits: ['update:isOpen'],
 	methods: {
 		clickHandler(value) {
-			this.$emit('update:isOpen', { name: 'notifications', value });
+			this.$emit('update:isOpen', { name: 'messages', value });
 		},
 		clickOutsideHandler() {
 			if (!this.isOpen) return;
-			this.$emit('update:isOpen', { name: 'notifications', value: false });
+			this.$emit('update:isOpen', { name: 'messages', value: false });
 		}
 	}
 };
 </script>
 
 <style scoped lang="scss">
-.notifications {
+.messages {
 	display: flex;
 	flex-direction: column;
 	gap: 12px;
@@ -148,7 +127,6 @@ export default {
 		letter-spacing: -0.02em;
 		color: var(--neutral-champagne-color);
 		margin-left: 12px;
-		transition: color 0.3s;
 	}
 
 	&__list {
