@@ -5,6 +5,7 @@ import ShopView from '@/views/ShopView.vue';
 import PromoteView from '@/views/PromoteView.vue';
 import SettingsView from '@/views/SettingsView.vue';
 import VProductCreateView from '@/views/product/VProductCreateView.vue';
+import VProductDraftsView from '@/views/product/VProductDraftsView.vue';
 
 const routes = [
 	{
@@ -36,6 +37,11 @@ const routes = [
 				path: '/product-add',
 				name: 'New product',
 				component: VProductCreateView
+			},
+			{
+				path: '/product-drafts',
+				name: 'Drafts',
+				component: VProductDraftsView
 			}
 		]
 	},
