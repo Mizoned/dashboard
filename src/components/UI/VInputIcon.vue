@@ -1,5 +1,5 @@
 <template>
-	<div :class="['v-input', { 'v-input--error': isError }]">
+	<div :class="['v-input', `v-input--${size}`, { 'v-input--error': isError }]">
 		<div class="v-input__inner">
 			<button class="v-input__left-svg">
 				<component :is="svgNameComponent" v-if="!isFilled || !isError" />
@@ -41,6 +41,10 @@ export default {
 		svgNameComponent: {
 			type: String,
 			default: ''
+		},
+		size: {
+			type: String,
+			default: 'lg'
 		}
 	},
 	emits: ['update:modelValue', 'clear'],
@@ -70,7 +74,6 @@ export default {
 	}
 
 	&__input {
-		padding: 10px 42px;
 		background-color: var(--neutral-dark-gray-background-color);
 		border: 2px solid transparent;
 		border-radius: 12px;
@@ -102,6 +105,18 @@ export default {
 			&::placeholder {
 				color: var(--primary-dark-white-color);
 			}
+		}
+	}
+
+	&--lg {
+		.v-input__input {
+			padding: 10px 42px;
+		}
+	}
+
+	&--sm {
+		.v-input__input {
+			padding: 8px 40px;
 		}
 	}
 
