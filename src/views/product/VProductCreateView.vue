@@ -178,7 +178,7 @@
 import { mapState } from 'vuex';
 
 export default {
-	name: 'ProductCreate',
+	name: 'VProductCreateView',
 	data() {
 		return {
 			form: {
@@ -248,6 +248,7 @@ export default {
 		padding: 24px;
 		border-radius: 8px;
 		background-color: var(--neutral-light-black-background-color);
+		transition: background-color 0.3s;
 	}
 
 	&__row {

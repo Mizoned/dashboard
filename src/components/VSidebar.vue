@@ -68,7 +68,7 @@ export default {
 						},
 						{
 							name: 'Drafts',
-							href: '/products-drafts',
+							href: '/product-drafts',
 							counter: 2,
 							counterColor: 'orange'
 						},
