@@ -6,6 +6,7 @@ import PromoteView from '@/views/PromoteView.vue';
 import SettingsView from '@/views/SettingsView.vue';
 import VProductCreateView from '@/views/product/VProductCreateView.vue';
 import VProductDraftsView from '@/views/product/VProductDraftsView.vue';
+import VProductScheduledView from '@/views/product/VProductScheduledView.vue';
 
 const routes = [
 	{
@@ -42,6 +43,11 @@ const routes = [
 				path: '/product-drafts',
 				name: 'Drafts',
 				component: VProductDraftsView
+			},
+			{
+				path: '/product-scheduled',
+				name: 'Scheduled',
+				component: VProductScheduledView
 			}
 		]
 	},

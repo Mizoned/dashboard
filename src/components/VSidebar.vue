@@ -82,7 +82,7 @@ export default {
 						},
 						{
 							name: 'Scheduled',
-							href: '/products-scheduled',
+							href: '/product-scheduled',
 							counter: 8,
 							counterColor: 'green'
 						},
