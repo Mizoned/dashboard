@@ -7,7 +7,7 @@ export default {
 	name: 'VCounter',
 	props: {
 		quantity: {
-			type: Number,
+			type: [String, Number],
 			required: true
 		},
 		color: {
@@ -20,8 +20,8 @@ export default {
 
 <style scoped lang="scss">
 .v-counter {
-	display: block;
-	width: 24px;
+	display: inline-block;
+	min-width: 24px;
 	height: 24px;
 	font-weight: 600;
 	font-size: 15px;
@@ -31,8 +31,13 @@ export default {
 	color: var(--neutral-light-black-color);
 	background-color: transparent;
 	border-radius: 6px;
+	padding: 0 6px;
 	transition: color 0.3s, background 0.3s;
 
+	&--default {
+		color: var(--neutral-champagne-color);
+		background-color: var(--neutral-dark-gray-background-color);
+	}
 	&--blue {
 		background-color: var(--secondary-blue-color);
 	}
