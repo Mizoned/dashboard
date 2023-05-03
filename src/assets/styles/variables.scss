@@ -24,7 +24,7 @@
 
 	--neutral-white-background-color: #ffffff; // neutral-00
 	--neutral-champagne-background-color: #fcfcfc; // neutral-01
-	--neutral-snow-white-background-color: #f4f4f4; // neutral-02
+	--neutral-snow-white-background-color: #272b30; // neutral-02
 	--neutral-white-smoke-background-color: #efefef; // neutral-03
 	--neutral-dark-white-background-color: #6f767e; // neutral-04
 	--neutral-ivory-background-color: #9a9fa5; // neutral-04-75
@@ -72,6 +72,7 @@
 	--primary-blue-35-color: rgba(42, 133, 255, 0.35); // primary-01 35%
 	--primary-blue-25-color: rgba(42, 133, 255, 0.25); // primary-01 25%
 	--primary-orange-15-color: rgba(255, 188, 153, 0.15); // primary-03 15%
+	--primary-green-14-color: rgba(131, 191, 110, 0.15); // primary-02 15%
 
 	//SECONDARY
 	--secondary-orange-color: #ffbc99; // secondary-01
@@ -86,7 +87,7 @@
 .light-theme {
 	--neutral-white-color: #ffffff; // neutral-00
 	--neutral-champagne-color: #1a1d1f; // neutral-01 - 07
-	--neutral-snow-white-color: #111315; // neutral-02
+	--neutral-snow-white-color: #f4f4f4; // neutral-02 - 06
 	--neutral-white-smoke-color: #272b30; // neutral-03 -> 06
 	--neutral-dark-white-color: #6f767e; // neutral-04
 	--neutral-ivory-color: #9a9fa5; // neutral-04-75
@@ -97,7 +98,7 @@
 
 	--neutral-white-background-color: #ffffff; // neutral-00
 	--neutral-champagne-background-color: #1a1d1f; // neutral-01 - 07
-	--neutral-snow-white-background-color: #111315; // neutral-02
+	--neutral-snow-white-background-color: #f4f4f4; // neutral-02 - 06
 	--neutral-white-smoke-background-color: #272b30; // neutral-03 -> 06
 	--neutral-dark-white-background-color: #6f767e; // neutral-04
 	--neutral-ivory-background-color: #9a9fa5; // neutral-04-75
