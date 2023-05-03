@@ -35,6 +35,9 @@ import VIconDollar from '@/components/icons/VIconDollar.vue';
 import VIconUpload from '@/components/icons/VIconUpload.vue';
 import VIconCheckAll from '@/components/icons/VIconCheckAll.vue';
 import VIconExpand from '@/components/icons/VIconExpand.vue';
+import VIconList from '@/components/icons/VIconList.vue';
+import VIconSearch from '@/components/icons/VIconSearch.vue';
+import VIconCalendar from '@/components/icons/VIconCalendar.vue';
 
 export default [
 	VIconHome,
@@ -70,8 +73,11 @@ export default [
 	VIconTicket,
 	VIconTrash,
 	VIconGrid,
+	VIconList,
 	VIconDollar,
 	VIconUpload,
 	VIconCheckAll,
-	VIconExpand
+	VIconExpand,
+	VIconSearch,
+	VIconCalendar
 ];
