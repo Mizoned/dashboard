@@ -48,7 +48,7 @@ export default {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	padding: 10px 20px;
+	padding: 10px 18px;
 	gap: 8px;
 	border: 2px solid transparent;
 	border-radius: 12px;
@@ -65,7 +65,8 @@ export default {
 	}
 
 	&--sm {
-		padding: 8px 16px;
+		padding: 6px 14px;
+		border-radius: 8px;
 	}
 
 	&--square {
