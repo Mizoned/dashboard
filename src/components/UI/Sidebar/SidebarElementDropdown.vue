@@ -124,7 +124,7 @@ export default {
 			}
 
 			.sidebar-item-dropdown__name {
-				color: var(--neutral-champagne-color)
+				color: var(--neutral-champagne-color);
 			}
 
 			.sidebar-item-dropdown__arrow {
@@ -211,7 +211,8 @@ export default {
 		.sidebar-item-dropdown {
 			&__button {
 				background-color: var(--neutral-dark-gray-background-color);
-				box-shadow: inset 0px -2px 1px rgba(0, 0, 0, 0.4), inset 0px 1px 1px rgba(255, 255, 255, 0.11);
+				box-shadow: inset 0px -2px 1px rgba(0, 0, 0, 0.4),
+					inset 0px 1px 1px rgba(255, 255, 255, 0.11);
 			}
 
 			&__head {
@@ -275,7 +276,8 @@ export default {
 		&:not(.active) .sidebar-item-dropdown {
 			&__button {
 				background-color: var(--neutral-dark-gray-background-color);
-				box-shadow: inset 0px -2px 1px rgba(0, 0, 0, 0.4), inset 0px 1px 1px rgba(255, 255, 255, 0.11);
+				box-shadow: inset 0px -2px 1px rgba(0, 0, 0, 0.4),
+					inset 0px 1px 1px rgba(255, 255, 255, 0.11);
 			}
 
 			&__head {
@@ -301,7 +303,8 @@ export default {
 			&:not(.wide) .sidebar-item-dropdown {
 				&__button {
 					background-color: var(--neutral-dark-gray-background-color);
-					box-shadow: inset 0px -2px 1px rgba(0, 0, 0, 0.4), inset 0px 1px 1px rgba(255, 255, 255, 0.11);
+					box-shadow: inset 0px -2px 1px rgba(0, 0, 0, 0.4),
+						inset 0px 1px 1px rgba(255, 255, 255, 0.11);
 				}
 
 				&__head {
