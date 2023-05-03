@@ -1,6 +1,6 @@
 <template>
 	<div :class="['sidebar-item-dropdown', { open: isOpen }, { active: isHaveActiveElement }]">
-		<button :class="['sidebar-item-dropdown__button']" @click="openHandler">
+		<button class="sidebar-item-dropdown__button" type="button" @click="openHandler">
 			<span class="sidebar-item-dropdown__head">
 				<component
 					:is="iconComponentName"
@@ -101,19 +101,20 @@ export default {
 		align-items: center;
 		gap: 24px;
 		width: 100%;
-		padding: 10px;
+		padding: 12px;
 		border-radius: 12px;
 		cursor: pointer;
 		background-color: transparent;
-		border: 2px solid transparent;
+		box-shadow: unset;
+		border: none;
 		font-weight: 600;
 		font-size: 15px;
 		line-height: 24px;
 		letter-spacing: -0.01em;
-		color: var(--primary-dark-white-color);
-		transition: color 0.3s, background-color 0.3s, border-color 0.3s;
+		transition: color 0.3s, background-color 0.3s, border-color 0.3s, box-shadow 0.3s;
 
 		&:hover {
+			background-color: var(--neutral-dark-gray-background-color);
 			color: var(--neutral-champagne-color);
 
 			.sidebar-item-dropdown__head:deep(svg) {
@@ -121,25 +122,14 @@ export default {
 					fill: var(--neutral-champagne-background-color);
 				}
 			}
+
+			.sidebar-item-dropdown__name {
+				color: var(--neutral-champagne-color)
+			}
+
 			.sidebar-item-dropdown__arrow {
 				path {
 					stroke: var(--neutral-champagne-background-color);
-				}
-			}
-		}
-	}
-
-	&.active {
-		.sidebar-item-dropdown__button {
-			background-color: var(--neutral-dark-gray-background-color);
-		}
-
-		.sidebar-item-dropdown__head {
-			color: var(--neutral-champagne-color);
-
-			&:deep(svg) {
-				path {
-					fill: var(--neutral-champagne-color);
 				}
 			}
 		}
@@ -162,6 +152,8 @@ export default {
 		white-space: nowrap;
 		overflow: hidden;
 		text-overflow: ellipsis;
+		color: var(--primary-dark-white-color);
+		transition: color 0.3s;
 
 		@media screen and (max-width: 1250px) {
 			display: none;
@@ -215,8 +207,62 @@ export default {
 		}
 	}
 
+	&.active {
+		.sidebar-item-dropdown {
+			&__button {
+				background-color: var(--neutral-dark-gray-background-color);
+				box-shadow: inset 0px -2px 1px rgba(0, 0, 0, 0.4), inset 0px 1px 1px rgba(255, 255, 255, 0.11);
+			}
+
+			&__head {
+				&:deep(svg) {
+					path {
+						fill: var(--neutral-champagne-color);
+					}
+				}
+			}
+
+			&__name {
+				color: var(--neutral-champagne-color);
+			}
+
+			&__arrow {
+				path {
+					stroke: var(--neutral-champagne-color);
+				}
+			}
+		}
+	}
+
 	&.open {
 		.sidebar-item-dropdown {
+			&__button {
+				background-color: transparent;
+				box-shadow: unset;
+			}
+
+			&__head {
+				&:deep(svg) {
+					path {
+						fill: var(--primary-dark-white-color);
+					}
+				}
+			}
+
+			&__name {
+				color: var(--primary-dark-white-color);
+			}
+
+			&__icons {
+				path {
+					stroke: var(--primary-dark-white-color);
+				}
+			}
+
+			&__arrow {
+				transform: rotate(180deg);
+			}
+
 			&__body {
 				display: flex;
 
@@ -224,9 +270,62 @@ export default {
 					display: none;
 				}
 			}
+		}
+
+		&:not(.active) .sidebar-item-dropdown {
+			&__button {
+				background-color: var(--neutral-dark-gray-background-color);
+				box-shadow: inset 0px -2px 1px rgba(0, 0, 0, 0.4), inset 0px 1px 1px rgba(255, 255, 255, 0.11);
+			}
+
+			&__head {
+				&:deep(svg) {
+					path {
+						fill: var(--neutral-champagne-color);
+					}
+				}
+			}
+
+			&__name {
+				color: var(--neutral-champagne-color);
+			}
 
 			&__arrow {
-				transform: rotate(180deg);
+				path {
+					stroke: var(--neutral-champagne-background-color);
+				}
+			}
+		}
+
+		@media screen and (max-width: 1250px) {
+			&:not(.wide) .sidebar-item-dropdown {
+				&__button {
+					background-color: var(--neutral-dark-gray-background-color);
+					box-shadow: inset 0px -2px 1px rgba(0, 0, 0, 0.4), inset 0px 1px 1px rgba(255, 255, 255, 0.11);
+				}
+
+				&__head {
+					&:deep(svg) {
+						path {
+							fill: var(--neutral-champagne-color);
+						}
+					}
+				}
+			}
+
+			&:not(.wide):not(.active) .sidebar-item-dropdown {
+				&__button {
+					background-color: transparent;
+					box-shadow: unset;
+				}
+
+				&__head {
+					&:deep(svg) {
+						path {
+							fill: var(--primary-dark-white-color);
+						}
+					}
+				}
 			}
 		}
 	}
@@ -234,24 +333,25 @@ export default {
 
 .sidebar--open {
 	.sidebar-item-dropdown {
-		&.active {
-			.sidebar-item-dropdown__button {
-				background-color: transparent;
-			}
-		}
-		&.wide.open {
-			.sidebar-item-dropdown__body {
+		&__name {
+			@media screen and (max-width: 1250px) {
 				display: flex;
 			}
 		}
-		&__name {
-			@media screen and (max-width: 1250px) {
-				display: block;
-			}
-		}
+
 		&__icons {
 			@media screen and (max-width: 1250px) {
 				display: flex;
+			}
+		}
+	}
+
+	.sidebar-item-dropdown.open {
+		.sidebar-item-dropdown {
+			&__body {
+				@media screen and (max-width: 1250px) {
+					display: flex;
+				}
 			}
 		}
 	}
