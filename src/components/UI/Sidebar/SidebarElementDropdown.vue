@@ -1,11 +1,11 @@
 <template>
 	<div :class="['sidebar-item-dropdown', { open: isOpen }, { active: isHaveActiveElement }]">
-		<button class="sidebar-item-dropdown__button" type="button" @click="openHandler">
+		<button :class="['sidebar-item-dropdown__button' , { active: isHaveIndividualActiveElement }]" type="button" @click="openHandler">
 			<span class="sidebar-item-dropdown__head">
 				<component
 					:is="iconComponentName"
 					v-if="iconComponentName"
-					:is-active="isHaveActiveElement"
+					:is-active="isHaveActiveElement || isHaveIndividualActiveElement"
 				/>
 				<span class="sidebar-item-dropdown__name">{{ label }}</span>
 			</span>
@@ -15,22 +15,8 @@
 					:quantity="counter"
 					:color="counterColor"
 				></v-counter>
-				<svg
-					class="sidebar-item-dropdown__arrow"
-					width="24"
-					height="24"
-					viewBox="0 0 24 24"
-					fill="none"
-					xmlns="http://www.w3.org/2000/svg"
-				>
-					<path
-						d="M6 9L12 15L18 9"
-						stroke="#6F767E"
-						stroke-width="2"
-						stroke-linecap="round"
-						stroke-linejoin="round"
-					/>
-				</svg>
+				<router-link v-if="individualChildren" class='sidebar-item-dropdown__individual' :to='individualChildren.href'><component :is="individualChildren.iconComponentName"></component></router-link>
+				<v-icon-chevron class="sidebar-item-dropdown__arrow" :direction="isOpen ? 'up' : 'down'"/>
 			</span>
 		</button>
 		<div class="sidebar-item-dropdown__body">
@@ -73,6 +59,10 @@ export default {
 		iconComponentName: {
 			type: String,
 			default: ''
+		},
+		individualChildren: {
+			type: Object,
+			default: () => {}
 		}
 	},
 	data() {
@@ -83,6 +73,9 @@ export default {
 	computed: {
 		isHaveActiveElement() {
 			return !!this.children.find((child) => child.href === this.$route.path);
+		},
+		isHaveIndividualActiveElement() {
+			return this?.individualChildren?.href === this.$route.path;
 		}
 	},
 	methods: {
@@ -128,9 +121,34 @@ export default {
 			}
 
 			.sidebar-item-dropdown__arrow {
+				&:deep(path) {
+					stroke: var(--neutral-champagne-background-color);
+				}
+			}
+		}
+
+		&.active {
+			background-color: var(--neutral-dark-gray-background-color);
+			box-shadow: inset 0px -2px 1px rgba(0, 0, 0, 0.4),
+			inset 0px 1px 1px rgba(255, 255, 255, 0.11);
+
+			.sidebar-item-dropdown__head:deep(svg) {
+				path {
+					fill: var(--neutral-champagne-background-color);
+				}
+			}
+
+			.sidebar-item-dropdown__individual:deep(svg) {
 				path {
 					stroke: var(--neutral-champagne-background-color);
 				}
+				rect {
+					stroke: var(--neutral-champagne-background-color);
+				}
+			}
+
+			.sidebar-item-dropdown__name {
+				color: var(--neutral-champagne-color);
 			}
 		}
 	}
@@ -178,10 +196,13 @@ export default {
 		}
 	}
 
+	&__individual {
+		display: flex;
+	}
+
 	&__arrow {
 		width: 24px;
 		height: 24px;
-		transition: transform 0.3s;
 	}
 
 	&__body {
@@ -260,10 +281,6 @@ export default {
 				}
 			}
 
-			&__arrow {
-				transform: rotate(180deg);
-			}
-
 			&__body {
 				display: flex;
 
@@ -320,6 +337,22 @@ export default {
 				&__button {
 					background-color: transparent;
 					box-shadow: unset;
+
+					&.active {
+						background-color: var(--neutral-dark-gray-background-color) !important;
+						box-shadow: inset 0px -2px 1px rgba(0, 0, 0, 0.4),
+						inset 0px 1px 1px rgba(255, 255, 255, 0.11) !important;
+
+						.sidebar-item-dropdown__head:deep(svg) {
+							path {
+								fill: var(--neutral-champagne-background-color) !important;
+							}
+						}
+
+						.sidebar-item-dropdown__name {
+							color: var(--neutral-champagne-color) !important;
+						}
+					}
 				}
 
 				&__head {

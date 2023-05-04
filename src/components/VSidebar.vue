@@ -14,6 +14,7 @@
 					:class="['sidebar-item', { wide: isSidebarOpen }]"
 					:label="item.name"
 					:children="item.children"
+					:individual-children="item.individualChildren"
 					:icon-component-name="item.iconComponentName"
 					@click="sidebarOpenHandler(true)"
 				/>
@@ -61,6 +62,11 @@ export default {
 				{
 					name: 'Products',
 					iconComponentName: 'VIconDiamond',
+					individualChildren: {
+						name: 'New product',
+						href: '/product-add',
+						iconComponentName: 'VIconCircleAdd'
+					},
 					children: [
 						{
 							name: 'Dashboard',
@@ -85,10 +91,6 @@ export default {
 							href: '/product-scheduled',
 							counter: 8,
 							counterColor: 'green'
-						},
-						{
-							name: 'New product',
-							href: '/product-add'
 						}
 					]
 				},
