@@ -56,5 +56,9 @@ export default {
 	&--yellow:before {
 		background-color: var(--secondary-yellow-color);
 	}
+
+	@media screen and (max-width: 768px) {
+		font-size: 18px;
+	}
 }
 </style>

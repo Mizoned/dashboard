@@ -168,8 +168,8 @@
 			<span>Oct 4, 2021 - 23:32</span>
 		</div>
 		<div class="panel__buttons">
-			<v-button label="Save Draft" color="secondary" />
-			<v-button label="Publish now" />
+			<v-button  class="panel__button" label="Save Draft" color="secondary" />
+			<v-button class="panel__button" label="Publish now" />
 		</div>
 	</div>
 </template>
@@ -201,6 +201,8 @@ export default {
 .panel {
 	display: flex;
 	justify-content: space-between;
+	gap: 24px;
+	flex-wrap: wrap;
 	position: relative;
 	align-items: center;
 	margin: auto -40px -40px -40px;
@@ -218,6 +220,10 @@ export default {
 		background-color: var(--neutral-light-black-background-color);
 		box-shadow: inset 1px 0px 0px var(--neutral-dark-black-background-color);
 		transition: background-color 0.3s, box-shadow 0.3s;
+
+		@media screen and (max-width: 768px) {
+			top: 24px;
+		}
 	}
 
 	&__info {
@@ -241,6 +247,19 @@ export default {
 		display: flex;
 		gap: 8px;
 	}
+
+	@media screen and (max-width: 768px) {
+		margin: auto -16px -24px;
+		padding: 40px 16px 16px;
+
+		&__buttons {
+			width: 100%;
+		}
+
+		&__button {
+			flex-grow: 1;
+		}
+	}
 }
 
 .product-create {
@@ -249,6 +268,10 @@ export default {
 		border-radius: 8px;
 		background-color: var(--neutral-light-black-background-color);
 		transition: background-color 0.3s;
+
+		@media screen and (max-width: 1250px) {
+			padding: 12px;
+		}
 	}
 
 	&__row {
@@ -259,9 +282,33 @@ export default {
 			flex: 0 0 calc(100% - 340px);
 			width: calc(100% - 340px);
 		}
+
 		&:last-child {
 			flex-shrink: 0;
 			width: 340px;
+		}
+
+		@media screen and (max-width: 1250px) {
+			&:first-child {
+				flex: 0 0 calc(100% - 296px);
+				width: calc(100% - 296px);
+			}
+
+			&:last-child {
+				flex-shrink: 0;
+				width: 296px;
+			}
+		}
+
+		@media screen and (max-width: 1024px) {
+			&:first-child {
+				width: 100%;
+				flex: initial;
+			}
+
+			&:last-child {
+				display: none;
+			}
 		}
 	}
 
