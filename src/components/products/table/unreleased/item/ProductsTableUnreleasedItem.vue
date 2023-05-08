@@ -12,9 +12,11 @@
 			/>
 		</div>
 		<div class="products-table-unreleased-item__cell">
+			<div class='products-table-unreleased-item__property'>Price</div>
 			<v-price price="98" currency="$"></v-price>
 		</div>
 		<div class="products-table-unreleased-item__cell">
+			<div class='products-table-unreleased-item__property'>Last edited</div>
 			<div class="products-table-unreleased-item__date">Apr 9, 2021 at 3:55 PM</div>
 		</div>
 		<div class="products-table-unreleased-item__cell">
@@ -43,13 +45,8 @@ export default {
 <style scoped lang="scss">
 .products-table-unreleased-item {
 	display: table-row;
-	border-radius: 8px;
 	background-color: var(--neutral-light-black-background-color);
 	transition: background-color 0.3s;
-
-	&:hover {
-		background-color: var(--neutral-dark-gray-background-color);
-	}
 
 	&__cell {
 		position: relative;
@@ -57,15 +54,17 @@ export default {
 		vertical-align: middle;
 		padding: 12px 16px;
 
-		&:after {
-			content: '';
-			position: absolute;
-			left: 0;
-			bottom: -8px;
-			right: 0;
-			height: 1px;
-			background: var(--neutral-dark-gray-background-color);
-			transition: background-color 0.3s;
+		@media screen and (min-width: 1025px) {
+			&:after {
+				content: '';
+				position: absolute;
+				left: 0;
+				bottom: -8px;
+				right: 0;
+				height: 1px;
+				background: var(--neutral-dark-gray-background-color);
+				transition: background-color 0.3s;
+			}
 		}
 
 		&:first-child {
@@ -88,6 +87,21 @@ export default {
 		}
 	}
 
+	&__property {
+		display: block;
+		font-style: normal;
+		font-weight: 600;
+		font-size: 14px;
+		line-height: 24px;
+		letter-spacing: -0.01em;
+		color: var(--primary-dark-white-color);
+		width: 80px;
+
+		@media screen and (min-width: 1025px) {
+			display: none;
+		}
+	}
+
 	&__date {
 		font-style: normal;
 		font-weight: 600;
@@ -95,6 +109,41 @@ export default {
 		line-height: 24px;
 		letter-spacing: -0.01em;
 		color: var(--primary-dark-white-color);
+	}
+
+	@media screen and (min-width: 1025px) {
+		&:hover {
+			background-color: var(--neutral-dark-gray-background-color);
+		}
+	}
+
+	@media screen and (max-width: 1024px) {
+		border-bottom: 1px solid var(--neutral-dark-gray-background-color);
+	}
+}
+
+@media screen and (max-width: 1024px) {
+	.products-table-unreleased-item {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+		padding: 8px 8px 24px 8px;
+
+		&__cell {
+			display: flex;
+			align-items: center;
+			gap: 20px;
+			padding: 0;
+
+			&:first-child {
+				display: none;
+				padding: 0;
+			}
+
+			&:last-child {
+				padding: 0;
+			}
+		}
 	}
 }
 </style>

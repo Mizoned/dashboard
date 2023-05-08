@@ -162,6 +162,10 @@ export default {
 
 	&__table {
 		margin: 0 -12px;
+
+		@media screen and (max-width: 1024px) {
+			margin: 0 -8px;
+		}
 	}
 
 	&__cards {
@@ -173,6 +177,10 @@ export default {
 	&__footer {
 		display: flex;
 		justify-content: center;
+	}
+
+	@media screen and (max-width: 1024px) {
+		padding: 16px;
 	}
 }
 </style>

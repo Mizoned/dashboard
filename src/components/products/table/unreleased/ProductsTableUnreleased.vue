@@ -34,5 +34,11 @@ export default {
 	display: table;
 	border-spacing: 0 16px;
 	width: 100%;
+
+	@media screen and (max-width: 1024px) {
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
+	}
 }
 </style>

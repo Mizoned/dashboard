@@ -62,5 +62,9 @@ export default {
 			padding: 12px 12px 12px 16px;
 		}
 	}
+
+	@media screen and (max-width: 1024px) {
+		display: none;
+	}
 }
 </style>
