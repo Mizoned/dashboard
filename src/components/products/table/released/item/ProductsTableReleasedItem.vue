@@ -1,9 +1,9 @@
 <template>
-	<div class="products-table-unreleased-item">
-		<div class="products-table-unreleased-item__cell">
+	<div class="products-table-released-item">
+		<div class="products-table-released-item__cell">
 			<v-checkbox />
 		</div>
-		<div class="products-table-unreleased-item__cell">
+		<div class="products-table-released-item__cell">
 			<products-table-item-preview
 				:title="product.title"
 				:description="product.description"
@@ -11,28 +11,39 @@
 				:alt="product.alt"
 			/>
 		</div>
-		<div class="products-table-unreleased-item__cell">
-			<div class='products-table-unreleased-item__property'>Price</div>
-			<v-price price="98" currency="$"></v-price>
+		<div class="products-table-released-item__cell">
+			<div class='products-table-released-item__property'>Price</div>
+			<v-number-format value='$98'/>
 		</div>
-		<div class="products-table-unreleased-item__cell">
-			<div class='products-table-unreleased-item__property'>Last edited</div>
-			<div class="products-table-unreleased-item__date">Apr 9, 2021 at 3:55 PM</div>
+		<div class="products-table-released-item__cell">
+			<div class='products-table-released-item__property'>Status</div>
+			<div class="products-table-released-item__status"><v-status status='active'/></div>
 		</div>
-		<div class="products-table-unreleased-item__cell">
-			<products-table-unreleased-item-controls />
+		<div class="products-table-released-item__cell">
+			<div class='products-table-released-item__property'>Rating</div>
+			<v-rating :value='product.rating' :count='product.counterRating'/>
+		</div>
+		<div class="products-table-released-item__cell">
+			<div class='products-table-released-item__property'>Sales</div>
+			<v-number-format value='$3 200'/>
+		</div>
+		<div class="products-table-released-item__cell">
+			<div class='products-table-released-item__property'>Views</div>
+			<v-number-format value='47k'/>
 		</div>
 	</div>
 </template>
 
 <script>
-import ProductsTableUnreleasedItemControls from '@/components/products/table/unreleased/item/ProductsTableUnreleasedItemControls.vue';
 import ProductsTableItemPreview from '@/components/products/table/item/ProductsTableItemPreview.vue';
 import VPrice from '@/components/VPrice.vue';
+import VStatus from '@/components/UI/VStatus.vue';
+import VRating from '@/components/UI/VRating.vue';
+import VNumberFormat from '@/components/VNumberFormat.vue';
 
 export default {
-	name: 'ProductsTableUnreleasedItem',
-	components: { VPrice, ProductsTableItemPreview, ProductsTableUnreleasedItemControls },
+	name: 'ProductsTableReleasedItem',
+	components: { VNumberFormat, VRating, VStatus, VPrice, ProductsTableItemPreview },
 	props: {
 		product: {
 			type: Object,
@@ -43,7 +54,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.products-table-unreleased-item {
+.products-table-released-item {
 	display: table-row;
 	background-color: var(--neutral-light-black-background-color);
 	transition: background-color 0.3s, border-bottom-color 0.3s;
@@ -80,7 +91,7 @@ export default {
 	}
 
 	&:last-child {
-		& .products-table-unreleased-item__cell {
+		& .products-table-released-item__cell {
 			&:after {
 				display: none;
 			}
@@ -123,7 +134,7 @@ export default {
 }
 
 @media screen and (max-width: 1024px) {
-	.products-table-unreleased-item {
+	.products-table-released-item {
 		display: flex;
 		flex-direction: column;
 		gap: 8px;

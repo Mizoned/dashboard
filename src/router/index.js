@@ -7,6 +7,7 @@ import SettingsView from '@/views/SettingsView.vue';
 import VProductCreateView from '@/views/product/VProductCreateView.vue';
 import VProductDraftsView from '@/views/product/VProductDraftsView.vue';
 import VProductScheduledView from '@/views/product/VProductScheduledView.vue';
+import VProductReleasedView from '@/views/product/VProductReleasedView.vue';
 
 const routes = [
 	{
@@ -48,6 +49,11 @@ const routes = [
 				path: '/product-scheduled',
 				name: 'Scheduled',
 				component: VProductScheduledView
+			},
+			{
+				path: '/product-released',
+				name: 'Released',
+				component: VProductReleasedView
 			}
 		]
 	},

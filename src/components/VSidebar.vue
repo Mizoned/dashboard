@@ -80,7 +80,7 @@ export default {
 						},
 						{
 							name: 'Released',
-							href: '/products-released'
+							href: '/product-released'
 						},
 						{
 							name: 'Comments',

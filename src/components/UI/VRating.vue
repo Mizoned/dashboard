@@ -42,6 +42,7 @@ export default {
 	display: flex;
 	align-items: center;
 	gap: 8px;
+	white-space: nowrap;
 
 	&__value,
 	&__not {
@@ -51,6 +52,7 @@ export default {
 		line-height: 24px;
 		letter-spacing: -0.01em;
 		color: var(--neutral-champagne-color);
+		transition: color 0.3s;
 	}
 
 	&__not,

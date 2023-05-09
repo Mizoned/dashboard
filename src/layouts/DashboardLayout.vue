@@ -57,7 +57,7 @@ export default {
 		grid-row-end: 3;
 		width: 100%;
 		min-height: calc(100vh - 96px);
-		overflow-x: auto;
+		overflow-y: auto;
 		padding: 40px;
 		scroll-behavior: smooth;
 

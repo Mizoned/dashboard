@@ -1,5 +1,5 @@
 <template>
-	<div v-if="!isActive" class="v-status v-status--active">Active</div>
+	<div v-if="isActive" class="v-status v-status--active">Active</div>
 	<div v-else class="v-status v-status--inactive">Inactive</div>
 </template>
 

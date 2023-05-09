@@ -12,7 +12,7 @@
 
 <script>
 export default {
-	name: 'ProductsTableUnreleasedItemPreview',
+	name: 'ProductsTableItemPreview',
 	props: {
 		title: {
 			type: String,
@@ -63,6 +63,7 @@ export default {
 		height: 80px;
 		border-radius: 8px;
 		overflow: hidden;
+		flex-shrink: 0;
 
 		img {
 			width: 100%;
@@ -75,6 +76,11 @@ export default {
 		display: flex;
 		flex-direction: column;
 		gap: 4px;
+		max-width: 170px;
+
+		@media screen and (max-width: 1024px) {
+			max-width: unset;
+		}
 	}
 
 	&__title {
@@ -85,7 +91,12 @@ export default {
 		letter-spacing: -0.01em;
 		color: var(--neutral-champagne-color);
 		transition: color 0.3s;
-		max-width: 170px;
+
+		@media screen and (max-width: 1024px) {
+			font-weight: 600;
+			font-size: 18px;
+			letter-spacing: -0.02em;
+		}
 	}
 
 	&__description {
@@ -95,6 +106,11 @@ export default {
 		line-height: 16px;
 		letter-spacing: -0.01em;
 		color: var(--primary-ivory-color);
+
+		@media screen and (max-width: 1024px) {
+			font-size: 15px;
+			line-height: 24px;
+		}
 	}
 }
 </style>
