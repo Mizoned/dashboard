@@ -115,6 +115,7 @@ export default {
 		letter-spacing: -0.01em;
 		color: var(--neutral-champagne-color);
 		transition: color 0.3s;
+		hyphens: auto;
 	}
 }
 </style>

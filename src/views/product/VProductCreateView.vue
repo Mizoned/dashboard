@@ -357,6 +357,11 @@ export default {
 		&-checkbox {
 			flex: 0 0 calc(33.33% - 16px);
 			width: calc(33.333% - 16px);
+
+			@media screen and (max-width: 768px) {
+				flex: 0 0 calc(50% - 16px);
+				width: calc(50% - 16px);
+			}
 		}
 	}
 
