@@ -196,6 +196,8 @@ export default {
 	display: grid;
 	grid-template-columns: 1fr;
 	height: 100%;
+	width: 100%;
+	overflow: auto;
 
 	&__main {
 		display: grid;

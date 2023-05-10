@@ -1,11 +1,13 @@
 <template>
 	<div class="main">
-		<v-header class="main__header"></v-header>
 		<v-sidebar class="main__sidebar" />
-		<div class="main__view">
-			<div class="main__container">
-				<h1 class="main__title h3">{{ $route.name }}</h1>
-				<router-view></router-view>
+		<div class="main__content">
+			<v-header class="main__header"></v-header>
+			<div class="main__view">
+				<div class="main__container">
+					<h1 class="main__title h3">{{ $route.name }}</h1>
+					<router-view></router-view>
+				</div>
 			</div>
 		</div>
 		<v-overlay />
@@ -29,34 +31,22 @@ export default {
 
 <style scoped lang="scss">
 .main {
+	flex: 1 1 auto;
 	display: grid;
 	grid-template-columns: 340px 1fr;
-	grid-template-rows: 96px 1fr;
-	height: 100vh;
+	overflow: hidden;
 
-	&__sidebar {
-		grid-column-start: 1;
-		grid-column-end: 2;
-		grid-row-start: 1;
-		grid-row-end: 3;
-	}
-
-	&__header {
-		grid-column-start: 2;
-		grid-column-end: 3;
-		grid-row-start: 1;
-		grid-row-end: 2;
+	&__content {
+		display: flex;
+		flex-direction: column;
+		flex: 1 1 auto;
+		overflow: hidden;
 	}
 
 	&__view {
 		display: flex;
 		flex-direction: column;
-		grid-column-start: 2;
-		grid-column-end: 3;
-		grid-row-start: 2;
-		grid-row-end: 3;
 		width: 100%;
-		min-height: calc(100vh - 96px);
 		overflow-y: auto;
 		padding: 40px;
 		scroll-behavior: smooth;
@@ -84,8 +74,7 @@ export default {
 	}
 
 	@media only screen and (max-width: 768px) {
-		grid-template-columns: 0 1fr;
-		grid-template-rows: 80px 1fr;
+		display: flex;
 	}
 }
 </style>

@@ -251,6 +251,8 @@ export default {
 	display: grid;
 	grid-template-columns: 400px 1fr;
 	height: 100%;
+	width: 100%;
+	overflow: auto;
 
 	&__plan {
 		display: grid;
