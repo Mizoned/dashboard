@@ -121,65 +121,65 @@ export default {
 };
 </script>
 
-<style scoped lang='scss'>
-	.product-released {
+<style scoped lang="scss">
+.product-released {
+	display: flex;
+	flex-direction: column;
+	gap: 32px;
+	border-radius: 8px;
+	padding: 24px;
+	background-color: var(--neutral-light-black-background-color);
+	transition: background-color 0.3s;
+
+	&__header {
 		display: flex;
-		flex-direction: column;
-		gap: 32px;
-		border-radius: 8px;
-		padding: 24px;
-		background-color: var(--neutral-light-black-background-color);
-		transition: background-color 0.3s;
+		align-items: center;
+		gap: 24px;
 
-		&__header {
-			display: flex;
-			align-items: center;
-			gap: 24px;
-
-			@media screen and (max-width: 768px) {
-				gap: 16px;
-				flex-wrap: wrap;
-			}
-		}
-
-		&__search {
-			width: 360px;
-
-			@media screen and (max-width: 1024px) {
-				width: auto;
-			}
-
-			@media screen and (max-width: 768px) {
-				width: 100%;
-				order: 3;
-			}
-		}
-
-		&__switch {
-			margin-left: auto;
-		}
-
-		&__table {
-			margin: 0 -12px;
-
-			@media screen and (max-width: 1024px) {
-				margin: 0 -8px;
-			}
-		}
-
-		&__cards {
-			display: grid;
-			grid-template-columns: repeat(auto-fit, minmax(308px, 1fr));
-			gap: 24px;
-		}
-
-		&__footer {
-			display: flex;
-			justify-content: center;
-		}
-
-		@media screen and (max-width: 1024px) {
-			padding: 16px;
+		@media screen and (max-width: 768px) {
+			gap: 16px;
+			flex-wrap: wrap;
 		}
 	}
+
+	&__search {
+		width: 360px;
+
+		@media screen and (max-width: 1024px) {
+			width: auto;
+		}
+
+		@media screen and (max-width: 768px) {
+			width: 100%;
+			order: 3;
+		}
+	}
+
+	&__switch {
+		margin-left: auto;
+	}
+
+	&__table {
+		margin: 0 -12px;
+
+		@media screen and (max-width: 1024px) {
+			margin: 0 -8px;
+		}
+	}
+
+	&__cards {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(308px, 1fr));
+		gap: 24px;
+	}
+
+	&__footer {
+		display: flex;
+		justify-content: center;
+	}
+
+	@media screen and (max-width: 1024px) {
+		padding: 16px;
+	}
+}
 </style>

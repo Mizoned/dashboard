@@ -168,7 +168,7 @@
 			<span>Oct 4, 2021 - 23:32</span>
 		</div>
 		<div class="panel__buttons">
-			<v-button  class="panel__button" label="Save Draft" color="secondary" />
+			<v-button class="panel__button" label="Save Draft" color="secondary" />
 			<v-button class="panel__button" label="Publish now" />
 		</div>
 	</div>

@@ -12,11 +12,11 @@
 			/>
 		</div>
 		<div class="products-table-unreleased-item__cell">
-			<div class='products-table-unreleased-item__property'>Price</div>
+			<div class="products-table-unreleased-item__property">Price</div>
 			<v-price price="98" currency="$"></v-price>
 		</div>
 		<div class="products-table-unreleased-item__cell">
-			<div class='products-table-unreleased-item__property'>Last edited</div>
+			<div class="products-table-unreleased-item__property">Last edited</div>
 			<div class="products-table-unreleased-item__date">Apr 9, 2021 at 3:55 PM</div>
 		</div>
 		<div class="products-table-unreleased-item__cell">

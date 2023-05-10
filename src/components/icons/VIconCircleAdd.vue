@@ -1,13 +1,13 @@
 <template>
 	<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 		<g clip-path="url(#clip0_6_2257)">
-			<path d="M12 8V16" stroke="#6F767E" stroke-width="2" stroke-linecap="round"/>
-			<path d="M8 12L16 12" stroke="#6F767E" stroke-width="2" stroke-linecap="round"/>
-			<rect x="1" y="1" width="22" height="22" rx="11" stroke="#6F767E" stroke-width="2"/>
+			<path d="M12 8V16" stroke="#6F767E" stroke-width="2" stroke-linecap="round" />
+			<path d="M8 12L16 12" stroke="#6F767E" stroke-width="2" stroke-linecap="round" />
+			<rect x="1" y="1" width="22" height="22" rx="11" stroke="#6F767E" stroke-width="2" />
 		</g>
 		<defs>
 			<clipPath id="clip0_6_2257">
-				<rect width="24" height="24" fill="white"/>
+				<rect width="24" height="24" fill="white" />
 			</clipPath>
 		</defs>
 	</svg>
@@ -19,6 +19,4 @@ export default {
 };
 </script>
 
-<style  lang='scss'>
-
-</style>
+<style lang="scss"></style>

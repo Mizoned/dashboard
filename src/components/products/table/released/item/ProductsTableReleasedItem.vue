@@ -12,38 +12,37 @@
 			/>
 		</div>
 		<div class="products-table-released-item__cell">
-			<div class='products-table-released-item__property'>Price</div>
-			<v-number-format value='$98'/>
+			<div class="products-table-released-item__property">Price</div>
+			<v-number-format value="$98" />
 		</div>
 		<div class="products-table-released-item__cell">
-			<div class='products-table-released-item__property'>Status</div>
-			<div class="products-table-released-item__status"><v-status status='active'/></div>
+			<div class="products-table-released-item__property">Status</div>
+			<div class="products-table-released-item__status"><v-status status="active" /></div>
 		</div>
 		<div class="products-table-released-item__cell">
-			<div class='products-table-released-item__property'>Rating</div>
-			<v-rating :value='product.rating' :count='product.counterRating'/>
+			<div class="products-table-released-item__property">Rating</div>
+			<v-rating :value="product.rating" :count="product.counterRating" />
 		</div>
 		<div class="products-table-released-item__cell">
-			<div class='products-table-released-item__property'>Sales</div>
-			<v-number-format value='$3 200'/>
+			<div class="products-table-released-item__property">Sales</div>
+			<v-number-format value="$3 200" />
 		</div>
 		<div class="products-table-released-item__cell">
-			<div class='products-table-released-item__property'>Views</div>
-			<v-number-format value='47k'/>
+			<div class="products-table-released-item__property">Views</div>
+			<v-number-format value="47k" />
 		</div>
 	</div>
 </template>
 
 <script>
 import ProductsTableItemPreview from '@/components/products/table/item/ProductsTableItemPreview.vue';
-import VPrice from '@/components/VPrice.vue';
 import VStatus from '@/components/UI/VStatus.vue';
 import VRating from '@/components/UI/VRating.vue';
 import VNumberFormat from '@/components/VNumberFormat.vue';
 
 export default {
 	name: 'ProductsTableReleasedItem',
-	components: { VNumberFormat, VRating, VStatus, VPrice, ProductsTableItemPreview },
+	components: { VNumberFormat, VRating, VStatus, ProductsTableItemPreview },
 	props: {
 		product: {
 			type: Object,

@@ -1,6 +1,10 @@
 <template>
 	<div :class="['sidebar-item-dropdown', { open: isOpen }, { active: isHaveActiveElement }]">
-		<button :class="['sidebar-item-dropdown__button' , { active: isHaveIndividualActiveElement }]" type="button" @click="openHandler">
+		<button
+			:class="['sidebar-item-dropdown__button', { active: isHaveIndividualActiveElement }]"
+			type="button"
+			@click="openHandler"
+		>
 			<span class="sidebar-item-dropdown__head">
 				<component
 					:is="iconComponentName"
@@ -15,8 +19,13 @@
 					:quantity="counter"
 					:color="counterColor"
 				></v-counter>
-				<router-link v-if="individualChildren" class='sidebar-item-dropdown__individual' :to='individualChildren.href'><component :is="individualChildren.iconComponentName"></component></router-link>
-				<v-icon-chevron class="sidebar-item-dropdown__arrow" :direction="isOpen ? 'up' : 'down'"/>
+				<router-link
+					v-if="individualChildren"
+					class="sidebar-item-dropdown__individual"
+					:to="individualChildren.href"
+					><component :is="individualChildren.iconComponentName"></component
+				></router-link>
+				<v-icon-chevron class="sidebar-item-dropdown__arrow" :direction="isOpen ? 'up' : 'down'" />
 			</span>
 		</button>
 		<div class="sidebar-item-dropdown__body">
@@ -129,8 +138,7 @@ export default {
 
 		&.active {
 			background-color: var(--neutral-dark-gray-background-color);
-			box-shadow: inset 0px -2px 1px rgba(0, 0, 0, 0.4),
-			inset 0px 1px 1px rgba(255, 255, 255, 0.11);
+			box-shadow: inset 0px -2px 1px rgba(0, 0, 0, 0.4), inset 0px 1px 1px rgba(255, 255, 255, 0.11);
 
 			.sidebar-item-dropdown__head:deep(svg) {
 				path {
@@ -341,7 +349,7 @@ export default {
 					&.active {
 						background-color: var(--neutral-dark-gray-background-color) !important;
 						box-shadow: inset 0px -2px 1px rgba(0, 0, 0, 0.4),
-						inset 0px 1px 1px rgba(255, 255, 255, 0.11) !important;
+							inset 0px 1px 1px rgba(255, 255, 255, 0.11) !important;
 
 						.sidebar-item-dropdown__head:deep(svg) {
 							path {
