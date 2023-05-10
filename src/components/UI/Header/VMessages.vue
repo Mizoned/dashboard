@@ -63,7 +63,7 @@
 				</div>
 				<div class="messages__list">
 					<message-item
-						v-for="n in 5"
+						v-for="n in 8"
 						:key="n"
 						:is-new="true"
 						name="Reuben Ward"
@@ -113,6 +113,8 @@ export default {
 	gap: 12px;
 	padding: 12px;
 	width: 392px;
+	height: inherit;
+	max-height: inherit;
 
 	&__header {
 		display: flex;
@@ -133,9 +135,12 @@ export default {
 		display: flex;
 		flex-direction: column;
 		gap: 8px;
+		overflow-y: auto;
+		min-height: 0;
+		overflow-x: hidden;
+		flex: 1 1 auto;
 
 		@media only screen and (max-width: 768px) {
-			overflow-y: auto;
 			margin: 0 -8px;
 			padding: 0 4px 0 8px;
 		}
@@ -144,15 +149,10 @@ export default {
 	&__button {
 		margin-top: 12px;
 		width: 100%;
-
-		@media only screen and (max-width: 768px) {
-			margin-top: auto;
-		}
 	}
 
 	@media only screen and (max-width: 768px) {
 		width: 100%;
-		height: 100%;
 	}
 }
 </style>

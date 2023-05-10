@@ -109,6 +109,8 @@ export default {
 	gap: 12px;
 	padding: 12px;
 	width: 280px;
+	height: inherit;
+	max-height: inherit;
 
 	&-img {
 		width: 48px;
@@ -132,6 +134,11 @@ export default {
 	}
 
 	&__list {
+		overflow-y: auto;
+		min-height: 0;
+		overflow-x: hidden;
+		flex: 1 1 auto;
+
 		&-box {
 			border-bottom: 1px solid var(--neutral-dark-gray-background-color);
 			margin-bottom: 12px;
@@ -146,7 +153,6 @@ export default {
 		}
 
 		@media only screen and (max-width: 768px) {
-			overflow-y: auto;
 			margin: 0 -8px;
 			padding: 0 4px 0 8px;
 		}

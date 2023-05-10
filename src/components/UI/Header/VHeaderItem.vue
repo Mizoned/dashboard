@@ -75,19 +75,29 @@ export default {
 		background-color: var(--neutral-light-black-background-color);
 		border: 2px solid var(--neutral-dark-gray-background-color);
 		border-radius: 16px;
-		overflow: hidden;
+		overflow-y: auto;
+		height: auto;
+		max-height: calc(70vh - 96px);
 		box-shadow: 0px 40px 64px -12px rgba(0, 0, 0, 0.08), 0px 0px 14px -4px rgba(0, 0, 0, 0.05),
 			0px 32px 48px -8px rgba(0, 0, 0, 0.1);
 		backdrop-filter: blur(16px);
 		transition: background-color 0.3s, border 0.3s, visibility 0.3s, opacity 0.3s;
+		box-sizing: content-box;
 
-		@media only screen and (max-width: 768px) {
-			top: 100%;
-			right: 0;
-			left: 0;
-			height: calc(100vh - 80px);
-			border: none;
-			border-radius: unset;
+		&::-webkit-scrollbar {
+			width: 0;
+		}
+
+		@media screen and (max-width: 768px) {
+			position: fixed;
+			top: 80px;
+			right: 16px;
+			left: 16px;
+			max-height: calc(90vh - 98px);
+		}
+
+		@media screen and (max-height: 700px), (min-width: 767px) {
+			max-height: calc(90vh - 98px);
 		}
 	}
 
@@ -115,7 +125,7 @@ export default {
 	}
 
 	@media only screen and (max-width: 768px) {
-		position: static;
+		position: initial;
 	}
 }
 </style>
