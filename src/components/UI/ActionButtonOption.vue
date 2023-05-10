@@ -1,13 +1,25 @@
 <template>
 	<div class="action-button-option">
-		<div class="action-button-option__svg"><slot name="svg"></slot></div>
-		<div class="action-button-option__label"><slot name="label"></slot></div>
+		<div v-if="svgComponentName" class="action-button-option__svg">
+			<component :is="svgComponentName"/>
+		</div>
+		<div class="action-button-option__label">{{ label }}</div>
 	</div>
 </template>
 
 <script>
 export default {
-	name: 'ActionButtonOption'
+	name: 'ActionButtonOption',
+	props: {
+		svgComponentName: {
+			type: String,
+			default: ''
+		},
+		label: {
+			type: String,
+			required: true
+		}
+	}
 };
 </script>
 
