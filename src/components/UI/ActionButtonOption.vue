@@ -1,7 +1,7 @@
 <template>
 	<div class="action-button-option">
 		<div v-if="svgComponentName" class="action-button-option__svg">
-			<component :is="svgComponentName"/>
+			<component :is="svgComponentName" />
 		</div>
 		<div class="action-button-option__label">{{ label }}</div>
 	</div>

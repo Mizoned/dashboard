@@ -11,8 +11,8 @@
 				<div class="notifications__header">
 					<div class="notifications__title">Notification</div>
 					<actions-button>
-						<action-button-option svg-component-name="VIconCheck" label="Mark as read"/>
-						<action-button-option svg-component-name="VIconTrash" label="Delete notification"/>
+						<action-button-option svg-component-name="VIconCheck" label="Mark as read" />
+						<action-button-option svg-component-name="VIconTrash" label="Delete notification" />
 					</actions-button>
 				</div>
 				<div class="notifications__list">

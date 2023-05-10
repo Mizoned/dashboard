@@ -11,8 +11,8 @@
 				<div class="messages__header">
 					<div class="messages__title">Message</div>
 					<actions-button>
-						<action-button-option svg-component-name="VIconCheck" label="Mark as read"/>
-						<action-button-option svg-component-name="VIconTrash" label="Delete message"/>
+						<action-button-option svg-component-name="VIconCheck" label="Mark as read" />
+						<action-button-option svg-component-name="VIconTrash" label="Delete message" />
 					</actions-button>
 				</div>
 				<div class="messages__list">
