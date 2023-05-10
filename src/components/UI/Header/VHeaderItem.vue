@@ -96,7 +96,7 @@ export default {
 			max-height: calc(90vh - 98px);
 		}
 
-		@media screen and (max-height: 700px), (min-width: 767px) {
+		@media screen and (max-height: 700px) and (min-width: 767px) {
 			max-height: calc(90vh - 98px);
 		}
 	}
