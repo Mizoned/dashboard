@@ -22,12 +22,16 @@ $api.interceptors.response.use(
 		if (error?.response?.status === 401 && error.config && !error.config._isRetry) {
 			originalRequest._isRetry = true;
 			try {
-				const response = await axios.get(`${API_URL}/user/refresh`, { withCredentials: true });
+				const response = await axios.get(`${API_URL}/auth/refresh`, { withCredentials: true });
 				store.commit('auth/setToken', response.data.accessToken);
 				return $api.request(originalRequest);
 			} catch (e) {
-				await store.dispatch('auth/logout');
-				await router.push('/sign-in');
+				if (e.response.status === 401) {
+					await store.dispatch('auth/logout');
+					await router.push('/sign-in');
+				} else {
+					throw e;
+				}
 			}
 		}
 		throw error;
