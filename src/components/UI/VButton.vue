@@ -2,7 +2,7 @@
 	<button :class="['v-button', `v-button--${color}`, `v-button--${size}`]">
 		<component :is="iconLoaderName" v-if="isLoading" />
 		<component :is="beforeSvgComponentName" v-else-if="beforeSvgComponentName" />
-		<span v-if="label">{{ label }}</span>
+		<span class="v-button__label" v-if="label">{{ label }}</span>
 		<component :is="afterSvgComponentName" v-if="afterSvgComponentName" />
 	</button>
 </template>
@@ -59,9 +59,19 @@ export default {
 	letter-spacing: -0.01em;
 	transition: border 0.3s, color 0.3s, background-color 0.3s;
 
+	&:deep(svg) {
+		flex-shrink: 0;
+	}
+
 	&:disabled {
 		pointer-events: none;
 		opacity: 0.5;
+	}
+
+	&__label {
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
 	}
 
 	&--sm {
