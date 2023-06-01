@@ -1,6 +1,12 @@
 <template>
 	<div :class="['v-textarea', { 'v-textarea--error': isError }]">
-		<textarea :value="modelValue" class="v-textarea__textarea" v-bind="$attrs" rows="4" @input="update" />
+		<textarea
+			:value="modelValue"
+			class="v-textarea__textarea"
+			v-bind="$attrs"
+			rows="4"
+			@input="update"
+		/>
 		<div v-if="isError" class="v-textarea__error">{{ errorMessage }}</div>
 	</div>
 </template>
@@ -20,7 +26,7 @@ export default {
 		errorMessage: {
 			type: String,
 			default: ''
-		},
+		}
 	},
 	emits: ['update:modelValue'],
 	methods: {

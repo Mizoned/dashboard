@@ -2,7 +2,7 @@
 	<button :class="['v-button', `v-button--${color}`, `v-button--${size}`]">
 		<component :is="iconLoaderName" v-if="isLoading" />
 		<component :is="beforeSvgComponentName" v-else-if="beforeSvgComponentName" />
-		<span class="v-button__label" v-if="label">{{ label }}</span>
+		<span v-if="label" class="v-button__label">{{ label }}</span>
 		<component :is="afterSvgComponentName" v-if="afterSvgComponentName" />
 	</button>
 </template>

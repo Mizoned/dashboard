@@ -1,13 +1,24 @@
 <template>
-	<div class='v-upload-input'>
-		<input ref='files' type='file' multiple @change='uploadFileHandler'>
-		<div v-if='!selectedFiles.length' class='v-upload-input__empty'>
-			<v-button label='Click or drop files' before-svg-component-name='VIconUpload' color='secondary'
-								@click='$refs.files.click()' />
+	<div class="v-upload-input">
+		<input ref="files" type="file" multiple @change="uploadFileHandler" />
+		<div v-if="!selectedFiles.length" class="v-upload-input__empty">
+			<v-button
+				label="Click or drop files"
+				before-svg-component-name="VIconUpload"
+				color="secondary"
+				@click="$refs.files.click()"
+			/>
 		</div>
-		<div v-else class='v-upload-input__list'>
-			<v-button v-for='(file, key) in selectedFiles' :key='key' :label='file.name' class='v-upload-input__item'
-								after-svg-component-name='VIconClose' color='secondary' @click="deleteFileHandler(key)" />
+		<div v-else class="v-upload-input__list">
+			<v-button
+				v-for="(file, key) in selectedFiles"
+				:key="key"
+				:label="file.name"
+				class="v-upload-input__item"
+				after-svg-component-name="VIconClose"
+				color="secondary"
+				@click="deleteFileHandler(key)"
+			/>
 		</div>
 	</div>
 </template>
@@ -44,7 +55,7 @@ export default {
 };
 </script>
 
-<style scoped lang='scss'>
+<style scoped lang="scss">
 .v-upload-input {
 	position: relative;
 	display: flex;
