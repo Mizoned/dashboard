@@ -18,7 +18,7 @@ export default {
 	name: 'VLogotype',
 	computed: {
 		...mapGetters({
-			isDarkThemeMode: 'theme/isDarkThemeMode'
+			isDarkThemeMode: 'themeModule/isDarkThemeMode'
 		})
 	}
 };

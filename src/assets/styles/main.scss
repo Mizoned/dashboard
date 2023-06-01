@@ -31,8 +31,8 @@ input::-webkit-input-placeholder {
 	transition: all 0.3s;
 }
 
-input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button {
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
 	-webkit-appearance: none;
 	appearance: none;
 	margin: 0;

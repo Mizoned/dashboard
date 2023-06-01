@@ -267,34 +267,34 @@ export default {
 					label: 'Payment'
 				}
 			],
-			displayName: this.$store.state?.auth?.user?.displayName ?? '',
-			email: this.$store.state?.auth?.user?.email ?? '',
-			location: this.$store.state.auth.user?.location ?? '',
+			displayName: this.$store.state.userModule?.user?.displayName ?? '',
+			email: this.$store.state.userModule?.user?.email ?? '',
+			location: this.$store.state.userModule.user?.location ?? '',
 			notificationSettings: [
 				{
 					name: 'notifyAboutProductUpdates',
-					checked: this.$store.state?.auth?.user?.notifyAboutProductUpdates ?? '',
+					checked: this.$store.state.userModule?.user?.notifyAboutProductUpdates ?? '',
 					useDivider: true,
 					label: 'Product updates and community announcements',
 					tooltipMessage: 'Maximum 100 characters. No HTML or emoji allowed'
 				},
 				{
 					name: 'notifyAboutMarketNewsletter',
-					checked: this.$store.state?.auth?.user?.notifyAboutMarketNewsletter ?? '',
+					checked: this.$store.state.userModule?.user?.notifyAboutMarketNewsletter ?? '',
 					useDivider: true,
 					label: 'Market newsletter',
 					tooltipMessage: 'Maximum 100 characters. No HTML or emoji allowed'
 				},
 				{
 					name: 'notifyAboutComments',
-					checked: this.$store.state?.auth?.user?.notifyAboutComments ?? '',
+					checked: this.$store.state.userModule?.user?.notifyAboutComments ?? '',
 					useDivider: true,
 					label: 'Comments',
 					tooltipMessage: 'Maximum 100 characters. No HTML or emoji allowed'
 				},
 				{
 					name: 'notifyAboutPurchases',
-					checked: this.$store.state?.auth?.user?.notifyAboutPurchases ?? '',
+					checked: this.$store.state.userModule?.user?.notifyAboutPurchases ?? '',
 					useDivider: true,
 					label: 'Purchases',
 					tooltipMessage: 'Maximum 100 characters. No HTML or emoji allowed'
@@ -368,7 +368,7 @@ export default {
 	},
 	computed: {
 		...mapState({
-			imagePath: (state) => state.auth.user.imagePath
+			imagePath: (state) => state.userModule.user.imagePath
 		}),
 		isReadyUpdateProfileData() {
 			return (
@@ -389,10 +389,10 @@ export default {
 	},
 	methods: {
 		...mapActions({
-			updateProfileData: 'user/updateProfileData',
-			updateProfilePassword: 'user/updateProfilePassword',
-			updateProfilePicture: 'user/updateProfilePicture',
-			removeProfilePicture: 'user/removeProfilePicture'
+			updateProfileData: 'userModule/updateProfileData',
+			updateProfilePassword: 'userModule/updateProfilePassword',
+			updateProfilePicture: 'userModule/updateProfilePicture',
+			removeProfilePicture: 'userModule/removeProfilePicture'
 		}),
 		changeActiveLink(key) {
 			this.settingsLinks[this.activeLinkKey].state = false;
@@ -491,7 +491,7 @@ export default {
 			this.profilePictureUpload = event.target.files[0];
 
 			if (!this.profilePictureUpload) {
-				return
+				return;
 			}
 
 			this.v$.profilePictureUpload.$touch();

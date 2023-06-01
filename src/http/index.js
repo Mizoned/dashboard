@@ -23,11 +23,11 @@ $api.interceptors.response.use(
 			originalRequest._isRetry = true;
 			try {
 				const response = await axios.get(`${API_URL}/auth/refresh`, { withCredentials: true });
-				store.commit('auth/setToken', response.data.accessToken);
+				store.commit('authModule/setToken', response.data.accessToken);
 				return $api.request(originalRequest);
 			} catch (e) {
 				if (e.response.status === 401) {
-					await store.dispatch('auth/logout');
+					await store.dispatch('authModule/logout');
 					await router.push('/sign-in');
 				} else {
 					throw e;

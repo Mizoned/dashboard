@@ -89,7 +89,7 @@ export default {
 	},
 	methods: {
 		...mapActions({
-			sidebarOpenHandler: 'sidebar/sidebarOpenHandler'
+			sidebarOpenHandler: 'sidebarModule/sidebarOpenHandler'
 		}),
 		clickHandler(event) {
 			if (this.activeItem && this.activeItem === event.name) {

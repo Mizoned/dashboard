@@ -145,12 +145,12 @@ export default {
 	},
 	computed: {
 		...mapState({
-			isSidebarOpen: (state) => state.sidebar.isSidebarOpen
+			isSidebarOpen: (state) => state.sidebarModule.isSidebarOpen
 		})
 	},
 	methods: {
 		...mapActions({
-			sidebarOpenHandler: 'sidebar/sidebarOpenHandler'
+			sidebarOpenHandler: 'sidebarModule/sidebarOpenHandler'
 		}),
 		onClickOutsideHandler() {
 			if (this.isSidebarOpen) {

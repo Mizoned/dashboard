@@ -1,23 +1,19 @@
 import $api from '@/http';
 
 export default class UserService {
-	static async updateProfileData(data) {
-		return $api.put('/user/update-profile-data', data);
+	static async updateProfileData(userId, data) {
+		return $api.put(`/users/${userId}`, data);
 	}
 
-	static async updateProfilePassword(oldPassword, newPassword, confirmNewPassword) {
-		return $api.put('/user/update-profile-password', {
-			oldPassword,
-			newPassword,
-			confirmNewPassword
-		});
+	static async updateProfilePassword(userId, data) {
+		return $api.put(`/users/${userId}/password`, data);
 	}
 
-	static async updateProfilePicture(picture) {
-		return $api.put('/user/update-profile-picture', picture);
+	static async updateProfilePicture(userId, picture) {
+		return $api.put(`/users/${userId}/avatar`, picture);
 	}
 
-	static async removeProfilePicture() {
-		return $api.delete('/user/remove-profile-picture');
+	static async removeProfilePicture(userId) {
+		return $api.delete(`/users/${userId}/avatar`);
 	}
 }

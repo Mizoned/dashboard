@@ -9,7 +9,7 @@ import { mapGetters } from 'vuex';
 export default {
 	computed: {
 		...mapGetters({
-			isDarkThemeMode: 'theme/isDarkThemeMode'
+			isDarkThemeMode: 'themeModule/isDarkThemeMode'
 		})
 	}
 };

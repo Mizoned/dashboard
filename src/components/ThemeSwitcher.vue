@@ -26,12 +26,12 @@ export default {
 	name: 'ThemeSwitcher',
 	computed: {
 		...mapGetters({
-			isDarkThemeMode: 'theme/isDarkThemeMode'
+			isDarkThemeMode: 'themeModule/isDarkThemeMode'
 		})
 	},
 	methods: {
 		...mapActions({
-			toggleThemeMode: 'theme/toggleThemeMode'
+			toggleThemeMode: 'themeModule/toggleThemeMode'
 		})
 	}
 };

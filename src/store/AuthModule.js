@@ -3,25 +3,12 @@ import AuthService from '@/service/AuthService';
 export const authModule = {
 	namespaced: true,
 	state: () => ({
-		user: JSON.parse(localStorage.getItem('user')) || {},
 		token: localStorage.getItem('token') || ''
 	}),
 	mutations: {
-		setUser(state, obj) {
-			localStorage.setItem('user', JSON.stringify(obj));
-			state.user = obj;
-		},
-		setUserProperty(state, { property, value }) {
-			state.user[property] = value;
-			localStorage.setItem('user', JSON.stringify(state.user));
-		},
 		setToken(state, string) {
 			localStorage.setItem('token', string);
 			state.token = string;
-		},
-		deleteUser(state) {
-			localStorage.removeItem('user');
-			state.user = {};
 		},
 		deleteToken(state) {
 			localStorage.removeItem('token');
@@ -34,7 +21,7 @@ export const authModule = {
 				AuthService.signIn(email, password)
 					.then((response) => {
 						commit('setToken', response.data.accessToken);
-						commit('setUser', response.data.user);
+						commit('userModule/setUser', response.data.user, { root: true });
 						resolve(response);
 					})
 					.catch((error) => {
@@ -69,7 +56,7 @@ export const authModule = {
 				AuthService.signUp(email, password)
 					.then((response) => {
 						commit('setToken', response.data.accessToken);
-						commit('setUser', response.data.user);
+						commit('userModule/setUser', response.data.user, { root: true });
 						resolve(response);
 					})
 					.catch((error) => {
@@ -82,7 +69,7 @@ export const authModule = {
 				AuthService.logout()
 					.then((response) => {
 						commit('deleteToken');
-						commit('deleteUser');
+						commit('userModule/deleteUser', null, { root: true });
 						resolve(response);
 					})
 					.catch((error) => {

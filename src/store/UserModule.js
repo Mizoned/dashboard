@@ -2,12 +2,29 @@ import UserService from '@/service/UserService';
 
 export const userModule = {
 	namespaced: true,
+	state: () => ({
+		user: JSON.parse(localStorage.getItem('user')) || {}
+	}),
+	mutations: {
+		setUser(state, obj) {
+			localStorage.setItem('user', JSON.stringify(obj));
+			state.user = obj;
+		},
+		setUserProperty(state, { property, value }) {
+			state.user[property] = value;
+			localStorage.setItem('user', JSON.stringify(state.user));
+		},
+		deleteUser(state) {
+			localStorage.removeItem('user');
+			state.user = {};
+		}
+	},
 	actions: {
-		updateProfileData({ commit }, data) {
+		updateProfileData({ state, commit }, data) {
 			return new Promise((resolve, reject) => {
-				UserService.updateProfileData(data)
+				UserService.updateProfileData(state.user.id, data)
 					.then((response) => {
-						commit('auth/setUser', response.data.user, { root: true });
+						commit('setUser', response.data.user);
 						resolve(response);
 					})
 					.catch((error) => {
@@ -15,9 +32,13 @@ export const userModule = {
 					});
 			});
 		},
-		updateProfilePassword(options, { oldPassword, newPassword, confirmNewPassword }) {
+		updateProfilePassword({ state }, { oldPassword, newPassword, confirmNewPassword }) {
 			return new Promise((resolve, reject) => {
-				UserService.updateProfilePassword(oldPassword, newPassword, confirmNewPassword)
+				UserService.updateProfilePassword(state.user.id, {
+					oldPassword,
+					newPassword,
+					confirmNewPassword
+				})
 					.then((response) => {
 						resolve(response);
 					})
@@ -26,15 +47,11 @@ export const userModule = {
 					});
 			});
 		},
-		updateProfilePicture({ commit }, picture) {
+		updateProfilePicture({ state, commit }, picture) {
 			return new Promise((resolve, reject) => {
-				UserService.updateProfilePicture(picture)
+				UserService.updateProfilePicture(state.user.id, picture)
 					.then((response) => {
-						commit(
-							'auth/setUserProperty',
-							{ property: 'imagePath', value: response.data.path },
-							{ root: true }
-						);
+						commit('setUserProperty', { property: 'imagePath', value: response.data.path });
 						resolve(response);
 					})
 					.catch((error) => {
@@ -42,15 +59,11 @@ export const userModule = {
 					});
 			});
 		},
-		removeProfilePicture({ commit }) {
+		removeProfilePicture({ state, commit }) {
 			return new Promise((resolve, reject) => {
-				UserService.removeProfilePicture()
+				UserService.removeProfilePicture(state.user.id)
 					.then((response) => {
-						commit(
-							'auth/setUserProperty',
-							{ property: 'imagePath', value: response.data.path },
-							{ root: true }
-						);
+						commit('setUserProperty', { property: 'imagePath', value: response.data.path });
 						resolve(response);
 					})
 					.catch((error) => {

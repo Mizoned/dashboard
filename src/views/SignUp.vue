@@ -161,9 +161,9 @@ export default {
 	},
 	methods: {
 		...mapActions({
-			sendRegistrationCode: 'auth/sendRegistrationCode',
-			verifyRegistrationCode: 'auth/verifyRegistrationCode',
-			signUp: 'auth/signUp'
+			sendRegistrationCode: 'authModule/sendRegistrationCode',
+			verifyRegistrationCode: 'authModule/verifyRegistrationCode',
+			signUp: 'authModule/signUp'
 		}),
 		async registrationCodeSendHandler() {
 			if (this.v$.email.$invalid) {

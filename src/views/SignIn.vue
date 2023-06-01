@@ -143,7 +143,7 @@ export default {
 	},
 	methods: {
 		...mapActions({
-			signIn: 'auth/signIn'
+			signIn: 'authModule/signIn'
 		}),
 		async onSubmit() {
 			if (this.v$.$invalid) {

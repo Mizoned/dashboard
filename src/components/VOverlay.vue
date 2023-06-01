@@ -9,7 +9,7 @@ export default {
 	name: 'VOverlay',
 	computed: {
 		...mapState({
-			isActive: (state) => state.overlay.isOverlayActive
+			isActive: (state) => state.overlayModule.isOverlayActive
 		})
 	}
 };

@@ -75,12 +75,12 @@ export default {
 	emits: ['update:isOpen'],
 	computed: {
 		...mapState({
-			imagePath: (state) => state.auth.user.imagePath
+			imagePath: (state) => state.userModule.user.imagePath
 		})
 	},
 	methods: {
 		...mapActions({
-			logout: 'auth/logout'
+			logout: 'authModule/logout'
 		}),
 		clickHandler(value) {
 			this.$emit('update:isOpen', { name: 'profile', value });
