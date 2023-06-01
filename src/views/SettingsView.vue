@@ -489,6 +489,11 @@ export default {
 		},
 		pictureLoadingHandler(event) {
 			this.profilePictureUpload = event.target.files[0];
+
+			if (!this.profilePictureUpload) {
+				return
+			}
+
 			this.v$.profilePictureUpload.$touch();
 
 			if (this.v$.profilePictureUpload.$invalid) {
