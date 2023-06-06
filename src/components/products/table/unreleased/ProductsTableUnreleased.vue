@@ -1,12 +1,14 @@
 <template>
-	<div class="products-table-unreleased">
+	<div v-if="products.length" class="products-table-unreleased">
 		<products-table-unreleased-header :columns="columns" />
 		<products-table-unreleased-item
 			v-for="product in products"
 			:key="product.id"
 			:product="product"
+			@remove="removeProductHandler"
 		/>
 	</div>
+	<div v-else class="products-table-unreleased-empty">Not Found</div>
 </template>
 
 <script>
@@ -25,6 +27,12 @@ export default {
 			type: Array,
 			default: () => []
 		}
+	},
+	emits: ['remove-product'],
+	methods: {
+		removeProductHandler(product) {
+			this.$emit('remove-product', product);
+		}
 	}
 };
 </script>
@@ -40,5 +48,10 @@ export default {
 		flex-direction: column;
 		gap: 16px;
 	}
+}
+
+.products-table-unreleased-empty {
+	display: flex;
+	justify-content: center;
 }
 </style>

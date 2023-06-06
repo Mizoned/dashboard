@@ -1,11 +1,16 @@
 <template>
 	<div class="v-product-card">
 		<div class="v-product-card__preview">
-			<img class="v-product-card__image" :src="product.imageSrc" :alt="product.alt" />
+			<img
+				class="v-product-card__image"
+				:src="product.imageSrc || path"
+				:alt="product.name"
+				@error="loadingErrorHandler"
+			/>
 		</div>
 		<div class="v-product-card__box">
 			<div class="v-product-card__details">
-				<div class="v-product-card__title">{{ product.title }}</div>
+				<div class="v-product-card__title">{{ product.name }}</div>
 				<div class="v-product-card__rating">
 					<v-rating :count="product.counterRating" :value="product.rating"></v-rating>
 				</div>
@@ -28,6 +33,16 @@ export default {
 		product: {
 			type: Object,
 			default: () => {}
+		}
+	},
+	data() {
+		return {
+			path: ''
+		};
+	},
+	methods: {
+		loadingErrorHandler() {
+			this.path = new URL('@/assets/images/products/product-1.jpg', import.meta.url).href;
 		}
 	}
 };

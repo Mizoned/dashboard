@@ -1,14 +1,32 @@
 <template>
 	<div class="products-table-unreleased-item-controls">
-		<button class="products-table-unreleased-item-controls__button"><v-icon-calendar /></button>
-		<button class="products-table-unreleased-item-controls__button"><v-icon-edit /></button>
-		<button class="products-table-unreleased-item-controls__button"><v-icon-trash /></button>
+		<button class="products-table-unreleased-item-controls__button">
+			<v-icon-calendar @click="calendarHandler" />
+		</button>
+		<button class="products-table-unreleased-item-controls__button">
+			<v-icon-edit @click="editHandler" />
+		</button>
+		<button class="products-table-unreleased-item-controls__button">
+			<v-icon-trash @click="removeHandler" />
+		</button>
 	</div>
 </template>
 
 <script>
 export default {
-	name: 'ProductsTableUnreleasedItemControls'
+	name: 'ProductsTableUnreleasedItemControls',
+	emits: ['remove', 'edit', 'calendar'],
+	methods: {
+		removeHandler() {
+			this.$emit('remove');
+		},
+		editHandler() {
+			this.$emit('edit');
+		},
+		calendarHandler() {
+			this.$emit('calendar');
+		}
+	}
 };
 </script>
 

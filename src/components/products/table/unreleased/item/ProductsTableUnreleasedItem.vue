@@ -5,7 +5,7 @@
 		</div>
 		<div class="products-table-unreleased-item__cell">
 			<products-table-item-preview
-				:title="product.title"
+				:title="product.name"
 				:description="product.description"
 				:image-src="product.imageSrc"
 				:alt="product.alt"
@@ -13,14 +13,14 @@
 		</div>
 		<div class="products-table-unreleased-item__cell">
 			<div class="products-table-unreleased-item__property">Price</div>
-			<v-price price="98" currency="$"></v-price>
+			<v-price :price="product.price" currency="$"></v-price>
 		</div>
 		<div class="products-table-unreleased-item__cell">
 			<div class="products-table-unreleased-item__property">Last edited</div>
-			<div class="products-table-unreleased-item__date">Apr 9, 2021 at 3:55 PM</div>
+			<div class="products-table-unreleased-item__date">{{ formatDate(product.updatedAt) }}</div>
 		</div>
 		<div class="products-table-unreleased-item__cell">
-			<products-table-unreleased-item-controls />
+			<products-table-unreleased-item-controls :product="product" @remove="removeProductHandler" />
 		</div>
 	</div>
 </template>
@@ -29,14 +29,22 @@
 import ProductsTableUnreleasedItemControls from '@/components/products/table/unreleased/item/ProductsTableUnreleasedItemControls.vue';
 import ProductsTableItemPreview from '@/components/products/table/item/ProductsTableItemPreview.vue';
 import VPrice from '@/components/VPrice.vue';
+import formatDateMixin from '@/mixins/formatDate.mixin';
 
 export default {
 	name: 'ProductsTableUnreleasedItem',
 	components: { VPrice, ProductsTableItemPreview, ProductsTableUnreleasedItemControls },
+	mixins: [formatDateMixin],
 	props: {
 		product: {
 			type: Object,
 			default: () => {}
+		}
+	},
+	emits: ['remove'],
+	methods: {
+		removeProductHandler() {
+			this.$emit('remove', this.product);
 		}
 	}
 };
@@ -76,14 +84,6 @@ export default {
 		&:last-child {
 			border-radius: 0 8px 8px 0;
 			padding: 12px 12px 12px 16px;
-		}
-	}
-
-	&:last-child {
-		& .products-table-unreleased-item__cell {
-			&:after {
-				display: none;
-			}
 		}
 	}
 
