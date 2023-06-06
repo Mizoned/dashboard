@@ -18,10 +18,10 @@ export default {
 			default: true
 		}
 	},
-	emits: ['update:modelValue'],
+	emits: ['update:model-value'],
 	methods: {
 		changeHandler(name) {
-			this.$emit('update:modelValue', name === 'list');
+			this.$emit('update:model-value', name === 'list');
 		}
 	}
 };
