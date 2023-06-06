@@ -11,6 +11,7 @@ import VAvatar from '@/components/UI/VAvatar.vue';
 import VInputIcon from '@/components/UI/VInputIcon.vue';
 import VCheckbox from '@/components/UI/VCheckbox.vue';
 import VUploadInput from '@/components/UI/VUploadInput.vue';
+import VPagination from '@/components/UI/VPagination.vue';
 
 export default [
 	VInput,
@@ -25,5 +26,6 @@ export default [
 	VLabelBox,
 	VAvatar,
 	VCheckbox,
-	VUploadInput
+	VUploadInput,
+	VPagination
 ];
