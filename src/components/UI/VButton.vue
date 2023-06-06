@@ -12,7 +12,7 @@ export default {
 	name: 'VButton',
 	props: {
 		label: {
-			type: String,
+			type: [String, Number],
 			default: ''
 		},
 		color: {
@@ -113,6 +113,10 @@ export default {
 			background-color: transparent;
 			border-color: var(--neutral-champagne-background-color);
 		}
+	}
+
+	&--active {
+		border-color: var(--neutral-champagne-background-color);
 	}
 
 	&--transparent {
