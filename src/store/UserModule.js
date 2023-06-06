@@ -5,6 +5,11 @@ export const userModule = {
 	state: () => ({
 		user: JSON.parse(localStorage.getItem('user')) || {}
 	}),
+	getters: {
+		user(state) {
+			return state.user;
+		}
+	},
 	mutations: {
 		setUser(state, obj) {
 			localStorage.setItem('user', JSON.stringify(obj));
