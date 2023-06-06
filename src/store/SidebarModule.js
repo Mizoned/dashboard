@@ -12,7 +12,7 @@ export const sidebarModule = {
 		sidebarOpenHandler({ commit }, bool) {
 			if (window.innerWidth > 1250) return;
 			commit('setIsSidebarOpen', bool);
-			commit('overlay/setIsOverlayActive', bool, { root: true });
+			commit('overlayModule/setIsOverlayActive', bool, { root: true });
 		}
 	}
 };
