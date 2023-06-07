@@ -29,7 +29,7 @@
 				<v-pagination v-model:current-page="page" :total-pages="totalPages" />
 			</div>
 		</div>
-		<div v-else class="preloader">Loading <v-icon-preloader /></div>
+		<v-preloader v-else/>
 	</div>
 </template>
 
@@ -88,9 +88,7 @@ export default {
 					this.showErrorNotification(error.response.data.message);
 				})
 				.finally(() => {
-					setTimeout(() => {
-						this.isLoading = false;
-					}, 500);
+					this.isLoading = false;
 				});
 		},
 		async removeProductHandler(product) {
