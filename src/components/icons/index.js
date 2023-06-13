@@ -40,6 +40,7 @@ import VIconSearch from '@/components/icons/VIconSearch.vue';
 import VIconCalendar from '@/components/icons/VIconCalendar.vue';
 import VIconChevron from '@/components/icons/VIconChevron.vue';
 import VIconCircleAdd from '@/components/icons/VIconCircleAdd.vue';
+import VIconFilter from '@/components/icons/VIconFilter.vue';
 
 export default [
 	VIconHome,
@@ -83,5 +84,6 @@ export default [
 	VIconSearch,
 	VIconCalendar,
 	VIconChevron,
-	VIconCircleAdd
+	VIconCircleAdd,
+	VIconFilter
 ];
