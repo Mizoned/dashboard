@@ -8,7 +8,7 @@
 			@remove="removeProductHandler"
 		/>
 	</div>
-	<div v-else class="products-table-unreleased-empty">Not Found</div>
+	<div v-else class="products-table-unreleased-empty">Products not found</div>
 </template>
 
 <script>
@@ -53,5 +53,11 @@ export default {
 .products-table-unreleased-empty {
 	display: flex;
 	justify-content: center;
+	padding-left: 32px;
+	font-weight: 600;
+	font-size: 15px;
+	line-height: 24px;
+	letter-spacing: -0.02em;
+	color: var(--neutral-champagne-color);
 }
 </style>
