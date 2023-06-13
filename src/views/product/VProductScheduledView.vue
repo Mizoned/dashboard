@@ -29,7 +29,7 @@
 				<v-pagination v-model:current-page="page" :total-pages="totalPages" />
 			</div>
 		</div>
-		<v-preloader v-else/>
+		<v-preloader v-else />
 	</div>
 </template>
 
@@ -39,7 +39,6 @@ import VProductCard from '@/components/VProductCard.vue';
 import ProductsTableUnreleased from '@/components/products/table/unreleased/ProductsTableUnreleased.vue';
 import { mapGetters } from 'vuex';
 import UserProductsService from '@/service/UserProductsService';
-import { useToast } from 'vue-toastification';
 import toastificationMixin from '@/mixins/toastification.mixin';
 
 export default {
@@ -58,8 +57,7 @@ export default {
 			limit: 5,
 			page: 1,
 			totalPages: 0,
-			isLoading: true,
-			toast: useToast()
+			isLoading: true
 		};
 	},
 	computed: {
@@ -85,7 +83,9 @@ export default {
 					this.totalPages = Math.ceil(response.data.products.count / this.limit);
 				})
 				.catch((error) => {
-					this.showErrorNotification(error.response?.data?.message ?? 'Произошла непрведвиденная ошибка');
+					this.showErrorNotification(
+						error.response?.data?.message ?? 'Произошла непрведвиденная ошибка'
+					);
 				})
 				.finally(() => {
 					this.isLoading = false;
@@ -96,12 +96,16 @@ export default {
 				.then(() => {
 					this.products = [...this.products].filter((p) => p.id !== product.id);
 
+					this.showSuccessNotification('Продукт удален!');
+
 					if (this.products.length === 0 && this.page > 1) {
 						this.page--;
 					}
 				})
 				.catch((error) => {
-					this.showErrorNotification(error.response?.data?.message ?? 'Произошла непрведвиденная ошибка');
+					this.showErrorNotification(
+						error.response?.data?.message ?? 'Произошла непрведвиденная ошибка'
+					);
 				});
 		}
 	}
