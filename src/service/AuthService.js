@@ -1,4 +1,6 @@
 import $api from '@/http';
+import { API_URL } from '@/http';
+import axios from 'axios';
 
 export default class AuthService {
 	static async signIn(email, password) {
@@ -19,5 +21,9 @@ export default class AuthService {
 
 	static async verifyRegistrationCode(email, code) {
 		return $api.post('/auth/verify-registration-code', { email, code });
+	}
+
+	static async checkAuthorization() {
+		return axios.get(`${API_URL}/auth/refresh`, { withCredentials: true });
 	}
 }
