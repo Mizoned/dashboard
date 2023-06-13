@@ -81,6 +81,7 @@ export default {
 
 	&--square {
 		padding: 8px;
+		border-radius: 8px;
 	}
 
 	&--primary {

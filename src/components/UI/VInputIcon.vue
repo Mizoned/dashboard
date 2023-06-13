@@ -13,7 +13,7 @@
 				autocomplete="off"
 				@input="update"
 			/>
-			<div class="v-input__right-svg">
+			<div v-if="useError" class="v-input__right-svg">
 				<v-icon-warning v-if="isError" class="v-input__svg--error" />
 				<v-icon-check v-if="!isError && modelValue.length > 0" />
 			</div>
@@ -29,6 +29,10 @@ export default {
 		modelValue: {
 			type: String,
 			default: ''
+		},
+		useError: {
+			type: Boolean,
+			default: true
 		},
 		isError: {
 			type: Boolean,

@@ -1,5 +1,5 @@
 <template>
-	<div class="v-pagination">
+	<div v-if="visiblePages.length" class="v-pagination">
 		<v-button
 			label="Prev"
 			:disabled="currentPage === 1"
