@@ -4,6 +4,7 @@ import { themeModule } from '@/store/ThemeModule';
 import { overlayModule } from '@/store/OverlayModule';
 import { sidebarModule } from '@/store/SidebarModule';
 import { userModule } from '@/store/UserModule';
+import { shopModule } from '@/store/ShopModule';
 
 export default createStore({
 	state: {},
@@ -15,6 +16,7 @@ export default createStore({
 		overlayModule,
 		sidebarModule,
 		userModule,
-		authModule
+		authModule,
+		shopModule
 	}
 });
