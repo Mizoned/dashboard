@@ -2,7 +2,7 @@ export default {
 	data() {
 		return {
 			timeout: null
-		}
+		};
 	},
 	methods: {
 		debounce(fn, delay) {
@@ -11,7 +11,7 @@ export default {
 				this.timeout = setTimeout(() => {
 					fn.apply(this, arguments);
 				}, delay);
-			}
+			};
 		}
 	}
 };
