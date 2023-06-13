@@ -225,10 +225,10 @@
 <script>
 import { useVuelidate } from '@vuelidate/core';
 import { required, email, helpers, minLength, maxLength, sameAs } from '@vuelidate/validators';
-import { useToast } from 'vue-toastification';
 import { mapState, mapActions } from 'vuex';
 import checkFileSize from '@/utils/validators/checkFileSize';
 import isImageFile from '@/utils/validators/isImageFile';
+import toastificationMixin from '@/mixins/toastification.mixin';
 
 const validateImageFileType = helpers.withParams({ type: 'imageFileType' }, isImageFile);
 
@@ -238,13 +238,13 @@ const validateImageFileSize = helpers.withParams({ type: 'imageFileSize' }, (val
 
 export default {
 	name: 'SettingsView',
+	mixins: [toastificationMixin],
 	data() {
 		return {
 			v$: useVuelidate(),
 			isProfileChangeLoading: false,
 			isProfileUpdatePasswordLoading: false,
 			activeLinkKey: 0,
-			toast: useToast(),
 			settingsLinks: [
 				{
 					state: true,
@@ -427,10 +427,13 @@ export default {
 				})
 				.catch((error) => {
 					const errors = error?.response?.data?.errors;
-					errors?.forEach((error) => {
-						this.vuelidateExternalResults[error.param] = error.msg;
-					});
-					this.showErrorNotification('Не все поля заполнены верно!');
+
+					if (errors) {
+						this.showErrorNotification('Не все поля заполнены верно!');
+						errors.forEach((error) => {
+							this.vuelidateExternalResults[error.param] = error.msg;
+						});
+					}
 				})
 				.finally(() => {
 					this.isProfileChangeLoading = false;
@@ -471,10 +474,12 @@ export default {
 				})
 				.catch((error) => {
 					const errors = error?.response?.data?.errors;
-					errors?.forEach((error) => {
-						this.vuelidateExternalResults[error.param] = error.msg;
-					});
-					this.showErrorNotification('Не все поля заполнены верно!');
+					if (errors) {
+						this.showErrorNotification('Не все поля заполнены верно!');
+						errors.forEach((error) => {
+							this.vuelidateExternalResults[error.param] = error.msg;
+						});
+					}
 				})
 				.finally(() => {
 					this.isProfileUpdatePasswordLoading = false;
@@ -507,10 +512,9 @@ export default {
 						this.showSuccessNotification('Картинка профиля успешно изменена!');
 					})
 					.catch((error) => {
-						if (error?.response?.data?.errors[0].msg) {
-							this.showErrorNotification(error?.response?.data?.errors[0].msg);
-						} else {
-							this.showErrorNotification(error?.message);
+						const errors = error?.response?.data?.errors;
+						if (errors) {
+							this.showErrorNotification(errors[0].msg);
 						}
 					});
 			}
@@ -521,18 +525,11 @@ export default {
 					this.showSuccessNotification('Картинка профиля успешно удалена!');
 				})
 				.catch((error) => {
-					if (error?.response?.data?.errors[0].msg) {
-						this.showErrorNotification(error?.response?.data?.errors[0].msg);
-					} else {
-						this.showErrorNotification(error?.message);
+					const errors = error?.response?.data?.errors;
+					if (errors) {
+						this.showErrorNotification(errors[0].msg);
 					}
 				});
-		},
-		showErrorNotification(message) {
-			this.toast.error(message);
-		},
-		showSuccessNotification(message) {
-			this.toast.success(message);
 		}
 	}
 };
