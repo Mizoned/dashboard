@@ -25,9 +25,9 @@ export const userModule = {
 		}
 	},
 	actions: {
-		updateProfileData({ state, commit }, data) {
+		updateUser({ state, commit }, data) {
 			return new Promise((resolve, reject) => {
-				UserService.updateProfileData(state.user.id, data)
+				UserService.updateUser(state.user.id, data)
 					.then((response) => {
 						commit('setUser', response.data.user);
 						resolve(response);
@@ -37,9 +37,9 @@ export const userModule = {
 					});
 			});
 		},
-		updateProfilePassword({ state }, { oldPassword, newPassword, confirmNewPassword }) {
+		updatePassword({ state }, { oldPassword, newPassword, confirmNewPassword }) {
 			return new Promise((resolve, reject) => {
-				UserService.updateProfilePassword(state.user.id, {
+				UserService.updatePassword(state.user.id, {
 					oldPassword,
 					newPassword,
 					confirmNewPassword
@@ -52,9 +52,9 @@ export const userModule = {
 					});
 			});
 		},
-		updateProfilePicture({ state, commit }, picture) {
+		updateAvatar({ state, commit }, picture) {
 			return new Promise((resolve, reject) => {
-				UserService.updateProfilePicture(state.user.id, picture)
+				UserService.updateAvatar(state.user.id, picture)
 					.then((response) => {
 						commit('setUserProperty', { property: 'imagePath', value: response.data.path });
 						resolve(response);
@@ -64,9 +64,9 @@ export const userModule = {
 					});
 			});
 		},
-		removeProfilePicture({ state, commit }) {
+		removeAvatar({ state, commit }) {
 			return new Promise((resolve, reject) => {
-				UserService.removeProfilePicture(state.user.id)
+				UserService.removeAvatar(state.user.id)
 					.then((response) => {
 						commit('setUserProperty', { property: 'imagePath', value: response.data.path });
 						resolve(response);

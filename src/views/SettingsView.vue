@@ -388,11 +388,11 @@ export default {
 		}
 	},
 	methods: {
-		...mapActions({
-			updateProfileData: 'userModule/updateProfileData',
-			updateProfilePassword: 'userModule/updateProfilePassword',
-			updateProfilePicture: 'userModule/updateProfilePicture',
-			removeProfilePicture: 'userModule/removeProfilePicture'
+		...mapActions('userModule', {
+			updateUser: 'updateUser',
+			updatePassword: 'updatePassword',
+			updateAvatar: 'updateAvatar',
+			removeAvatar: 'removeAvatar'
 		}),
 		changeActiveLink(key) {
 			this.settingsLinks[this.activeLinkKey].state = false;
@@ -421,7 +421,7 @@ export default {
 
 			let data = this.getPreparedDataFromForm();
 
-			this.updateProfileData(data)
+			this.updateUser(data)
 				.then(() => {
 					this.showSuccessNotification('Данные профиля успешно изменены!');
 				})
@@ -468,7 +468,7 @@ export default {
 
 			this.isProfileUpdatePasswordLoading = true;
 
-			this.updateProfilePassword(data)
+			this.updatePassword(data)
 				.then(() => {
 					this.showSuccessNotification('Пароль успешно изменен!');
 				})
@@ -505,9 +505,9 @@ export default {
 				this.showErrorNotification(this.v$.profilePictureUpload?.$errors[0]?.$message);
 			} else {
 				let data = new FormData();
-				data.append('picture', this.profilePictureUpload);
+				data.append('avatar', this.profilePictureUpload);
 
-				this.updateProfilePicture(data)
+				this.updateAvatar(data)
 					.then(() => {
 						this.showSuccessNotification('Картинка профиля успешно изменена!');
 					})
@@ -520,7 +520,7 @@ export default {
 			}
 		},
 		pictureRemovingHandler() {
-			this.removeProfilePicture()
+			this.removeAvatar()
 				.then(() => {
 					this.showSuccessNotification('Картинка профиля успешно удалена!');
 				})
