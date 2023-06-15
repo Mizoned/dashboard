@@ -7,7 +7,7 @@
 			<products-table-item-preview
 				:title="product.title"
 				:description="product.description"
-				:image-src="product.imageSrc"
+				:pictures="product.pictures"
 				:alt="product.alt"
 			/>
 		</div>

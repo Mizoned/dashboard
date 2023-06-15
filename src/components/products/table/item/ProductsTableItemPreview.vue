@@ -1,7 +1,7 @@
 <template>
 	<div class="products-table-unreleased-item-preview">
 		<div class="products-table-unreleased-item-preview__image">
-			<img :src="path" :alt="alt" @error="loadingErrorHandler" />
+			<img :src="imageSrc" :alt="alt" @error="loadingErrorHandler" />
 		</div>
 		<div class="products-table-unreleased-item-preview__details">
 			<div class="products-table-unreleased-item-preview__title">{{ title }}</div>
@@ -22,9 +22,9 @@ export default {
 			type: String,
 			default: ''
 		},
-		imageSrc: {
-			type: String,
-			default: '@/assets/images/products/product-1.jpg'
+		pictures: {
+			type: Array,
+			default: () => []
 		},
 		alt: {
 			type: String,
@@ -33,20 +33,15 @@ export default {
 	},
 	data() {
 		return {
-			path: ''
+			imageSrc: ''
 		};
 	},
-	watch: {
-		imageSrc(newVal) {
-			this.path = newVal;
-		}
-	},
 	created() {
-		this.path = this.imageSrc;
+		this.imageSrc = this.pictures[0]?.path ?? '';
 	},
 	methods: {
 		loadingErrorHandler() {
-			this.path = new URL('@/assets/images/products/product-1.jpg', import.meta.url).href;
+			this.imageSrc = new URL('@/assets/images/products/product-1.jpg', import.meta.url).href;
 		}
 	}
 };

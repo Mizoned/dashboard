@@ -32,8 +32,8 @@ export const shopModule = {
 			commit('setLoading', true);
 			return ProductsService.getProducts(state.limit, state.page, state.search)
 				.then((response) => {
-					commit('setProducts', response.data.products.rows ?? []);
-					commit('setTotalPages', Math.ceil(response.data.products.count / state.limit));
+					commit('setProducts', response.data.products ?? []);
+					commit('setTotalPages', Math.ceil(response.data.count / state.limit));
 					return Promise.resolve(response);
 				})
 				.catch((error) => {

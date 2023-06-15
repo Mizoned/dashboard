@@ -3,7 +3,7 @@
 		<div class="v-product-card__preview">
 			<img
 				class="v-product-card__image"
-				:src="product.imageSrc || path"
+				:src="path"
 				:alt="product.name"
 				@error="loadingErrorHandler"
 			/>
@@ -39,6 +39,9 @@ export default {
 		return {
 			path: ''
 		};
+	},
+	created() {
+		this.path = this.product.pictures[0]?.path ?? '';
 	},
 	methods: {
 		loadingErrorHandler() {

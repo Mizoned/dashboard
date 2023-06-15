@@ -54,7 +54,7 @@ export default {
 			isList: true,
 			productColumns: ['Product', 'Price', 'Last edited'],
 			products: [],
-			limit: 5,
+			limit: 6,
 			page: 1,
 			totalPages: 0,
 			isLoading: true
@@ -79,8 +79,8 @@ export default {
 
 			await UserProductsService.getDraftProducts(this.user.id, this.limit, this.page)
 				.then((response) => {
-					this.products = response.data.products.rows;
-					this.totalPages = Math.ceil(response.data.products.count / this.limit);
+					this.products = response.data.products;
+					this.totalPages = Math.ceil(response.data.count / this.limit);
 				})
 				.catch((error) => {
 					this.showErrorNotification(
