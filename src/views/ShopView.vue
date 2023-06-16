@@ -68,6 +68,7 @@ export default {
 		},
 		searchHandler(event) {
 			this.debounce(() => {
+				this.setPage(1);
 				this.setSearch(event);
 				this.getProducts();
 			}, 800)();
