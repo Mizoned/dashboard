@@ -16,7 +16,7 @@
 				</div>
 			</div>
 			<div class="v-product-card__price">
-				<v-price :price="product.price" :currency="product.currency"></v-price>
+				<v-price :price="product.price" currency="$"></v-price>
 			</div>
 		</div>
 	</div>
