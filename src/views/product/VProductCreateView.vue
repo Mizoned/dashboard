@@ -310,7 +310,22 @@ export default {
 				return;
 			}
 
-			//TODO Сделать запрос на создание
+			const data = this.prepareFormData();
+			UserProductsService.createReleasedProduct(this.user.id, data)
+				.then(() => {
+					this.$router.push({ name: 'Released'});
+					this.showSuccessNotification('Продукт успешно создан и помещен в выпущенные');
+				})
+				.catch((error) => {
+					const errors = error?.response?.data?.errors;
+
+					if (errors) {
+						this.showErrorNotification('Не все поля заполнены верно!');
+						errors.forEach((error) => {
+							this.vuelidateExternalResults[error.param] = error.msg;
+						});
+					}
+				});
 		},
 		submitDraftHandler() {
 			if (this.v$.form.$invalid) {
@@ -321,8 +336,9 @@ export default {
 
 			const data = this.prepareFormData();
 			UserProductsService.createDraftProduct(this.user.id, data)
-				.then((response) => {
-					console.log(response);
+				.then(() => {
+					this.$router.push({ name: 'Drafts'});
+					this.showSuccessNotification('Продукт успешно создан и помещен в черновик');
 				})
 				.catch((error) => {
 					const errors = error?.response?.data?.errors;

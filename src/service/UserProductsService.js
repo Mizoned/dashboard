@@ -11,6 +11,10 @@ export default class UserProductsService {
 		return $api.post(`/users/${userId}/products/drafted`, data);
 	}
 
+	static async createReleasedProduct(userId, data) {
+		return $api.post(`/users/${userId}/products/released`, data);
+	}
+
 	static async getReleasedProducts(userId, limit = 5, page = 1) {
 		return $api.get(`/users/${userId}/products/released`, {
 			params: { limit, page }
