@@ -5,7 +5,7 @@
 		</div>
 		<div class="products-table-released-item__cell">
 			<products-table-item-preview
-				:title="product.title"
+				:title="product.name"
 				:description="product.description"
 				:pictures="product.pictures"
 				:alt="product.alt"
@@ -13,7 +13,7 @@
 		</div>
 		<div class="products-table-released-item__cell">
 			<div class="products-table-released-item__property">Price</div>
-			<v-number-format value="$98" />
+			<v-number-format :value="product.price" />
 		</div>
 		<div class="products-table-released-item__cell">
 			<div class="products-table-released-item__property">Status</div>
@@ -25,11 +25,11 @@
 		</div>
 		<div class="products-table-released-item__cell">
 			<div class="products-table-released-item__property">Sales</div>
-			<v-number-format value="$3 200" />
+			<v-number-format :value="product.sales" />
 		</div>
 		<div class="products-table-released-item__cell">
 			<div class="products-table-released-item__property">Views</div>
-			<v-number-format value="47k" />
+			<v-number-format :value="product.views" />
 		</div>
 	</div>
 </template>

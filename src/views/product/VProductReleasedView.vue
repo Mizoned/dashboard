@@ -8,25 +8,24 @@
 				placeholder="Search product"
 				size="sm"
 			/>
-			<v-view-switch
-				class="product-released__switch"
-				:model-value="isList"
-				@update:model-value="changeView"
-			/>
+			<v-view-switch v-model="isList" class="product-released__switch" />
 		</div>
-		<div class="product-released__body">
-			<keep-alive>
-				<div v-if="isList" class="product-released__table">
-					<products-table-released :columns="productColumns" :products="products" />
-				</div>
-				<div v-else class="product-released__cards">
-					<v-product-card v-for="product in products" :key="product.id" :product="product" />
-				</div>
-			</keep-alive>
+		<div v-if='!isLoading' class='product-released__content'>
+			<div class="product-released__body">
+				<keep-alive>
+					<div v-if="isList" class="product-released__table">
+						<products-table-released :columns="productColumns" :products="products" />
+					</div>
+					<div v-else class="product-released__cards">
+						<v-product-card v-for="product in products" :key="product.id" :product="product" />
+					</div>
+				</keep-alive>
+			</div>
+			<div class="product-released__footer">
+				<v-pagination v-model:current-page="page" :total-pages="totalPages" />
+			</div>
 		</div>
-		<div class="product-released__footer">
-			<v-button size="sm" label="Load more" :is-loading="true" color="secondary"></v-button>
-		</div>
+		<v-preloader v-else />
 	</div>
 </template>
 
@@ -35,6 +34,8 @@ import ProductsTableReleased from '@/components/products/table/released/Products
 import VProductCard from '@/components/VProductCard.vue';
 import VInputIcon from '@/components/UI/VInputIcon.vue';
 import VViewSwitch from '@/components/UI/VViewSwitch.vue';
+import UserProductsService from '@/service/UserProductsService';
+import { mapGetters } from 'vuex';
 
 export default {
 	name: 'VProductReleasedView',
@@ -43,82 +44,46 @@ export default {
 		return {
 			isList: true,
 			productColumns: ['Product', 'Price', 'Status', 'Rating', 'Sales', 'Views'],
-			products: [
-				{
-					id: 1,
-					title: 'Fleet - Travel shopping UI design kit',
-					description: 'UI design kit',
-					imageSrc: '/src/assets/images/products/product-1.jpg',
-					alt: 'Fleet - Travel shopping UI design kit',
-					price: 98,
-					currency: '$',
-					rating: 4.8,
-					counterRating: 87
-				},
-				{
-					id: 2,
-					title: 'Fleet - Travel shopping UI design kit',
-					description: 'UI design kit',
-					imageSrc: '/src/assets/images/products/product-2.jpg',
-					alt: 'Fleet - Travel shopping UI design kit',
-					price: 98,
-					currency: '$',
-					rating: 4.8,
-					counterRating: 87
-				},
-				{
-					id: 3,
-					title: 'Fleet - Travel shopping UI design kit',
-					description: 'UI design kit',
-					imageSrc: '/src/assets/images/products/product-3.jpg',
-					alt: 'Fleet - Travel shopping UI design kit',
-					price: 98,
-					currency: '$',
-					rating: 4.8,
-					counterRating: 87
-				},
-				{
-					id: 4,
-					title: 'Fleet - Travel shopping UI design kit',
-					description: 'UI design kit',
-					imageSrc: '/src/assets/images/products/product-4.jpg',
-					alt: 'Fleet - Travel shopping UI design kit',
-					price: 98,
-					currency: '$',
-					rating: 4.8,
-					counterRating: 87
-				},
-				{
-					id: 5,
-					title: 'Fleet - Travel shopping UI design kit',
-					description: 'UI design kit',
-					imageSrc: '/src/assets/images/products/product-5.jpg',
-					alt: 'Fleet - Travel shopping UI design kit',
-					price: 98,
-					currency: '$',
-					rating: 4.8,
-					counterRating: 87
-				},
-				{
-					id: 6,
-					title: 'Fleet - Travel shopping UI design kit',
-					description: 'UI design kit',
-					imageSrc: '/src/assets/images/products/product-6.jpg',
-					alt: 'Fleet - Travel shopping UI design kit',
-					price: 98,
-					currency: '$',
-					rating: 4.8,
-					counterRating: 87
-				}
-			]
+			products: [],
+			limit: 6,
+			page: 1,
+			totalPages: 0,
+			isLoading: true
 		};
 	},
+	computed: {
+		...mapGetters({
+			user: 'userModule/user'
+		})
+	},
+	watch: {
+		page() {
+			this.fetchProducts();
+		}
+	},
+	mounted() {
+		this.fetchProducts();
+	},
 	methods: {
-		changeView(bool) {
-			this.isList = bool;
+		async fetchProducts() {
+			this.isLoading = true;
+
+			await UserProductsService.getReleasedProducts(this.user.id, this.limit, this.page)
+				.then((response) => {
+					this.products = response.data.products;
+					this.totalPages = Math.ceil(response.data.count / this.limit);
+				})
+				.catch((error) => {
+					this.showErrorNotification(
+						error.response?.data?.message ?? 'Произошла непрведвиденная ошибка'
+					);
+				})
+				.finally(() => {
+					this.isLoading = false;
+				});
 		}
 	}
-};
+}
 </script>
 
 <style scoped lang="scss">

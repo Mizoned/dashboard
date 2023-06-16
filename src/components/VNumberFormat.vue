@@ -7,8 +7,8 @@ export default {
 	name: 'VNumberFormat',
 	props: {
 		value: {
-			type: String,
-			required: true
+			type: [String, Number],
+			default: 0
 		}
 	}
 };
