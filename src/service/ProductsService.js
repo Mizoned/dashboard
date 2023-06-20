@@ -9,4 +9,8 @@ export default class ProductsService {
 			params
 		});
 	}
+
+	static async getProduct(productId) {
+		return $api.get(`/products/${productId}`);
+	}
 }

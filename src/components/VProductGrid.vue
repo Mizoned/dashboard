@@ -1,10 +1,13 @@
 <template>
 	<div class="v-product-grid">
-		<v-product-card
-			v-for="product in products"
-			:key="product.id"
-			:product="product"
-		></v-product-card>
+		<template v-for="product in products" :key="product.id">
+			<router-link :to="{ name: 'Product detail', params: { id: product.id } }">
+				<v-product-card
+					:product="product"
+				/>
+			</router-link>
+		</template>
+
 	</div>
 </template>
 

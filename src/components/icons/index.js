@@ -41,6 +41,7 @@ import VIconCalendar from '@/components/icons/VIconCalendar.vue';
 import VIconChevron from '@/components/icons/VIconChevron.vue';
 import VIconCircleAdd from '@/components/icons/VIconCircleAdd.vue';
 import VIconFilter from '@/components/icons/VIconFilter.vue';
+import VIconDownload from '@/components/icons/VIconDownload.vue';
 
 export default [
 	VIconHome,
@@ -85,5 +86,6 @@ export default [
 	VIconCalendar,
 	VIconChevron,
 	VIconCircleAdd,
-	VIconFilter
+	VIconFilter,
+	VIconDownload
 ];

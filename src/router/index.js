@@ -54,6 +54,11 @@ const routes = [
 				path: '/product-released',
 				name: 'Released',
 				component: VProductReleasedView
+			},
+			{
+				path: '/product-detail/:id',
+				name: 'Product detail',
+				component: () => import('../views/product/VProductDetail.vue')
 			}
 		]
 	},

@@ -11,6 +11,9 @@ import 'vue-toastification/dist/index.css';
 
 import '@/assets/styles/main.scss';
 import 'normalize.css';
+import 'swiper/swiper.min.css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 
 const app = createApp(App);
 
