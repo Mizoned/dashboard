@@ -180,12 +180,7 @@
 							<div class="product-create__widget-body">
 								<div class="product-create__widget-content">
 									<div class="product-create__widget-name">{{ form.name }}</div>
-									<div class="product-create__widget-by">
-										<v-avatar class="product-create__widget-by-avatar" :src="imagePath" size="sm" />
-										<div class="product-create__widget-by-name">
-											by <span>{{ displayName }}</span>
-										</div>
-									</div>
+									<v-user-creator :name='displayName' :avatar='imagePath'/>
 								</div>
 								<div class="product-create__widget-price">${{ form.price }}</div>
 							</div>
@@ -237,10 +232,11 @@ import UserProductsService from '@/service/UserProductsService';
 import TheBottomProductBar from '@/components/VBottomProductBar.vue';
 import toastificationMixin from '@/mixins/toastification.mixin';
 import { mapGetters, mapState } from 'vuex';
+import VUserCreator from '@/components/VUserCreator.vue';
 
 export default {
 	name: 'VProductCreateView',
-	components: { TheBottomProductBar },
+	components: { VUserCreator, TheBottomProductBar },
 	mixins: [toastificationMixin],
 	data() {
 		return {
@@ -530,27 +526,6 @@ export default {
 			min-height: 32px;
 			word-wrap: break-word;
 			max-width: 230px;
-		}
-
-		&-by {
-			display: flex;
-			align-items: center;
-			gap: 12px;
-
-			&-name {
-				font-style: normal;
-				font-weight: 500;
-				font-size: 15px;
-				line-height: 24px;
-				letter-spacing: -0.015em;
-				color: var(--primary-dark-white-color);
-
-				span {
-					font-weight: 600;
-					letter-spacing: -0.01em;
-					color: var(--neutral-champagne-background-color);
-				}
-			}
 		}
 
 		&-price {
