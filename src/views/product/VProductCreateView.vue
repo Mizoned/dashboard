@@ -280,11 +280,11 @@ export default {
 				},
 				pictures: {
 					required: helpers.withMessage('Поле обязательно для заполнения', required),
-					maxLength: helpers.withMessage('Количество картинок не должно превышать 3', maxLength(3))
+					maxLength: helpers.withMessage('Количество картинок не должно превышать 4', maxLength(4))
 				},
 				content: {
 					required: helpers.withMessage('Поле обязательно для заполнения', required),
-					maxLength: helpers.withMessage('Количество файлов не должно превышать 3', maxLength(3))
+					maxLength: helpers.withMessage('Количество файлов не должно превышать 4', maxLength(4))
 				}
 			}
 		};
