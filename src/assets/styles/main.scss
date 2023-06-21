@@ -5,7 +5,6 @@ html {
 	scroll-behavior: smooth;
 	width: 100%;
 	height: 100%;
-
 	scrollbar-color: var(--primary-blue-color) var(--neutral-dark-gray-background-color);
 	scrollbar-width: thin;
 }
@@ -42,12 +41,19 @@ a {
 	text-decoration: none;
 }
 
+#app {
+	display: flex;
+	height: 100%;
+	overflow: hidden;
+}
+
 .app-container {
 	flex: 1 1 auto;
 	display: flex;
 	flex-direction: column;
 	height: 100%;
 	overflow: hidden;
+	background-color: var(--neutral-dark-black-background-color);
 }
 
 .h3 {

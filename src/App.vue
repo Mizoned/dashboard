@@ -1,7 +1,7 @@
 <template>
-	<the-preloader v-if="isLoading" />
-	<div v-else :class="['app', { 'light-theme': !isDarkThemeMode }]">
-		<router-view />
+	<div :class="['app-container', { 'light-theme': !isDarkThemeMode }]">
+		<the-preloader v-if="isLoading" />
+		<router-view v-else/>
 	</div>
 </template>
 <script>
@@ -44,13 +44,3 @@ export default {
 	}
 };
 </script>
-
-<style scoped lang="scss">
-.app {
-	display: flex;
-	height: 100%;
-	overflow: hidden;
-	background-color: var(--neutral-dark-black-background-color);
-	transition: background-color 0.3s;
-}
-</style>

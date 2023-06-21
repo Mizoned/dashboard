@@ -1,6 +1,6 @@
 <template>
-	<div class="v-loader">
-		<div class="v-loader__icon">
+	<div class="the-loader">
+		<div class="the-loader__icon">
 			<v-logotype />
 		</div>
 	</div>
@@ -16,7 +16,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.v-loader {
+.the-loader {
 	position: fixed;
 	top: 0;
 	right: 0;
@@ -30,7 +30,7 @@ export default {
 		position: absolute;
 		left: 50%;
 		top: 50%;
-		transform: translateY(-50%);
+		transform: translate(-50%, -50%);
 
 		&:deep(img) {
 			animation: rotate-vertical 1.3s ease-in-out infinite;

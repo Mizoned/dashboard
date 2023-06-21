@@ -48,6 +48,7 @@ export default {
 		flex-direction: column;
 		width: 100%;
 		overflow-y: auto;
+		overflow-x: hidden;
 		padding: 40px;
 		scroll-behavior: smooth;
 

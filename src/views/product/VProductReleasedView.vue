@@ -124,6 +124,12 @@ export default {
 		margin-left: auto;
 	}
 
+	&__content {
+		display: flex;
+		flex-direction: column;
+		row-gap: 32px;
+	}
+
 	&__table {
 		margin: 0 -12px;
 

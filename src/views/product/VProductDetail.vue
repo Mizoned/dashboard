@@ -1,36 +1,26 @@
 <template>
 	<div v-if='!isLoading' class="v-product-detail">
 		<div class='v-product-detail__head'>
-			<div class='v-product-detail__buttons'>
-				<button class='v-buy-button'>
-					<span class='v-buy-button__price'>${{ product.price }}</span>
-					<span class='v-buy-button__download'>Download now
+			<div class='v-product-detail__title'>{{ product.name }}</div>
+			<div class='v-product-detail__nav'>
+				<div class='v-product-detail__creator'>
+					<v-user-creator :name='product.user.displayName || product.user.email' :avatar='product.user.imagePath' :use-rating="true"/>
+				</div>
+				<div class='v-product-detail__buttons'>
+					<v-button label='32' before-svg-component-name='VIconHeart' color='secondary'/>
+					<button class='v-buy-button'>
+						<span class='v-buy-button__price'>${{ product.price }}</span>
+						<span class='v-buy-button__download'>Download now
 						<v-icon-download/>
 					</span>
-				</button>
+					</button>
+				</div>
 			</div>
 		</div>
-		<div class='v-product-detail__info'>
-			<div class='v-product-detail__title'>{{ product.name }}</div>
-			<div class='v-product-detail__creator'>
-				<v-user-creator :name='product.user.displayName || product.user.email' :avatar='product.user.imagePath'/>
-				<v-rating></v-rating>
+		<div class='v-product-card__gallery gallery'>
+			<div v-for="(picture, key) in product.pictures" :key='key' class='gallery__image'>
+				<img :src='picture.path' :alt='product.name'>
 			</div>
-		</div>
-		<div class='v-product-detail__slider'>
-			<swiper
-				:slides-per-view="1"
-				:space-between="50"
-				navigation
-				:modules='modules'
-				:pagination="{ clickable: true }"
-				@swiper="onSwiper"
-				@slide-change="onSlideChange"
-			>
-				<template v-for="(picture, key) in product.pictures" :key='key'>
-					<swiper-slide><img :src='picture.path' :alt='product.name'></swiper-slide>
-				</template>
-			</swiper>
 		</div>
 		<v-box>
 			<template #head>
@@ -45,23 +35,17 @@
 
 <script>
 import ProductsService from '@/service/ProductsService';
-import VBox from '@/components/VBox.vue';
-import VButton from '@/components/UI/VButton.vue';
 import VIconDownload from '@/components/icons/VIconDownload.vue';
-import { mapGetters, mapState } from 'vuex';
 import VUserCreator from '@/components/VUserCreator.vue';
-import VRating from '@/components/UI/VRating.vue';
-import { Swiper, SwiperSlide } from 'swiper/vue';
-import { Navigation, Pagination } from 'swiper';
+import VButton from '@/components/UI/VButton.vue';
 
 export default {
 	name: 'VProductDetail',
-	components: { VRating, VUserCreator, VIconDownload, VButton, VBox, Swiper, SwiperSlide },
+	components: { VButton, VUserCreator, VIconDownload },
 	data() {
 		return {
 			product: [],
-			isLoading: false,
-			modules: [Navigation, Pagination]
+			isLoading: false
 		}
 	},
 	async created() {
@@ -73,10 +57,14 @@ export default {
 			const productId = this.$route.params.id;
 			await ProductsService.getProduct(productId)
 				.then((response) => {
-					console.log(response);
 					this.product = response.data;
-				}).catch((error) =>{
-					console.log(error);
+				}).catch(async (error) =>{
+					if (error.response.status === 404) {
+						await this.$router.push({ name: 'Shop' });
+						return;
+					}
+
+					console.error(error);
 				})
 				.finally(() => {
 					this.isLoading = false;
@@ -102,27 +90,45 @@ export default {
 
 	&__head {
 		display: flex;
-		width: 100%;
+		flex-direction: column;
+		row-gap: 12px;
+	}
+
+	&__nav {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		flex-wrap: wrap;
+		gap: 16px;
+
+		@media screen and (max-width: 1024px) {
+			align-items: flex-start;
+			flex-direction: column;
+		}
 	}
 
 	&__buttons {
 		display: flex;
-		column-gap: 16px;
-		margin-left: auto;
-	}
+		gap: 16px;
 
-	&__info {
-		display: flex;
-		flex-direction: column;
-		row-gap: 12px;
+		@media screen and (max-width: 1024px) {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+			width: 100%;
+		}
 	}
 
 	&__title {
 		font-weight: 600;
 		font-size: 32px;
 		line-height: 40px;
-		letter-spacing: -0.03em;
+		letter-spacing: -0.02em;
 		color: var(--neutral-champagne-color);
+
+		@media screen and (max-width: 1024px) {
+			font-size: 24px;
+			line-height: 32px;
+		}
 	}
 
 	&__creator {
@@ -162,6 +168,10 @@ export default {
 		letter-spacing: -0.015em;
 		color: var(--neutral-white-smoke-color);
 	}
+
+	@media screen and (max-width: 1024px) {
+		row-gap: 32px;
+	}
 }
 
 .v-buy-button {
@@ -169,7 +179,6 @@ export default {
 	justify-content: center;
 	align-items: center;
 	padding: 0 18px;
-	gap: 8px;
 	border: 2px solid transparent;
 	border-radius: 12px;
 	cursor: pointer;
@@ -188,8 +197,8 @@ export default {
 	}
 
 	&__price {
-		padding: 10px 20px 10px 0;
-		margin-right: 20px;
+		padding: 10px 18px 10px 0;
+		margin-right: 18px;
 		border-right: 1px solid #4493FC;
 		box-shadow: 1px 0 0 0 #186FE3;
 	}
@@ -199,6 +208,58 @@ export default {
 		display: flex;
 		align-items: center;
 		column-gap: 8px;
+		white-space: nowrap;
+	}
+
+	@media screen and (max-width: 1024px) {
+		padding: 0 14px;
+	}
+}
+
+.gallery {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 24px;
+
+	&__image {
+		position: relative;
+		-webkit-box-flex: 0;
+		flex: 0 0 calc(50% - 12px);
+		border-radius: 8px;
+		overflow: hidden;
+
+		&::before {
+			content: "";
+			display: block;
+			padding-bottom: calc((1020 / 1350) * 100%);
+		}
+
+		img {
+			position: absolute;
+			top: 0;
+			left: 0;
+			display: block;
+			width: 100%;
+			height: 100%;
+			max-width: 100%;
+			object-fit: cover;
+		}
+
+		@media screen and (max-width: 1024px) {
+			margin-bottom: 12px;
+
+			&:last-child {
+			margin-bottom: unset;
+		}
+		}
+	}
+
+	@media screen and (max-width: 1250px) {
+		gap: 12px;
+	}
+
+	@media screen and (max-width: 1024px) {
+		display: block;
 	}
 }
 </style>
