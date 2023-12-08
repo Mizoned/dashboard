@@ -144,18 +144,18 @@ export default {
 	validations() {
 		return {
 			email: {
-				required: helpers.withMessage('Поле обязательно для заполнения', required),
-				email: helpers.withMessage('Email введён некорректно', email)
+				required: helpers.withMessage('Required field', required),
+				email: helpers.withMessage('Email address entered incorrectly', email)
 			},
 			code: {
-				required: helpers.withMessage('Поле обязательно для заполнения', required),
-				minLength: helpers.withMessage('Код должен состоять из 4 символов', minLength(4)),
-				maxLength: helpers.withMessage('Код должен состоять из 4 символов', maxLength(4))
+				required: helpers.withMessage('Required field', required),
+				minLength: helpers.withMessage('Code must be 4 characters long', minLength(4)),
+				maxLength: helpers.withMessage('Code must be 4 characters long', maxLength(4))
 			},
 			password: {
-				required: helpers.withMessage('Поле обязательно для заполнения', required),
-				minLength: helpers.withMessage('Пароль должен быть больше 8 символов', minLength(9)),
-				maxLength: helpers.withMessage('Пароль должен быть меньше 32 символов', maxLength(32))
+				required: helpers.withMessage('Required field', required),
+				minLength: helpers.withMessage('Password must be more than 8 characters', minLength(9)),
+				maxLength: helpers.withMessage('Password must be less than 32 characters', maxLength(32))
 			}
 		};
 	},

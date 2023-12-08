@@ -54,6 +54,7 @@ a {
 	height: 100%;
 	overflow: hidden;
 	background-color: var(--neutral-dark-black-background-color);
+	transition: background-color 0.3s;
 }
 
 .h3 {

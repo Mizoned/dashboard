@@ -59,6 +59,9 @@ export default {
 	},
 	methods: {
 		changePageHandler(page) {
+			if (page === this.currentPage) {
+				return;
+			}
 			this.$emit('update:current-page', page);
 		},
 		goToPreviousPage() {

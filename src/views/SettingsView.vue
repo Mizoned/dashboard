@@ -261,11 +261,11 @@ export default {
 					targetSelector: '#notification',
 					label: 'Notification'
 				},
-				{
-					state: false,
-					targetSelector: '#payment',
-					label: 'Payment'
-				}
+				// {
+				// 	state: false,
+				// 	targetSelector: '#payment',
+				// 	label: 'Payment'
+				// }
 			],
 			displayName: this.$store.state.userModule?.user?.displayName ?? '',
 			email: this.$store.state.userModule?.user?.email ?? '',
@@ -323,44 +323,35 @@ export default {
 			},
 			displayName: {
 				required: helpers.withMessage('Поле обязательно для заполнения', required),
-				minLength: helpers.withMessage(
-					'Отображаемое имя должно быть больше 3 символов',
-					minLength(4)
-				),
-				maxLength: helpers.withMessage(
-					'Отображаемое имя должно быть меньше 24 символов',
-					maxLength(24)
-				)
+				minLength: helpers.withMessage('Отображаемое имя должно быть больше 3 символов', minLength(4)),
+				maxLength: helpers.withMessage('Отображаемое имя должно быть меньше 24 символов', maxLength(24))
 			},
 			location: {
-				maxLength: helpers.withMessage(
-					'Местоположение должно быть меньше 32 символов',
-					maxLength(32)
-				)
+				maxLength: helpers.withMessage('Местоположение должно быть меньше 32 символов', maxLength(32))
 			},
 			oldPassword: {
-				required: helpers.withMessage('Поле обязательно для заполнения', required),
-				minLength: helpers.withMessage('Пароль должен быть больше 8 символов', minLength(9)),
-				maxLength: helpers.withMessage('Пароль должен быть меньше 32 символов', maxLength(32))
+				required: helpers.withMessage('Required field', required),
+				minLength: helpers.withMessage('Password must be more than 8 characters', minLength(9)),
+				maxLength: helpers.withMessage('Password must be less than 32 characters', maxLength(32))
 			},
 			newPassword: {
-				required: helpers.withMessage('Поле обязательно для заполнения', required),
-				minLength: helpers.withMessage('Пароль должен быть больше 8 символов', minLength(9)),
-				maxLength: helpers.withMessage('Пароль должен быть меньше 32 символов', maxLength(32))
+				required: helpers.withMessage('Required field', required),
+				minLength: helpers.withMessage('Password must be more than 8 characters', minLength(9)),
+				maxLength: helpers.withMessage('Password must be less than 32 characters', maxLength(32))
 			},
 			confirmNewPassword: {
-				required: helpers.withMessage('Поле обязательно для заполнения', required),
-				minLength: helpers.withMessage('Пароль должен быть больше 8 символов', minLength(9)),
-				maxLength: helpers.withMessage('Пароль должен быть меньше 32 символов', maxLength(32)),
+				required: helpers.withMessage('Required field', required),
+				minLength: helpers.withMessage('Password must be more than 8 characters', minLength(9)),
+				maxLength: helpers.withMessage('Password must be less than 32 characters', maxLength(32)),
 				sameAsNewPassword: helpers.withMessage('Пароли не совпадают', sameAs(this.newPassword))
 			},
 			profilePictureUpload: {
 				validateImageFileType: helpers.withMessage(
-					'Файл должен быть изображением. Вы выбрали файл другого типа',
+					'The file must be an image. You have selected a different file type',
 					validateImageFileType
 				),
 				validateImageFileSize: helpers.withMessage(
-					'Размер файла не должен превышать 5 мегабайт',
+					'The file size must not exceed 5mb',
 					validateImageFileSize
 				)
 			}
@@ -423,13 +414,13 @@ export default {
 
 			this.updateUser(data)
 				.then(() => {
-					this.showSuccessNotification('Данные профиля успешно изменены!');
+					this.showSuccessNotification('Profile data changed successfully');
 				})
 				.catch((error) => {
 					const errors = error?.response?.data?.errors;
 
 					if (errors) {
-						this.showErrorNotification('Не все поля заполнены верно!');
+						this.showErrorNotification('Not all fields are filled in correctly');
 						errors.forEach((error) => {
 							this.vuelidateExternalResults[error.param] = error.msg;
 						});
@@ -509,7 +500,7 @@ export default {
 
 				this.updateAvatar(data)
 					.then(() => {
-						this.showSuccessNotification('Картинка профиля успешно изменена!');
+						this.showSuccessNotification('Profile picture changed successfully');
 					})
 					.catch((error) => {
 						const errors = error?.response?.data?.errors;
@@ -521,8 +512,9 @@ export default {
 		},
 		pictureRemovingHandler() {
 			this.removeAvatar()
-				.then(() => {
-					this.showSuccessNotification('Картинка профиля успешно удалена!');
+				.then((res) => {
+					console.log((res));
+					this.showSuccessNotification('Profile picture deleted successfully');
 				})
 				.catch((error) => {
 					const errors = error?.response?.data?.errors;

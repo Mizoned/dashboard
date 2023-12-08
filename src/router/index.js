@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import HomeView from '../views/HomeView.vue';
+import HomeView from '@/views/HomeView.vue';
 import DashboardLayout from '@/layouts/DashboardLayout.vue';
 import ShopView from '@/views/ShopView.vue';
 import PromoteView from '@/views/PromoteView.vue';
